@@ -16,6 +16,8 @@
   ts              163       1                                                                                           
   dockerfile        6       1                                                                                           
                                                                                                                         
+Warning: 1 timeout error(s) in testenv/Lib/site-packages/pip/_vendor/idna/uts46data.py when running the following rules:
+[python.boto3.security.hardcoded-token.hardcoded-token]
                     
                     
 ┌──────────────────┐
