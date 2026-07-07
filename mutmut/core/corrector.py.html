@@ -1,0 +1,1211 @@
+<html><body><h1>core/corrector.py</h1>Killed 0 out of 110 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 651</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -3,7 +3,7 @@
+     Genera sugerencias enriquecidas (formato Copiloto) para normalizar el esquema.
+     Incluye impacto, confianza y beneficios para asistir al usuario.
+     """
+-    sugerencias = []
++    sugerencias = None
+     
+     # Sugerencias 1FN
+     for violacion in diagnostico.get("violaciones_1fn", []):
+</pre><h3>Mutant 652</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -6,7 +6,7 @@
+     sugerencias = []
+     
+     # Sugerencias 1FN
+-    for violacion in diagnostico.get("violaciones_1fn", []):
++    for violacion in diagnostico.get("XXviolaciones_1fnXX", []):
+         if "Primary Key" in violacion["tipo"]:
+             sugerencias.append({
+                 "nivel": "1FN",
+</pre><h3>Mutant 653</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -7,7 +7,7 @@
+     
+     # Sugerencias 1FN
+     for violacion in diagnostico.get("violaciones_1fn", []):
+-        if "Primary Key" in violacion["tipo"]:
++        if "XXPrimary KeyXX" in violacion["tipo"]:
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+</pre><h3>Mutant 654</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -7,7 +7,7 @@
+     
+     # Sugerencias 1FN
+     for violacion in diagnostico.get("violaciones_1fn", []):
+-        if "Primary Key" in violacion["tipo"]:
++        if "Primary Key" not in violacion["tipo"]:
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+</pre><h3>Mutant 655</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -7,7 +7,7 @@
+     
+     # Sugerencias 1FN
+     for violacion in diagnostico.get("violaciones_1fn", []):
+-        if "Primary Key" in violacion["tipo"]:
++        if "Primary Key" in violacion["XXtipoXX"]:
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+</pre><h3>Mutant 656</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -9,7 +9,7 @@
+     for violacion in diagnostico.get("violaciones_1fn", []):
+         if "Primary Key" in violacion["tipo"]:
+             sugerencias.append({
+-                "nivel": "1FN",
++                "XXnivelXX": "1FN",
+                 "accion": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 657</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -9,7 +9,7 @@
+     for violacion in diagnostico.get("violaciones_1fn", []):
+         if "Primary Key" in violacion["tipo"]:
+             sugerencias.append({
+-                "nivel": "1FN",
++                "nivel": "XX1FNXX",
+                 "accion": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 658</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -10,7 +10,7 @@
+         if "Primary Key" in violacion["tipo"]:
+             sugerencias.append({
+                 "nivel": "1FN",
+-                "accion": "Añadir Clave Primaria",
++                "XXaccionXX": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+</pre><h3>Mutant 659</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -10,7 +10,7 @@
+         if "Primary Key" in violacion["tipo"]:
+             sugerencias.append({
+                 "nivel": "1FN",
+-                "accion": "Añadir Clave Primaria",
++                "accion": "XXAñadir Clave PrimariaXX",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+</pre><h3>Mutant 660</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -11,7 +11,7 @@
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+-                "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
++                "XXdetalleXX": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+</pre><h3>Mutant 661</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -11,7 +11,7 @@
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+-                "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
++                "detalle": violacion["XXmensajeXX"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+</pre><h3>Mutant 662</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -11,7 +11,7 @@
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+-                "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
++                "detalle": violacion["mensaje"] - " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+</pre><h3>Mutant 663</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -11,7 +11,7 @@
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+-                "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
++                "detalle": violacion["mensaje"] + "XX Agrega un campo 'id' autoincremental o define una Primary Key lógica.XX",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+</pre><h3>Mutant 664</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -12,7 +12,7 @@
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+-                "sql_original": violacion.get("sql_original", ""),
++                "XXsql_originalXX": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+</pre><h3>Mutant 665</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -12,7 +12,7 @@
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+-                "sql_original": violacion.get("sql_original", ""),
++                "sql_original": violacion.get("XXsql_originalXX", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+</pre><h3>Mutant 666</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -12,7 +12,7 @@
+                 "nivel": "1FN",
+                 "accion": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+-                "sql_original": violacion.get("sql_original", ""),
++                "sql_original": violacion.get("sql_original", "XXXX"),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+</pre><h3>Mutant 667</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -13,7 +13,7 @@
+                 "accion": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+-                "impacto": "Alto",
++                "XXimpactoXX": "Alto",
+                 "confianza": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+                 "tipo_mejora": "critica"
+</pre><h3>Mutant 668</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -13,7 +13,7 @@
+                 "accion": "Añadir Clave Primaria",
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+-                "impacto": "Alto",
++                "impacto": "XXAltoXX",
+                 "confianza": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+                 "tipo_mejora": "critica"
+</pre><h3>Mutant 669</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -14,7 +14,7 @@
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+-                "confianza": "100%",
++                "XXconfianzaXX": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+                 "tipo_mejora": "critica"
+             })
+</pre><h3>Mutant 670</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -14,7 +14,7 @@
+                 "detalle": violacion["mensaje"] + " Agrega un campo 'id' autoincremental o define una Primary Key lógica.",
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+-                "confianza": "100%",
++                "confianza": "XX100%XX",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+                 "tipo_mejora": "critica"
+             })
+</pre><h3>Mutant 671</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -15,7 +15,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+-                "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
++                "XXbeneficiosXX": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+                 "tipo_mejora": "critica"
+             })
+         else:
+</pre><h3>Mutant 672</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -15,7 +15,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+-                "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
++                "beneficios": ["XXAsegura unicidad de registros.XX", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+                 "tipo_mejora": "critica"
+             })
+         else:
+</pre><h3>Mutant 673</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -15,7 +15,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+-                "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
++                "beneficios": ["Asegura unicidad de registros.", "XXCumple la 1FN indispensable.XX", "Permite crear relaciones."],
+                 "tipo_mejora": "critica"
+             })
+         else:
+</pre><h3>Mutant 674</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -15,7 +15,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "100%",
+-                "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
++                "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "XXPermite crear relaciones.XX"],
+                 "tipo_mejora": "critica"
+             })
+         else:
+</pre><h3>Mutant 675</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -16,7 +16,7 @@
+                 "impacto": "Alto",
+                 "confianza": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+-                "tipo_mejora": "critica"
++                "XXtipo_mejoraXX": "critica"
+             })
+         else:
+             # Grupo repetitivo
+</pre><h3>Mutant 676</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -16,7 +16,7 @@
+                 "impacto": "Alto",
+                 "confianza": "100%",
+                 "beneficios": ["Asegura unicidad de registros.", "Cumple la 1FN indispensable.", "Permite crear relaciones."],
+-                "tipo_mejora": "critica"
++                "tipo_mejora": "XXcriticaXX"
+             })
+         else:
+             # Grupo repetitivo
+</pre><h3>Mutant 677</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -21,7 +21,7 @@
+         else:
+             # Grupo repetitivo
+             sugerencias.append({
+-                "nivel": "1FN",
++                "XXnivelXX": "1FN",
+                 "accion": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 678</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -21,7 +21,7 @@
+         else:
+             # Grupo repetitivo
+             sugerencias.append({
+-                "nivel": "1FN",
++                "nivel": "XX1FNXX",
+                 "accion": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 679</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -22,7 +22,7 @@
+             # Grupo repetitivo
+             sugerencias.append({
+                 "nivel": "1FN",
+-                "accion": "Separar atributos multivaluados",
++                "XXaccionXX": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+</pre><h3>Mutant 680</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -22,7 +22,7 @@
+             # Grupo repetitivo
+             sugerencias.append({
+                 "nivel": "1FN",
+-                "accion": "Separar atributos multivaluados",
++                "accion": "XXSeparar atributos multivaluadosXX",
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+</pre><h3>Mutant 681</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -23,7 +23,7 @@
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Separar atributos multivaluados",
+-                "detalle": violacion["mensaje"],
++                "XXdetalleXX": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+</pre><h3>Mutant 682</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -23,7 +23,7 @@
+             sugerencias.append({
+                 "nivel": "1FN",
+                 "accion": "Separar atributos multivaluados",
+-                "detalle": violacion["mensaje"],
++                "detalle": violacion["XXmensajeXX"],
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+</pre><h3>Mutant 683</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -24,7 +24,7 @@
+                 "nivel": "1FN",
+                 "accion": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+-                "sql_original": violacion.get("sql_original", ""),
++                "XXsql_originalXX": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+</pre><h3>Mutant 684</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -24,7 +24,7 @@
+                 "nivel": "1FN",
+                 "accion": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+-                "sql_original": violacion.get("sql_original", ""),
++                "sql_original": violacion.get("XXsql_originalXX", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+</pre><h3>Mutant 685</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -24,7 +24,7 @@
+                 "nivel": "1FN",
+                 "accion": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+-                "sql_original": violacion.get("sql_original", ""),
++                "sql_original": violacion.get("sql_original", "XXXX"),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+</pre><h3>Mutant 686</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -25,7 +25,7 @@
+                 "accion": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+-                "impacto": "Alto",
++                "XXimpactoXX": "Alto",
+                 "confianza": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+                 "tipo_mejora": "critica"
+</pre><h3>Mutant 687</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -25,7 +25,7 @@
+                 "accion": "Separar atributos multivaluados",
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+-                "impacto": "Alto",
++                "impacto": "XXAltoXX",
+                 "confianza": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+                 "tipo_mejora": "critica"
+</pre><h3>Mutant 688</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -26,7 +26,7 @@
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+-                "confianza": "90%",
++                "XXconfianzaXX": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+                 "tipo_mejora": "critica"
+             })
+</pre><h3>Mutant 689</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -26,7 +26,7 @@
+                 "detalle": violacion["mensaje"],
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+-                "confianza": "90%",
++                "confianza": "XX90%XX",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+                 "tipo_mejora": "critica"
+             })
+</pre><h3>Mutant 690</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -27,7 +27,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+-                "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
++                "XXbeneficiosXX": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+                 "tipo_mejora": "critica"
+             })
+             
+</pre><h3>Mutant 691</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -27,7 +27,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+-                "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
++                "beneficios": ["XXCumple la 1FN.XX", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+                 "tipo_mejora": "critica"
+             })
+             
+</pre><h3>Mutant 692</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -27,7 +27,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+-                "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
++                "beneficios": ["Cumple la 1FN.", "XXEvita redundancia y espacios nulos.XX", "Facilita búsquedas exactas."],
+                 "tipo_mejora": "critica"
+             })
+             
+</pre><h3>Mutant 693</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -27,7 +27,7 @@
+                 "sql_original": violacion.get("sql_original", ""),
+                 "impacto": "Alto",
+                 "confianza": "90%",
+-                "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
++                "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "XXFacilita búsquedas exactas.XX"],
+                 "tipo_mejora": "critica"
+             })
+             
+</pre><h3>Mutant 694</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -28,7 +28,7 @@
+                 "impacto": "Alto",
+                 "confianza": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+-                "tipo_mejora": "critica"
++                "XXtipo_mejoraXX": "critica"
+             })
+             
+     # Sugerencias 2FN
+</pre><h3>Mutant 695</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -28,7 +28,7 @@
+                 "impacto": "Alto",
+                 "confianza": "90%",
+                 "beneficios": ["Cumple la 1FN.", "Evita redundancia y espacios nulos.", "Facilita búsquedas exactas."],
+-                "tipo_mejora": "critica"
++                "tipo_mejora": "XXcriticaXX"
+             })
+             
+     # Sugerencias 2FN
+</pre><h3>Mutant 696</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -32,7 +32,7 @@
+             })
+             
+     # Sugerencias 2FN
+-    for violacion in diagnostico.get("violaciones_2fn", []):
++    for violacion in diagnostico.get("XXviolaciones_2fnXX", []):
+         sugerencias.append({
+             "nivel": "2FN",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+</pre><h3>Mutant 697</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -34,7 +34,7 @@
+     # Sugerencias 2FN
+     for violacion in diagnostico.get("violaciones_2fn", []):
+         sugerencias.append({
+-            "nivel": "2FN",
++            "XXnivelXX": "2FN",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 698</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -34,7 +34,7 @@
+     # Sugerencias 2FN
+     for violacion in diagnostico.get("violaciones_2fn", []):
+         sugerencias.append({
+-            "nivel": "2FN",
++            "nivel": "XX2FNXX",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 699</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -35,7 +35,7 @@
+     for violacion in diagnostico.get("violaciones_2fn", []):
+         sugerencias.append({
+             "nivel": "2FN",
+-            "accion": "Crear nueva tabla (Dependencia Parcial)",
++            "XXaccionXX": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+</pre><h3>Mutant 700</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -35,7 +35,7 @@
+     for violacion in diagnostico.get("violaciones_2fn", []):
+         sugerencias.append({
+             "nivel": "2FN",
+-            "accion": "Crear nueva tabla (Dependencia Parcial)",
++            "accion": "XXCrear nueva tabla (Dependencia Parcial)XX",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+</pre><h3>Mutant 701</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -36,7 +36,7 @@
+         sugerencias.append({
+             "nivel": "2FN",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+-            "detalle": violacion["mensaje"],
++            "XXdetalleXX": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+</pre><h3>Mutant 702</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -36,7 +36,7 @@
+         sugerencias.append({
+             "nivel": "2FN",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+-            "detalle": violacion["mensaje"],
++            "detalle": violacion["XXmensajeXX"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+</pre><h3>Mutant 703</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -37,7 +37,7 @@
+             "nivel": "2FN",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+-            "sql_original": violacion.get("sql_original", ""),
++            "XXsql_originalXX": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+</pre><h3>Mutant 704</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -37,7 +37,7 @@
+             "nivel": "2FN",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+-            "sql_original": violacion.get("sql_original", ""),
++            "sql_original": violacion.get("XXsql_originalXX", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+</pre><h3>Mutant 705</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -37,7 +37,7 @@
+             "nivel": "2FN",
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+-            "sql_original": violacion.get("sql_original", ""),
++            "sql_original": violacion.get("sql_original", "XXXX"),
+             "impacto": "Alto",
+             "confianza": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+</pre><h3>Mutant 706</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -38,7 +38,7 @@
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+-            "impacto": "Alto",
++            "XXimpactoXX": "Alto",
+             "confianza": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+             "tipo_mejora": "critica"
+</pre><h3>Mutant 707</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -38,7 +38,7 @@
+             "accion": "Crear nueva tabla (Dependencia Parcial)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+-            "impacto": "Alto",
++            "impacto": "XXAltoXX",
+             "confianza": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+             "tipo_mejora": "critica"
+</pre><h3>Mutant 708</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -39,7 +39,7 @@
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+-            "confianza": "100%",
++            "XXconfianzaXX": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+             "tipo_mejora": "critica"
+         })
+</pre><h3>Mutant 709</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -39,7 +39,7 @@
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+-            "confianza": "100%",
++            "confianza": "XX100%XX",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+             "tipo_mejora": "critica"
+         })
+</pre><h3>Mutant 710</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -40,7 +40,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+-            "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
++            "XXbeneficiosXX": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 711</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -40,7 +40,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+-            "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
++            "beneficios": ["XXCumple 2FN.XX", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 712</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -40,7 +40,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+-            "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
++            "beneficios": ["Cumple 2FN.", "XXElimina anomalías de actualización.XX", "Reduce espacio almacenado redundante."],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 713</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -40,7 +40,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "100%",
+-            "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
++            "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "XXReduce espacio almacenado redundante.XX"],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 714</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -41,7 +41,7 @@
+             "impacto": "Alto",
+             "confianza": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+-            "tipo_mejora": "critica"
++            "XXtipo_mejoraXX": "critica"
+         })
+         
+     # Sugerencias 3FN
+</pre><h3>Mutant 715</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -41,7 +41,7 @@
+             "impacto": "Alto",
+             "confianza": "100%",
+             "beneficios": ["Cumple 2FN.", "Elimina anomalías de actualización.", "Reduce espacio almacenado redundante."],
+-            "tipo_mejora": "critica"
++            "tipo_mejora": "XXcriticaXX"
+         })
+         
+     # Sugerencias 3FN
+</pre><h3>Mutant 716</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -45,7 +45,7 @@
+         })
+         
+     # Sugerencias 3FN
+-    for violacion in diagnostico.get("violaciones_3fn", []):
++    for violacion in diagnostico.get("XXviolaciones_3fnXX", []):
+         sugerencias.append({
+             "nivel": "3FN",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+</pre><h3>Mutant 717</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -47,7 +47,7 @@
+     # Sugerencias 3FN
+     for violacion in diagnostico.get("violaciones_3fn", []):
+         sugerencias.append({
+-            "nivel": "3FN",
++            "XXnivelXX": "3FN",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 718</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -47,7 +47,7 @@
+     # Sugerencias 3FN
+     for violacion in diagnostico.get("violaciones_3fn", []):
+         sugerencias.append({
+-            "nivel": "3FN",
++            "nivel": "XX3FNXX",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+</pre><h3>Mutant 719</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -48,7 +48,7 @@
+     for violacion in diagnostico.get("violaciones_3fn", []):
+         sugerencias.append({
+             "nivel": "3FN",
+-            "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
++            "XXaccionXX": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+</pre><h3>Mutant 720</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -48,7 +48,7 @@
+     for violacion in diagnostico.get("violaciones_3fn", []):
+         sugerencias.append({
+             "nivel": "3FN",
+-            "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
++            "accion": "XXMover a tabla de catálogo (Dependencia Transitiva)XX",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+</pre><h3>Mutant 721</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -49,7 +49,7 @@
+         sugerencias.append({
+             "nivel": "3FN",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+-            "detalle": violacion["mensaje"],
++            "XXdetalleXX": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+</pre><h3>Mutant 722</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -49,7 +49,7 @@
+         sugerencias.append({
+             "nivel": "3FN",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+-            "detalle": violacion["mensaje"],
++            "detalle": violacion["XXmensajeXX"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+</pre><h3>Mutant 723</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -50,7 +50,7 @@
+             "nivel": "3FN",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+-            "sql_original": violacion.get("sql_original", ""),
++            "XXsql_originalXX": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+</pre><h3>Mutant 724</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -50,7 +50,7 @@
+             "nivel": "3FN",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+-            "sql_original": violacion.get("sql_original", ""),
++            "sql_original": violacion.get("XXsql_originalXX", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+</pre><h3>Mutant 725</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -50,7 +50,7 @@
+             "nivel": "3FN",
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+-            "sql_original": violacion.get("sql_original", ""),
++            "sql_original": violacion.get("sql_original", "XXXX"),
+             "impacto": "Alto",
+             "confianza": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+</pre><h3>Mutant 726</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -51,7 +51,7 @@
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+-            "impacto": "Alto",
++            "XXimpactoXX": "Alto",
+             "confianza": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+             "tipo_mejora": "critica"
+</pre><h3>Mutant 727</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -51,7 +51,7 @@
+             "accion": "Mover a tabla de catálogo (Dependencia Transitiva)",
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+-            "impacto": "Alto",
++            "impacto": "XXAltoXX",
+             "confianza": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+             "tipo_mejora": "critica"
+</pre><h3>Mutant 728</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -52,7 +52,7 @@
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+-            "confianza": "95%",
++            "XXconfianzaXX": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+             "tipo_mejora": "critica"
+         })
+</pre><h3>Mutant 729</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -52,7 +52,7 @@
+             "detalle": violacion["mensaje"],
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+-            "confianza": "95%",
++            "confianza": "XX95%XX",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+             "tipo_mejora": "critica"
+         })
+</pre><h3>Mutant 730</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -53,7 +53,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+-            "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
++            "XXbeneficiosXX": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 731</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -53,7 +53,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+-            "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
++            "beneficios": ["XXCumple 3FN.XX", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 732</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -53,7 +53,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+-            "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
++            "beneficios": ["Cumple 3FN.", "XXEvita anomalías de inserción y borrado.XX", "Independiza la gestión de catálogos."],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 733</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -53,7 +53,7 @@
+             "sql_original": violacion.get("sql_original", ""),
+             "impacto": "Alto",
+             "confianza": "95%",
+-            "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
++            "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "XXIndependiza la gestión de catálogos.XX"],
+             "tipo_mejora": "critica"
+         })
+         
+</pre><h3>Mutant 734</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -54,7 +54,7 @@
+             "impacto": "Alto",
+             "confianza": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+-            "tipo_mejora": "critica"
++            "XXtipo_mejoraXX": "critica"
+         })
+         
+     # Mejoras opcionales (Semánticas)
+</pre><h3>Mutant 735</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -54,7 +54,7 @@
+             "impacto": "Alto",
+             "confianza": "95%",
+             "beneficios": ["Cumple 3FN.", "Evita anomalías de inserción y borrado.", "Independiza la gestión de catálogos."],
+-            "tipo_mejora": "critica"
++            "tipo_mejora": "XXcriticaXX"
+         })
+         
+     # Mejoras opcionales (Semánticas)
+</pre><h3>Mutant 736</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -58,7 +58,7 @@
+         })
+         
+     # Mejoras opcionales (Semánticas)
+-    for opcional in diagnostico.get("mejoras_opcionales", []):
++    for opcional in diagnostico.get("XXmejoras_opcionalesXX", []):
+         sugerencias.append({
+             "nivel": "Opcional",
+             "accion": f"Dividir columna '{opcional['columna']}'",
+</pre><h3>Mutant 737</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -60,7 +60,7 @@
+     # Mejoras opcionales (Semánticas)
+     for opcional in diagnostico.get("mejoras_opcionales", []):
+         sugerencias.append({
+-            "nivel": "Opcional",
++            "XXnivelXX": "Opcional",
+             "accion": f"Dividir columna '{opcional['columna']}'",
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+</pre><h3>Mutant 738</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -60,7 +60,7 @@
+     # Mejoras opcionales (Semánticas)
+     for opcional in diagnostico.get("mejoras_opcionales", []):
+         sugerencias.append({
+-            "nivel": "Opcional",
++            "nivel": "XXOpcionalXX",
+             "accion": f"Dividir columna '{opcional['columna']}'",
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+</pre><h3>Mutant 739</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -61,7 +61,7 @@
+     for opcional in diagnostico.get("mejoras_opcionales", []):
+         sugerencias.append({
+             "nivel": "Opcional",
+-            "accion": f"Dividir columna '{opcional['columna']}'",
++            "XXaccionXX": f"Dividir columna '{opcional['columna']}'",
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+             "impacto": "Bajo",
+</pre><h3>Mutant 740</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -61,7 +61,7 @@
+     for opcional in diagnostico.get("mejoras_opcionales", []):
+         sugerencias.append({
+             "nivel": "Opcional",
+-            "accion": f"Dividir columna '{opcional['columna']}'",
++            "accion": f"Dividir columna '{opcional['XXcolumnaXX']}'",
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+             "impacto": "Bajo",
+</pre><h3>Mutant 741</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -61,7 +61,7 @@
+     for opcional in diagnostico.get("mejoras_opcionales", []):
+         sugerencias.append({
+             "nivel": "Opcional",
+-            "accion": f"Dividir columna '{opcional['columna']}'",
++            "accion": f"XXDividir columna '{opcional['columna']}'XX",
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+             "impacto": "Bajo",
+</pre><h3>Mutant 742</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -62,7 +62,7 @@
+         sugerencias.append({
+             "nivel": "Opcional",
+             "accion": f"Dividir columna '{opcional['columna']}'",
+-            "detalle": opcional["mensaje"],
++            "XXdetalleXX": opcional["mensaje"],
+             "sql_original": "",
+             "impacto": "Bajo",
+             "confianza": "50%",
+</pre><h3>Mutant 743</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -62,7 +62,7 @@
+         sugerencias.append({
+             "nivel": "Opcional",
+             "accion": f"Dividir columna '{opcional['columna']}'",
+-            "detalle": opcional["mensaje"],
++            "detalle": opcional["XXmensajeXX"],
+             "sql_original": "",
+             "impacto": "Bajo",
+             "confianza": "50%",
+</pre><h3>Mutant 744</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -63,7 +63,7 @@
+             "nivel": "Opcional",
+             "accion": f"Dividir columna '{opcional['columna']}'",
+             "detalle": opcional["mensaje"],
+-            "sql_original": "",
++            "XXsql_originalXX": "",
+             "impacto": "Bajo",
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+</pre><h3>Mutant 745</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -63,7 +63,7 @@
+             "nivel": "Opcional",
+             "accion": f"Dividir columna '{opcional['columna']}'",
+             "detalle": opcional["mensaje"],
+-            "sql_original": "",
++            "sql_original": "XXXX",
+             "impacto": "Bajo",
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+</pre><h3>Mutant 746</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -64,7 +64,7 @@
+             "accion": f"Dividir columna '{opcional['columna']}'",
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+-            "impacto": "Bajo",
++            "XXimpactoXX": "Bajo",
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+</pre><h3>Mutant 747</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -64,7 +64,7 @@
+             "accion": f"Dividir columna '{opcional['columna']}'",
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+-            "impacto": "Bajo",
++            "impacto": "XXBajoXX",
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+</pre><h3>Mutant 748</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -65,7 +65,7 @@
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+             "impacto": "Bajo",
+-            "confianza": "50%",
++            "XXconfianzaXX": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+</pre><h3>Mutant 749</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -65,7 +65,7 @@
+             "detalle": opcional["mensaje"],
+             "sql_original": "",
+             "impacto": "Bajo",
+-            "confianza": "50%",
++            "confianza": "XX50%XX",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+</pre><h3>Mutant 750</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -66,7 +66,7 @@
+             "sql_original": "",
+             "impacto": "Bajo",
+             "confianza": "50%",
+-            "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
++            "XXbeneficiosXX": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+             "columna": opcional["columna"],
+</pre><h3>Mutant 751</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -66,7 +66,7 @@
+             "sql_original": "",
+             "impacto": "Bajo",
+             "confianza": "50%",
+-            "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
++            "beneficios": ["XXMayor flexibilidad.XX", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+             "columna": opcional["columna"],
+</pre><h3>Mutant 752</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -66,7 +66,7 @@
+             "sql_original": "",
+             "impacto": "Bajo",
+             "confianza": "50%",
+-            "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
++            "beneficios": ["Mayor flexibilidad.", "XXBúsquedas más precisas y filtros avanzados.XX"],
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+             "columna": opcional["columna"],
+</pre><h3>Mutant 753</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -67,7 +67,7 @@
+             "impacto": "Bajo",
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+-            "tipo_mejora": "opcional",
++            "XXtipo_mejoraXX": "opcional",
+             "tabla": opcional["tabla"],
+             "columna": opcional["columna"],
+             "sugerencia_columnas": opcional["sugerencia_columnas"]
+</pre><h3>Mutant 754</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -67,7 +67,7 @@
+             "impacto": "Bajo",
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+-            "tipo_mejora": "opcional",
++            "tipo_mejora": "XXopcionalXX",
+             "tabla": opcional["tabla"],
+             "columna": opcional["columna"],
+             "sugerencia_columnas": opcional["sugerencia_columnas"]
+</pre><h3>Mutant 755</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -68,7 +68,7 @@
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+-            "tabla": opcional["tabla"],
++            "XXtablaXX": opcional["tabla"],
+             "columna": opcional["columna"],
+             "sugerencia_columnas": opcional["sugerencia_columnas"]
+         })
+</pre><h3>Mutant 756</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -68,7 +68,7 @@
+             "confianza": "50%",
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+-            "tabla": opcional["tabla"],
++            "tabla": opcional["XXtablaXX"],
+             "columna": opcional["columna"],
+             "sugerencia_columnas": opcional["sugerencia_columnas"]
+         })
+</pre><h3>Mutant 757</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -69,7 +69,7 @@
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+-            "columna": opcional["columna"],
++            "XXcolumnaXX": opcional["columna"],
+             "sugerencia_columnas": opcional["sugerencia_columnas"]
+         })
+         
+</pre><h3>Mutant 758</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -69,7 +69,7 @@
+             "beneficios": ["Mayor flexibilidad.", "Búsquedas más precisas y filtros avanzados."],
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+-            "columna": opcional["columna"],
++            "columna": opcional["XXcolumnaXX"],
+             "sugerencia_columnas": opcional["sugerencia_columnas"]
+         })
+         
+</pre><h3>Mutant 759</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -70,7 +70,7 @@
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+             "columna": opcional["columna"],
+-            "sugerencia_columnas": opcional["sugerencia_columnas"]
++            "XXsugerencia_columnasXX": opcional["sugerencia_columnas"]
+         })
+         
+     return sugerencias
+</pre><h3>Mutant 760</h3><pre>--- core/corrector.py
++++ core/corrector.py
+@@ -70,7 +70,7 @@
+             "tipo_mejora": "opcional",
+             "tabla": opcional["tabla"],
+             "columna": opcional["columna"],
+-            "sugerencia_columnas": opcional["sugerencia_columnas"]
++            "sugerencia_columnas": opcional["XXsugerencia_columnasXX"]
+         })
+         
+     return sugerencias
+</pre></body></html>

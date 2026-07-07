@@ -1,0 +1,1474 @@
+<html><body><h1>core/parser.py</h1>Killed 0 out of 134 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 517</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -10,7 +10,7 @@
+     "A, B -> C"
+     Retorna: [ {"determinantes": ["A", "B"], "dependientes": ["C"]} ]
+     """
+-    fds = []
++    fds = None
+     if not fds_input or not fds_input.strip():
+         return fds
+         
+</pre><h3>Mutant 518</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -11,7 +11,7 @@
+     Retorna: [ {"determinantes": ["A", "B"], "dependientes": ["C"]} ]
+     """
+     fds = []
+-    if not fds_input or not fds_input.strip():
++    if  fds_input or not fds_input.strip():
+         return fds
+         
+     lineas = fds_input.split('\n')
+</pre><h3>Mutant 519</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -11,7 +11,7 @@
+     Retorna: [ {"determinantes": ["A", "B"], "dependientes": ["C"]} ]
+     """
+     fds = []
+-    if not fds_input or not fds_input.strip():
++    if not fds_input or  fds_input.strip():
+         return fds
+         
+     lineas = fds_input.split('\n')
+</pre><h3>Mutant 520</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -11,7 +11,7 @@
+     Retorna: [ {"determinantes": ["A", "B"], "dependientes": ["C"]} ]
+     """
+     fds = []
+-    if not fds_input or not fds_input.strip():
++    if not fds_input and not fds_input.strip():
+         return fds
+         
+     lineas = fds_input.split('\n')
+</pre><h3>Mutant 521</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -14,7 +14,7 @@
+     if not fds_input or not fds_input.strip():
+         return fds
+         
+-    lineas = fds_input.split('\n')
++    lineas = fds_input.split('XX\nXX')
+     for linea in lineas:
+         if '->' in linea:
+             izq, der = linea.split('->')
+</pre><h3>Mutant 522</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -14,7 +14,7 @@
+     if not fds_input or not fds_input.strip():
+         return fds
+         
+-    lineas = fds_input.split('\n')
++    lineas = None
+     for linea in lineas:
+         if '->' in linea:
+             izq, der = linea.split('->')
+</pre><h3>Mutant 523</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -16,7 +16,7 @@
+         
+     lineas = fds_input.split('\n')
+     for linea in lineas:
+-        if '->' in linea:
++        if 'XX->XX' in linea:
+             izq, der = linea.split('->')
+             determinantes = [x.strip() for x in izq.split(',') if x.strip()]
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+</pre><h3>Mutant 524</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -16,7 +16,7 @@
+         
+     lineas = fds_input.split('\n')
+     for linea in lineas:
+-        if '->' in linea:
++        if '->' not in linea:
+             izq, der = linea.split('->')
+             determinantes = [x.strip() for x in izq.split(',') if x.strip()]
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+</pre><h3>Mutant 525</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -17,7 +17,7 @@
+     lineas = fds_input.split('\n')
+     for linea in lineas:
+         if '->' in linea:
+-            izq, der = linea.split('->')
++            izq, der = linea.split('XX->XX')
+             determinantes = [x.strip() for x in izq.split(',') if x.strip()]
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+             if determinantes and dependientes:
+</pre><h3>Mutant 526</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -17,7 +17,7 @@
+     lineas = fds_input.split('\n')
+     for linea in lineas:
+         if '->' in linea:
+-            izq, der = linea.split('->')
++            izq, der = None
+             determinantes = [x.strip() for x in izq.split(',') if x.strip()]
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+             if determinantes and dependientes:
+</pre><h3>Mutant 527</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -18,7 +18,7 @@
+     for linea in lineas:
+         if '->' in linea:
+             izq, der = linea.split('->')
+-            determinantes = [x.strip() for x in izq.split(',') if x.strip()]
++            determinantes = [x.strip() for x in izq.split('XX,XX') if x.strip()]
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+             if determinantes and dependientes:
+                 fds.append({
+</pre><h3>Mutant 528</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -18,7 +18,7 @@
+     for linea in lineas:
+         if '->' in linea:
+             izq, der = linea.split('->')
+-            determinantes = [x.strip() for x in izq.split(',') if x.strip()]
++            determinantes = None
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+             if determinantes and dependientes:
+                 fds.append({
+</pre><h3>Mutant 529</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -19,7 +19,7 @@
+         if '->' in linea:
+             izq, der = linea.split('->')
+             determinantes = [x.strip() for x in izq.split(',') if x.strip()]
+-            dependientes = [x.strip() for x in der.split(',') if x.strip()]
++            dependientes = [x.strip() for x in der.split('XX,XX') if x.strip()]
+             if determinantes and dependientes:
+                 fds.append({
+                     "determinantes": determinantes,
+</pre><h3>Mutant 530</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -19,7 +19,7 @@
+         if '->' in linea:
+             izq, der = linea.split('->')
+             determinantes = [x.strip() for x in izq.split(',') if x.strip()]
+-            dependientes = [x.strip() for x in der.split(',') if x.strip()]
++            dependientes = None
+             if determinantes and dependientes:
+                 fds.append({
+                     "determinantes": determinantes,
+</pre><h3>Mutant 531</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -20,7 +20,7 @@
+             izq, der = linea.split('->')
+             determinantes = [x.strip() for x in izq.split(',') if x.strip()]
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+-            if determinantes and dependientes:
++            if determinantes or dependientes:
+                 fds.append({
+                     "determinantes": determinantes,
+                     "dependientes": dependientes
+</pre><h3>Mutant 532</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -22,7 +22,7 @@
+             dependientes = [x.strip() for x in der.split(',') if x.strip()]
+             if determinantes and dependientes:
+                 fds.append({
+-                    "determinantes": determinantes,
++                    "XXdeterminantesXX": determinantes,
+                     "dependientes": dependientes
+                 })
+     return fds
+</pre><h3>Mutant 533</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -23,7 +23,7 @@
+             if determinantes and dependientes:
+                 fds.append({
+                     "determinantes": determinantes,
+-                    "dependientes": dependientes
++                    "XXdependientesXX": dependientes
+                 })
+     return fds
+ 
+</pre><h3>Mutant 534</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -33,7 +33,7 @@
+     Es un parser rudimentario basado en expresiones regulares para mayor robustez
+     frente a diferentes dialectos SQL.
+     """
+-    tablas = []
++    tablas = None
+     
+     # Normalizar espacios
+     sql_clean = re.sub(r'\s+', ' ', sql_text)
+</pre><h3>Mutant 535</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -36,7 +36,7 @@
+     tablas = []
+     
+     # Normalizar espacios
+-    sql_clean = re.sub(r'\s+', ' ', sql_text)
++    sql_clean = re.sub(r'XX\s+XX', ' ', sql_text)
+     
+     # En lugar de finditer con regex complejo, partimos por CREATE TABLE
+     parts = re.split(r'(?i)CREATE\s+TABLE\s+', sql_clean)
+</pre><h3>Mutant 536</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -36,7 +36,7 @@
+     tablas = []
+     
+     # Normalizar espacios
+-    sql_clean = re.sub(r'\s+', ' ', sql_text)
++    sql_clean = re.sub(r'\s+', 'XX XX', sql_text)
+     
+     # En lugar de finditer con regex complejo, partimos por CREATE TABLE
+     parts = re.split(r'(?i)CREATE\s+TABLE\s+', sql_clean)
+</pre><h3>Mutant 537</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -36,7 +36,7 @@
+     tablas = []
+     
+     # Normalizar espacios
+-    sql_clean = re.sub(r'\s+', ' ', sql_text)
++    sql_clean = None
+     
+     # En lugar de finditer con regex complejo, partimos por CREATE TABLE
+     parts = re.split(r'(?i)CREATE\s+TABLE\s+', sql_clean)
+</pre><h3>Mutant 538</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -39,7 +39,7 @@
+     sql_clean = re.sub(r'\s+', ' ', sql_text)
+     
+     # En lugar de finditer con regex complejo, partimos por CREATE TABLE
+-    parts = re.split(r'(?i)CREATE\s+TABLE\s+', sql_clean)
++    parts = re.split(r'XX(?i)CREATE\s+TABLE\s+XX', sql_clean)
+     
+     for part in parts:
+         part = part.strip()
+</pre><h3>Mutant 539</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -39,7 +39,7 @@
+     sql_clean = re.sub(r'\s+', ' ', sql_text)
+     
+     # En lugar de finditer con regex complejo, partimos por CREATE TABLE
+-    parts = re.split(r'(?i)CREATE\s+TABLE\s+', sql_clean)
++    parts = None
+     
+     for part in parts:
+         part = part.strip()
+</pre><h3>Mutant 540</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -42,7 +42,7 @@
+     parts = re.split(r'(?i)CREATE\s+TABLE\s+', sql_clean)
+     
+     for part in parts:
+-        part = part.strip()
++        part = None
+         if not part: continue
+         
+         # Opcional IF NOT EXISTS
+</pre><h3>Mutant 541</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -43,7 +43,7 @@
+     
+     for part in parts:
+         part = part.strip()
+-        if not part: continue
++        if  part: continue
+         
+         # Opcional IF NOT EXISTS
+         part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
+</pre><h3>Mutant 542</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -43,7 +43,7 @@
+     
+     for part in parts:
+         part = part.strip()
+-        if not part: continue
++        if not part: break
+         
+         # Opcional IF NOT EXISTS
+         part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
+</pre><h3>Mutant 543</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -46,7 +46,7 @@
+         if not part: continue
+         
+         # Opcional IF NOT EXISTS
+-        part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
++        part = re.sub(r'XX(?i)^IF\s+NOT\s+EXISTS\s+XX', '', part).strip()
+         
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+         part = part.split(';')[0]
+</pre><h3>Mutant 544</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -46,7 +46,7 @@
+         if not part: continue
+         
+         # Opcional IF NOT EXISTS
+-        part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
++        part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', 'XXXX', part).strip()
+         
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+         part = part.split(';')[0]
+</pre><h3>Mutant 545</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -46,7 +46,7 @@
+         if not part: continue
+         
+         # Opcional IF NOT EXISTS
+-        part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
++        part = None
+         
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+         part = part.split(';')[0]
+</pre><h3>Mutant 546</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -49,7 +49,7 @@
+         part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
+         
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+-        part = part.split(';')[0]
++        part = part.split('XX;XX')[0]
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+</pre><h3>Mutant 547</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -49,7 +49,7 @@
+         part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
+         
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+-        part = part.split(';')[0]
++        part = part.split(';')[1]
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+</pre><h3>Mutant 548</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -49,7 +49,7 @@
+         part = re.sub(r'(?i)^IF\s+NOT\s+EXISTS\s+', '', part).strip()
+         
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+-        part = part.split(';')[0]
++        part = None
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+</pre><h3>Mutant 549</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -51,7 +51,7 @@
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+         part = part.split(';')[0]
+         
+-        match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
++        match = re.search(r'XX^([^\s\(]+)\s*\((.*)\)XX', part)
+         if match:
+             tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+             cuerpo = match.group(2)
+</pre><h3>Mutant 550</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -51,7 +51,7 @@
+         # Ignorar cualquier cosa después del primer punto y coma (ej. INSERT INTO posteriores)
+         part = part.split(';')[0]
+         
+-        match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
++        match = None
+         if match:
+             tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+             cuerpo = match.group(2)
+</pre><h3>Mutant 551</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 552</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(1).replace('XX"XX', '').replace('`', '').split('.')[-1]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 553</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(1).replace('"', 'XXXX').replace('`', '').split('.')[-1]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 554</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(1).replace('"', '').replace('XX`XX', '').split('.')[-1]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 555</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(1).replace('"', '').replace('`', 'XXXX').split('.')[-1]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 556</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('XX.XX')[-1]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 557</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[+1]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 558</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-2]
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 559</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -53,7 +53,7 @@
+         
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+-            tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++            tabla_nombre = None
+             cuerpo = match.group(2)
+             
+             columnas = []
+</pre><h3>Mutant 560</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -54,7 +54,7 @@
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+             tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+-            cuerpo = match.group(2)
++            cuerpo = match.group(3)
+             
+             columnas = []
+             pks = []
+</pre><h3>Mutant 561</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -54,7 +54,7 @@
+         match = re.search(r'^([^\s\(]+)\s*\((.*)\)', part)
+         if match:
+             tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+-            cuerpo = match.group(2)
++            cuerpo = None
+             
+             columnas = []
+             pks = []
+</pre><h3>Mutant 562</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -56,7 +56,7 @@
+             tabla_nombre = match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+             cuerpo = match.group(2)
+             
+-            columnas = []
++            columnas = None
+             pks = []
+             fks = []
+             
+</pre><h3>Mutant 563</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -57,7 +57,7 @@
+             cuerpo = match.group(2)
+             
+             columnas = []
+-            pks = []
++            pks = None
+             fks = []
+             
+             # Dividir por comas, pero no las que están dentro de paréntesis (ej. DECIMAL(10,2))
+</pre><h3>Mutant 564</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -58,7 +58,7 @@
+             
+             columnas = []
+             pks = []
+-            fks = []
++            fks = None
+             
+             # Dividir por comas, pero no las que están dentro de paréntesis (ej. DECIMAL(10,2))
+             partes = re.split(r',\s*(?![^()]*\))', cuerpo)
+</pre><h3>Mutant 565</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -61,7 +61,7 @@
+             fks = []
+             
+             # Dividir por comas, pero no las que están dentro de paréntesis (ej. DECIMAL(10,2))
+-            partes = re.split(r',\s*(?![^()]*\))', cuerpo)
++            partes = re.split(r'XX,\s*(?![^()]*\))XX', cuerpo)
+             
+             for p in partes:
+                 p = p.strip()
+</pre><h3>Mutant 566</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -61,7 +61,7 @@
+             fks = []
+             
+             # Dividir por comas, pero no las que están dentro de paréntesis (ej. DECIMAL(10,2))
+-            partes = re.split(r',\s*(?![^()]*\))', cuerpo)
++            partes = None
+             
+             for p in partes:
+                 p = p.strip()
+</pre><h3>Mutant 567</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -64,7 +64,7 @@
+             partes = re.split(r',\s*(?![^()]*\))', cuerpo)
+             
+             for p in partes:
+-                p = p.strip()
++                p = None
+                 if not p: continue
+                 
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+</pre><h3>Mutant 568</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -65,7 +65,7 @@
+             
+             for p in partes:
+                 p = p.strip()
+-                if not p: continue
++                if  p: continue
+                 
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+</pre><h3>Mutant 569</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -65,7 +65,7 @@
+             
+             for p in partes:
+                 p = p.strip()
+-                if not p: continue
++                if not p: break
+                 
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+</pre><h3>Mutant 570</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -68,7 +68,7 @@
+                 if not p: continue
+                 
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+-                pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
++                pk_match = re.search(r"XX(?i)PRIMARY\s+KEY\s*\((.*?)\)XX", p)
+                 if pk_match:
+                     cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
+                     pks.extend(cols_pk)
+</pre><h3>Mutant 571</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -68,7 +68,7 @@
+                 if not p: continue
+                 
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+-                pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
++                pk_match = None
+                 if pk_match:
+                     cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
+                     pks.extend(cols_pk)
+</pre><h3>Mutant 572</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -70,7 +70,7 @@
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+                 if pk_match:
+-                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
++                    cols_pk = [c.strip().replace('XX"XX', '').replace('`', '') for c in pk_match.group(1).split(',')]
+                     pks.extend(cols_pk)
+                     continue
+                 
+</pre><h3>Mutant 573</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -70,7 +70,7 @@
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+                 if pk_match:
+-                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
++                    cols_pk = [c.strip().replace('"', 'XXXX').replace('`', '') for c in pk_match.group(1).split(',')]
+                     pks.extend(cols_pk)
+                     continue
+                 
+</pre><h3>Mutant 574</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -70,7 +70,7 @@
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+                 if pk_match:
+-                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
++                    cols_pk = [c.strip().replace('"', '').replace('XX`XX', '') for c in pk_match.group(1).split(',')]
+                     pks.extend(cols_pk)
+                     continue
+                 
+</pre><h3>Mutant 575</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -70,7 +70,7 @@
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+                 if pk_match:
+-                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
++                    cols_pk = [c.strip().replace('"', '').replace('`', 'XXXX') for c in pk_match.group(1).split(',')]
+                     pks.extend(cols_pk)
+                     continue
+                 
+</pre><h3>Mutant 576</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -70,7 +70,7 @@
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+                 if pk_match:
+-                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
++                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(2).split(',')]
+                     pks.extend(cols_pk)
+                     continue
+                 
+</pre><h3>Mutant 577</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -70,7 +70,7 @@
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+                 if pk_match:
+-                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
++                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split('XX,XX')]
+                     pks.extend(cols_pk)
+                     continue
+                 
+</pre><h3>Mutant 578</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -70,7 +70,7 @@
+                 # Chequear si es PRIMARY KEY a nivel de tabla: PRIMARY KEY (col1, col2)
+                 pk_match = re.search(r"(?i)PRIMARY\s+KEY\s*\((.*?)\)", p)
+                 if pk_match:
+-                    cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
++                    cols_pk = None
+                     pks.extend(cols_pk)
+                     continue
+                 
+</pre><h3>Mutant 579</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -72,7 +72,7 @@
+                 if pk_match:
+                     cols_pk = [c.strip().replace('"', '').replace('`', '') for c in pk_match.group(1).split(',')]
+                     pks.extend(cols_pk)
+-                    continue
++                    break
+                 
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+</pre><h3>Mutant 580</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -75,7 +75,7 @@
+                     continue
+                 
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+-                fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
++                fk_match = re.search(r"XX(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)XX", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+</pre><h3>Mutant 581</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -75,7 +75,7 @@
+                     continue
+                 
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+-                fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
++                fk_match = None
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+</pre><h3>Mutant 582</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -77,7 +77,7 @@
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+-                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
++                    cols_fk = [c.strip().replace('XX"XX', '').replace('`', '') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+</pre><h3>Mutant 583</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -77,7 +77,7 @@
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+-                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
++                    cols_fk = [c.strip().replace('"', 'XXXX').replace('`', '') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+</pre><h3>Mutant 584</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -77,7 +77,7 @@
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+-                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
++                    cols_fk = [c.strip().replace('"', '').replace('XX`XX', '') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+</pre><h3>Mutant 585</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -77,7 +77,7 @@
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+-                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
++                    cols_fk = [c.strip().replace('"', '').replace('`', 'XXXX') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+</pre><h3>Mutant 586</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -77,7 +77,7 @@
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+-                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
++                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(2).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+</pre><h3>Mutant 587</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -77,7 +77,7 @@
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+-                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
++                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split('XX,XX')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+</pre><h3>Mutant 588</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -77,7 +77,7 @@
+                 # Chequear si es FOREIGN KEY a nivel de tabla: CONSTRAINT fk FOREIGN KEY (col) REFERENCES table (col)
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+-                    cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
++                    cols_fk = None
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+</pre><h3>Mutant 589</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(3).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 590</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(2).replace('XX"XX', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 591</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(2).replace('"', 'XXXX').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 592</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(2).replace('"', '').replace('XX`XX', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 593</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(2).replace('"', '').replace('`', 'XXXX').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 594</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('XX.XX')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 595</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[+1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 596</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-2]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 597</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -78,7 +78,7 @@
+                 fk_match = re.search(r"(?i)FOREIGN\s+KEY\s*\((.*?)\)\s*REFERENCES\s*([^\s\(]+)", p)
+                 if fk_match:
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+-                    ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = None
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+</pre><h3>Mutant 598</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -80,7 +80,7 @@
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+-                        fks.append({"columna": col, "tabla_destino": ref_table})
++                        fks.append({"XXcolumnaXX": col, "tabla_destino": ref_table})
+                     continue
+                 
+                 p_upper = p.upper()
+</pre><h3>Mutant 599</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -80,7 +80,7 @@
+                     cols_fk = [c.strip().replace('"', '').replace('`', '') for c in fk_match.group(1).split(',')]
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+-                        fks.append({"columna": col, "tabla_destino": ref_table})
++                        fks.append({"columna": col, "XXtabla_destinoXX": ref_table})
+                     continue
+                 
+                 p_upper = p.upper()
+</pre><h3>Mutant 600</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -81,7 +81,7 @@
+                     ref_table = fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     for col in cols_fk:
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+-                    continue
++                    break
+                 
+                 p_upper = p.upper()
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+</pre><h3>Mutant 601</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -83,7 +83,7 @@
+                         fks.append({"columna": col, "tabla_destino": ref_table})
+                     continue
+                 
+-                p_upper = p.upper()
++                p_upper = None
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+                 if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
+                     continue
+</pre><h3>Mutant 602</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -85,7 +85,7 @@
+                 
+                 p_upper = p.upper()
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+-                if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
++                if p_upper.startswith("XXUNIQUEXX") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
+                     continue
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+</pre><h3>Mutant 603</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -85,7 +85,7 @@
+                 
+                 p_upper = p.upper()
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+-                if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
++                if p_upper.startswith("UNIQUE") or p_upper.startswith("XXCONSTRAINTXX") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
+                     continue
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+</pre><h3>Mutant 604</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -85,7 +85,7 @@
+                 
+                 p_upper = p.upper()
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+-                if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
++                if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("XXKEYXX") or p_upper.startswith("INDEX"):
+                     continue
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+</pre><h3>Mutant 605</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -85,7 +85,7 @@
+                 
+                 p_upper = p.upper()
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+-                if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
++                if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("XXINDEXXX"):
+                     continue
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+</pre><h3>Mutant 606</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -85,7 +85,7 @@
+                 
+                 p_upper = p.upper()
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+-                if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
++                if p_upper.startswith("UNIQUE") and p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
+                     continue
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+</pre><h3>Mutant 607</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -86,7 +86,7 @@
+                 p_upper = p.upper()
+                 # Ignorar otros constraints (UNIQUE, KEY, INDEX)
+                 if p_upper.startswith("UNIQUE") or p_upper.startswith("CONSTRAINT") or p_upper.startswith("KEY") or p_upper.startswith("INDEX"):
+-                    continue
++                    break
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+                 tokens = p.split()
+</pre><h3>Mutant 608</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -89,7 +89,7 @@
+                     continue
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+-                tokens = p.split()
++                tokens = None
+                 if not tokens: continue
+                 
+                 col_name = tokens[0].replace('"', '').replace('`', '')
+</pre><h3>Mutant 609</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -90,7 +90,7 @@
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+                 tokens = p.split()
+-                if not tokens: continue
++                if  tokens: continue
+                 
+                 col_name = tokens[0].replace('"', '').replace('`', '')
+                 columnas.append(col_name)
+</pre><h3>Mutant 610</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -90,7 +90,7 @@
+                     
+                 # Si es columna: nombre_columna TIPO [CONSTRAINT]
+                 tokens = p.split()
+-                if not tokens: continue
++                if not tokens: break
+                 
+                 col_name = tokens[0].replace('"', '').replace('`', '')
+                 columnas.append(col_name)
+</pre><h3>Mutant 611</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -92,7 +92,7 @@
+                 tokens = p.split()
+                 if not tokens: continue
+                 
+-                col_name = tokens[0].replace('"', '').replace('`', '')
++                col_name = tokens[1].replace('"', '').replace('`', '')
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+</pre><h3>Mutant 612</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -92,7 +92,7 @@
+                 tokens = p.split()
+                 if not tokens: continue
+                 
+-                col_name = tokens[0].replace('"', '').replace('`', '')
++                col_name = tokens[0].replace('XX"XX', '').replace('`', '')
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+</pre><h3>Mutant 613</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -92,7 +92,7 @@
+                 tokens = p.split()
+                 if not tokens: continue
+                 
+-                col_name = tokens[0].replace('"', '').replace('`', '')
++                col_name = tokens[0].replace('"', 'XXXX').replace('`', '')
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+</pre><h3>Mutant 614</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -92,7 +92,7 @@
+                 tokens = p.split()
+                 if not tokens: continue
+                 
+-                col_name = tokens[0].replace('"', '').replace('`', '')
++                col_name = tokens[0].replace('"', '').replace('XX`XX', '')
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+</pre><h3>Mutant 615</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -92,7 +92,7 @@
+                 tokens = p.split()
+                 if not tokens: continue
+                 
+-                col_name = tokens[0].replace('"', '').replace('`', '')
++                col_name = tokens[0].replace('"', '').replace('`', 'XXXX')
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+</pre><h3>Mutant 616</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -92,7 +92,7 @@
+                 tokens = p.split()
+                 if not tokens: continue
+                 
+-                col_name = tokens[0].replace('"', '').replace('`', '')
++                col_name = None
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+</pre><h3>Mutant 617</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -96,7 +96,7 @@
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+-                if "PRIMARY KEY" in p.upper():
++                if "XXPRIMARY KEYXX" in p.upper():
+                     pks.append(col_name)
+                     
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+</pre><h3>Mutant 618</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -96,7 +96,7 @@
+                 columnas.append(col_name)
+                 
+                 # Ver si tiene PRIMARY KEY a nivel de columna
+-                if "PRIMARY KEY" in p.upper():
++                if "PRIMARY KEY" not in p.upper():
+                     pks.append(col_name)
+                     
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+</pre><h3>Mutant 619</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -100,7 +100,7 @@
+                     pks.append(col_name)
+                     
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+-                inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
++                inline_fk_match = re.search(r"XX(?i)REFERENCES\s+([^\s\(]+)XX", p)
+                 if inline_fk_match:
+                     ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+</pre><h3>Mutant 620</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -100,7 +100,7 @@
+                     pks.append(col_name)
+                     
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+-                inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
++                inline_fk_match = None
+                 if inline_fk_match:
+                     ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+</pre><h3>Mutant 621</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(2).replace('"', '').replace('`', '').split('.')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 622</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(1).replace('XX"XX', '').replace('`', '').split('.')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 623</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(1).replace('"', 'XXXX').replace('`', '').split('.')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 624</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(1).replace('"', '').replace('XX`XX', '').split('.')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 625</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', 'XXXX').split('.')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 626</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('XX.XX')[-1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 627</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[+1]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 628</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-2]
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 629</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -102,7 +102,7 @@
+                 # Ver si tiene REFERENCES a nivel de columna (inline FK)
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+-                    ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
++                    ref_table = None
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+</pre><h3>Mutant 630</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -103,7 +103,7 @@
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+                     ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+-                    fks.append({"columna": col_name, "tabla_destino": ref_table})
++                    fks.append({"XXcolumnaXX": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+                 "nombre": tabla_nombre,
+</pre><h3>Mutant 631</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -103,7 +103,7 @@
+                 inline_fk_match = re.search(r"(?i)REFERENCES\s+([^\s\(]+)", p)
+                 if inline_fk_match:
+                     ref_table = inline_fk_match.group(1).replace('"', '').replace('`', '').split('.')[-1]
+-                    fks.append({"columna": col_name, "tabla_destino": ref_table})
++                    fks.append({"columna": col_name, "XXtabla_destinoXX": ref_table})
+                     
+             tablas.append({
+                 "nombre": tabla_nombre,
+</pre><h3>Mutant 632</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -106,7 +106,7 @@
+                     fks.append({"columna": col_name, "tabla_destino": ref_table})
+                     
+             tablas.append({
+-                "nombre": tabla_nombre,
++                "XXnombreXX": tabla_nombre,
+                 "columnas": columnas,
+                 "pks": list(set(pks)), # eliminar duplicados
+                 "fks": fks,
+</pre><h3>Mutant 633</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -107,7 +107,7 @@
+                     
+             tablas.append({
+                 "nombre": tabla_nombre,
+-                "columnas": columnas,
++                "XXcolumnasXX": columnas,
+                 "pks": list(set(pks)), # eliminar duplicados
+                 "fks": fks,
+                 "sql_original": f"CREATE TABLE {tabla_nombre} ({cuerpo});"
+</pre><h3>Mutant 634</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -108,7 +108,7 @@
+             tablas.append({
+                 "nombre": tabla_nombre,
+                 "columnas": columnas,
+-                "pks": list(set(pks)), # eliminar duplicados
++                "XXpksXX": list(set(pks)), # eliminar duplicados
+                 "fks": fks,
+                 "sql_original": f"CREATE TABLE {tabla_nombre} ({cuerpo});"
+             })
+</pre><h3>Mutant 635</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -109,7 +109,7 @@
+                 "nombre": tabla_nombre,
+                 "columnas": columnas,
+                 "pks": list(set(pks)), # eliminar duplicados
+-                "fks": fks,
++                "XXfksXX": fks,
+                 "sql_original": f"CREATE TABLE {tabla_nombre} ({cuerpo});"
+             })
+             
+</pre><h3>Mutant 636</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -110,7 +110,7 @@
+                 "columnas": columnas,
+                 "pks": list(set(pks)), # eliminar duplicados
+                 "fks": fks,
+-                "sql_original": f"CREATE TABLE {tabla_nombre} ({cuerpo});"
++                "XXsql_originalXX": f"CREATE TABLE {tabla_nombre} ({cuerpo});"
+             })
+             
+     return tablas
+</pre><h3>Mutant 637</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -110,7 +110,7 @@
+                 "columnas": columnas,
+                 "pks": list(set(pks)), # eliminar duplicados
+                 "fks": fks,
+-                "sql_original": f"CREATE TABLE {tabla_nombre} ({cuerpo});"
++                "sql_original": f"XXCREATE TABLE {tabla_nombre} ({cuerpo});XX"
+             })
+             
+     return tablas
+</pre><h3>Mutant 638</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -121,7 +121,7 @@
+     """
+     return []
+ 
+-def parse_schema(input_data, formato, fds_input=""):
++def parse_schema(input_data, formato, fds_input="XXXX"):
+     """
+     Función principal de entrada al parser.
+     Retorna un diccionario estructurado del esquema y las FDs.
+</pre><h3>Mutant 639</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -126,7 +126,7 @@
+     Función principal de entrada al parser.
+     Retorna un diccionario estructurado del esquema y las FDs.
+     """
+-    tablas = []
++    tablas = None
+     if formato in ['sql', 'texto_pegado', 'txt']:
+         tablas = parse_sql(input_data)
+     elif formato == 'csv':
+</pre><h3>Mutant 640</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -127,7 +127,7 @@
+     Retorna un diccionario estructurado del esquema y las FDs.
+     """
+     tablas = []
+-    if formato in ['sql', 'texto_pegado', 'txt']:
++    if formato not in ['sql', 'texto_pegado', 'txt']:
+         tablas = parse_sql(input_data)
+     elif formato == 'csv':
+         tablas = parse_csv(input_data)
+</pre><h3>Mutant 641</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -127,7 +127,7 @@
+     Retorna un diccionario estructurado del esquema y las FDs.
+     """
+     tablas = []
+-    if formato in ['sql', 'texto_pegado', 'txt']:
++    if formato in ['XXsqlXX', 'texto_pegado', 'txt']:
+         tablas = parse_sql(input_data)
+     elif formato == 'csv':
+         tablas = parse_csv(input_data)
+</pre><h3>Mutant 642</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -127,7 +127,7 @@
+     Retorna un diccionario estructurado del esquema y las FDs.
+     """
+     tablas = []
+-    if formato in ['sql', 'texto_pegado', 'txt']:
++    if formato in ['sql', 'XXtexto_pegadoXX', 'txt']:
+         tablas = parse_sql(input_data)
+     elif formato == 'csv':
+         tablas = parse_csv(input_data)
+</pre><h3>Mutant 643</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -127,7 +127,7 @@
+     Retorna un diccionario estructurado del esquema y las FDs.
+     """
+     tablas = []
+-    if formato in ['sql', 'texto_pegado', 'txt']:
++    if formato in ['sql', 'texto_pegado', 'XXtxtXX']:
+         tablas = parse_sql(input_data)
+     elif formato == 'csv':
+         tablas = parse_csv(input_data)
+</pre><h3>Mutant 644</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -128,7 +128,7 @@
+     """
+     tablas = []
+     if formato in ['sql', 'texto_pegado', 'txt']:
+-        tablas = parse_sql(input_data)
++        tablas = None
+     elif formato == 'csv':
+         tablas = parse_csv(input_data)
+         
+</pre><h3>Mutant 645</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -129,7 +129,7 @@
+     tablas = []
+     if formato in ['sql', 'texto_pegado', 'txt']:
+         tablas = parse_sql(input_data)
+-    elif formato == 'csv':
++    elif formato != 'csv':
+         tablas = parse_csv(input_data)
+         
+     fds = parse_fds(fds_input)
+</pre><h3>Mutant 646</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -129,7 +129,7 @@
+     tablas = []
+     if formato in ['sql', 'texto_pegado', 'txt']:
+         tablas = parse_sql(input_data)
+-    elif formato == 'csv':
++    elif formato == 'XXcsvXX':
+         tablas = parse_csv(input_data)
+         
+     fds = parse_fds(fds_input)
+</pre><h3>Mutant 647</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -130,7 +130,7 @@
+     if formato in ['sql', 'texto_pegado', 'txt']:
+         tablas = parse_sql(input_data)
+     elif formato == 'csv':
+-        tablas = parse_csv(input_data)
++        tablas = None
+         
+     fds = parse_fds(fds_input)
+     
+</pre><h3>Mutant 648</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -132,7 +132,7 @@
+     elif formato == 'csv':
+         tablas = parse_csv(input_data)
+         
+-    fds = parse_fds(fds_input)
++    fds = None
+     
+     return {
+         "tablas": tablas,
+</pre><h3>Mutant 649</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -135,7 +135,7 @@
+     fds = parse_fds(fds_input)
+     
+     return {
+-        "tablas": tablas,
++        "XXtablasXX": tablas,
+         "dependencias_funcionales": fds
+     }
+ 
+</pre><h3>Mutant 650</h3><pre>--- core/parser.py
++++ core/parser.py
+@@ -136,6 +136,6 @@
+     
+     return {
+         "tablas": tablas,
+-        "dependencias_funcionales": fds
++        "XXdependencias_funcionalesXX": fds
+     }
+ 
+</pre></body></html>

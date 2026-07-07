@@ -1,0 +1,1838 @@
+<html><body><h1>core/generador_sql.py</h1>Killed 0 out of 167 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 31</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -6,7 +6,7 @@
+     Aplica las mejoras seleccionadas al esquema original.
+     Retorna (nuevo_esquema_dict, sql_generado)
+     """
+-    nuevo_esquema = copy.deepcopy(esquema_original)
++    nuevo_esquema = copy.copy(esquema_original)
+     tablas = nuevo_esquema.get("tablas", [])
+     
+     # Inicializar comentarios en las tablas
+</pre><h3>Mutant 32</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -6,7 +6,7 @@
+     Aplica las mejoras seleccionadas al esquema original.
+     Retorna (nuevo_esquema_dict, sql_generado)
+     """
+-    nuevo_esquema = copy.deepcopy(esquema_original)
++    nuevo_esquema = None
+     tablas = nuevo_esquema.get("tablas", [])
+     
+     # Inicializar comentarios en las tablas
+</pre><h3>Mutant 33</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -7,7 +7,7 @@
+     Retorna (nuevo_esquema_dict, sql_generado)
+     """
+     nuevo_esquema = copy.deepcopy(esquema_original)
+-    tablas = nuevo_esquema.get("tablas", [])
++    tablas = nuevo_esquema.get("XXtablasXX", [])
+     
+     # Inicializar comentarios en las tablas
+     for t in tablas:
+</pre><h3>Mutant 34</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -7,7 +7,7 @@
+     Retorna (nuevo_esquema_dict, sql_generado)
+     """
+     nuevo_esquema = copy.deepcopy(esquema_original)
+-    tablas = nuevo_esquema.get("tablas", [])
++    tablas = None
+     
+     # Inicializar comentarios en las tablas
+     for t in tablas:
+</pre><h3>Mutant 35</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -11,7 +11,7 @@
+     
+     # Inicializar comentarios en las tablas
+     for t in tablas:
+-        if "comentarios" not in t:
++        if "XXcomentariosXX" not in t:
+             t["comentarios"] = []
+     
+     # Nuevas tablas a crear (para 2FN y 3FN)
+</pre><h3>Mutant 36</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -11,7 +11,7 @@
+     
+     # Inicializar comentarios en las tablas
+     for t in tablas:
+-        if "comentarios" not in t:
++        if "comentarios"  in t:
+             t["comentarios"] = []
+     
+     # Nuevas tablas a crear (para 2FN y 3FN)
+</pre><h3>Mutant 37</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -12,7 +12,7 @@
+     # Inicializar comentarios en las tablas
+     for t in tablas:
+         if "comentarios" not in t:
+-            t["comentarios"] = []
++            t["XXcomentariosXX"] = []
+     
+     # Nuevas tablas a crear (para 2FN y 3FN)
+     nuevas_tablas_agregadas = []
+</pre><h3>Mutant 38</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -12,7 +12,7 @@
+     # Inicializar comentarios en las tablas
+     for t in tablas:
+         if "comentarios" not in t:
+-            t["comentarios"] = []
++            t["comentarios"] = None
+     
+     # Nuevas tablas a crear (para 2FN y 3FN)
+     nuevas_tablas_agregadas = []
+</pre><h3>Mutant 39</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -15,7 +15,7 @@
+             t["comentarios"] = []
+     
+     # Nuevas tablas a crear (para 2FN y 3FN)
+-    nuevas_tablas_agregadas = []
++    nuevas_tablas_agregadas = None
+     
+     for sug in sugerencias_seleccionadas:
+         nivel = sug.get("nivel")
+</pre><h3>Mutant 40</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -18,7 +18,7 @@
+     nuevas_tablas_agregadas = []
+     
+     for sug in sugerencias_seleccionadas:
+-        nivel = sug.get("nivel")
++        nivel = sug.get("XXnivelXX")
+         if nivel == "1FN":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+</pre><h3>Mutant 41</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -18,7 +18,7 @@
+     nuevas_tablas_agregadas = []
+     
+     for sug in sugerencias_seleccionadas:
+-        nivel = sug.get("nivel")
++        nivel = None
+         if nivel == "1FN":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+</pre><h3>Mutant 42</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -19,7 +19,7 @@
+     
+     for sug in sugerencias_seleccionadas:
+         nivel = sug.get("nivel")
+-        if nivel == "1FN":
++        if nivel != "1FN":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+</pre><h3>Mutant 43</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -19,7 +19,7 @@
+     
+     for sug in sugerencias_seleccionadas:
+         nivel = sug.get("nivel")
+-        if nivel == "1FN":
++        if nivel == "XX1FNXX":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+</pre><h3>Mutant 44</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -22,7 +22,7 @@
+         if nivel == "1FN":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+-                if t["nombre"] in sug.get("mensaje", ""):
++                if t["XXnombreXX"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+</pre><h3>Mutant 45</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -22,7 +22,7 @@
+         if nivel == "1FN":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+-                if t["nombre"] in sug.get("mensaje", ""):
++                if t["nombre"] not in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+</pre><h3>Mutant 46</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -22,7 +22,7 @@
+         if nivel == "1FN":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+-                if t["nombre"] in sug.get("mensaje", ""):
++                if t["nombre"] in sug.get("XXmensajeXX", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+</pre><h3>Mutant 47</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -22,7 +22,7 @@
+         if nivel == "1FN":
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+-                if t["nombre"] in sug.get("mensaje", ""):
++                if t["nombre"] in sug.get("mensaje", "XXXX"):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+</pre><h3>Mutant 48</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "XXidXX" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 49</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "id"  in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 50</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "id" not in t["XXcolumnasXX"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 51</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "id" not in t["columnas"] and f"id_{t['XXnombreXX']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 52</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "id" not in t["columnas"] and f"XXid_{t['nombre']}XX" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 53</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "id" not in t["columnas"] and f"id_{t['nombre']}"  in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 54</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["XXcolumnasXX"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 55</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -23,7 +23,7 @@
+             # Heurística simple: agregar id si falta
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+-                    if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
++                    if "id" not in t["columnas"] or f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+</pre><h3>Mutant 56</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -24,7 +24,7 @@
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+-                        t["columnas"].insert(0, f"id_{t['nombre']}")
++                        t["XXcolumnasXX"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+</pre><h3>Mutant 57</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -24,7 +24,7 @@
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+-                        t["columnas"].insert(0, f"id_{t['nombre']}")
++                        t["columnas"].insert(1, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+</pre><h3>Mutant 58</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -24,7 +24,7 @@
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+-                        t["columnas"].insert(0, f"id_{t['nombre']}")
++                        t["columnas"].insert(0, f"id_{t['XXnombreXX']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+</pre><h3>Mutant 59</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -24,7 +24,7 @@
+             for t in tablas:
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+-                        t["columnas"].insert(0, f"id_{t['nombre']}")
++                        t["columnas"].insert(0, f"XXid_{t['nombre']}XX")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+</pre><h3>Mutant 60</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -25,7 +25,7 @@
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+-                        if "pks" not in t: t["pks"] = []
++                        if "XXpksXX" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+</pre><h3>Mutant 61</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -25,7 +25,7 @@
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+-                        if "pks" not in t: t["pks"] = []
++                        if "pks"  in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+</pre><h3>Mutant 62</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -25,7 +25,7 @@
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+-                        if "pks" not in t: t["pks"] = []
++                        if "pks" not in t: t["XXpksXX"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+</pre><h3>Mutant 63</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -25,7 +25,7 @@
+                 if t["nombre"] in sug.get("mensaje", ""):
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+-                        if "pks" not in t: t["pks"] = []
++                        if "pks" not in t: t["pks"] = None
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+</pre><h3>Mutant 64</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -26,7 +26,7 @@
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+-                        t["pks"].append(f"id_{t['nombre']}")
++                        t["XXpksXX"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+</pre><h3>Mutant 65</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -26,7 +26,7 @@
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+-                        t["pks"].append(f"id_{t['nombre']}")
++                        t["pks"].append(f"id_{t['XXnombreXX']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+</pre><h3>Mutant 66</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -26,7 +26,7 @@
+                     if "id" not in t["columnas"] and f"id_{t['nombre']}" not in t["columnas"]:
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+-                        t["pks"].append(f"id_{t['nombre']}")
++                        t["pks"].append(f"XXid_{t['nombre']}XX")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+</pre><h3>Mutant 67</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -27,7 +27,7 @@
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+-                        t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
++                        t["XXcomentariosXX"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+</pre><h3>Mutant 68</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -27,7 +27,7 @@
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+-                        t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
++                        t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['XXnombreXX']}' automáticamente para cumplir con 1FN.")
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+</pre><h3>Mutant 69</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -27,7 +27,7 @@
+                         t["columnas"].insert(0, f"id_{t['nombre']}")
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+-                        t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
++                        t["comentarios"].append(f"XXSe añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.XX")
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+</pre><h3>Mutant 70</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -28,7 +28,7 @@
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+-        elif nivel in ["2FN", "3FN"]:
++        elif nivel not in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+</pre><h3>Mutant 71</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -28,7 +28,7 @@
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+-        elif nivel in ["2FN", "3FN"]:
++        elif nivel in ["XX2FNXX", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+</pre><h3>Mutant 72</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -28,7 +28,7 @@
+                         if "pks" not in t: t["pks"] = []
+                         t["pks"].append(f"id_{t['nombre']}")
+                         t["comentarios"].append(f"Se añadió Clave Primaria 'id_{t['nombre']}' automáticamente para cumplir con 1FN.")
+-        elif nivel in ["2FN", "3FN"]:
++        elif nivel in ["2FN", "XX3FNXX"]:
+             # Identificar qué dependientes se deben separar
+             try:
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+</pre><h3>Mutant 73</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -31,7 +31,7 @@
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+-                match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
++                match_dep = re.search(r"XXatributos.*?\[(.*?)\]XX", sug.get("mensaje", ""))
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+</pre><h3>Mutant 74</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -31,7 +31,7 @@
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+-                match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
++                match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("XXmensajeXX", ""))
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+</pre><h3>Mutant 75</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -31,7 +31,7 @@
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+-                match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
++                match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", "XXXX"))
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+</pre><h3>Mutant 76</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -31,7 +31,7 @@
+         elif nivel in ["2FN", "3FN"]:
+             # Identificar qué dependientes se deben separar
+             try:
+-                match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
++                match_dep = None
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+</pre><h3>Mutant 77</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -32,7 +32,7 @@
+             # Identificar qué dependientes se deben separar
+             try:
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+-                match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
++                match_det = re.search(r"XXa través de \[.*?\]|atributo no clave \[(.*?)\]XX", sug.get("mensaje", ""))
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+                     
+</pre><h3>Mutant 78</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -32,7 +32,7 @@
+             # Identificar qué dependientes se deben separar
+             try:
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+-                match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
++                match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("XXmensajeXX", ""))
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+                     
+</pre><h3>Mutant 79</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -32,7 +32,7 @@
+             # Identificar qué dependientes se deben separar
+             try:
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+-                match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
++                match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", "XXXX"))
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+                     
+</pre><h3>Mutant 80</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -32,7 +32,7 @@
+             # Identificar qué dependientes se deben separar
+             try:
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+-                match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
++                match_det = None
+                 if match_dep:
+                     deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
+                     
+</pre><h3>Mutant 81</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -34,7 +34,7 @@
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+-                    deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
++                    deps = [x.strip().strip("XX'XX") for x in match_dep.group(1).split(",")]
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+</pre><h3>Mutant 82</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -34,7 +34,7 @@
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+-                    deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
++                    deps = [x.strip().strip("'") for x in match_dep.group(2).split(",")]
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+</pre><h3>Mutant 83</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -34,7 +34,7 @@
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+-                    deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
++                    deps = [x.strip().strip("'") for x in match_dep.group(1).split("XX,XX")]
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+</pre><h3>Mutant 84</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -34,7 +34,7 @@
+                 match_dep = re.search(r"atributos.*?\[(.*?)\]", sug.get("mensaje", ""))
+                 match_det = re.search(r"a través de \[.*?\]|atributo no clave \[(.*?)\]", sug.get("mensaje", ""))
+                 if match_dep:
+-                    deps = [x.strip().strip("'") for x in match_dep.group(1).split(",")]
++                    deps = None
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+</pre><h3>Mutant 85</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -38,7 +38,7 @@
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+-                        if t["nombre"] in sug.get("mensaje", ""):
++                        if t["XXnombreXX"] in sug.get("mensaje", ""):
+                             # Sacar las columnas dependientes
+                             columnas_removidas = []
+                             for d in deps:
+</pre><h3>Mutant 86</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -38,7 +38,7 @@
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+-                        if t["nombre"] in sug.get("mensaje", ""):
++                        if t["nombre"] not in sug.get("mensaje", ""):
+                             # Sacar las columnas dependientes
+                             columnas_removidas = []
+                             for d in deps:
+</pre><h3>Mutant 87</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -38,7 +38,7 @@
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+-                        if t["nombre"] in sug.get("mensaje", ""):
++                        if t["nombre"] in sug.get("XXmensajeXX", ""):
+                             # Sacar las columnas dependientes
+                             columnas_removidas = []
+                             for d in deps:
+</pre><h3>Mutant 88</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -38,7 +38,7 @@
+                     
+                     # Buscar la tabla afectada
+                     for t in tablas:
+-                        if t["nombre"] in sug.get("mensaje", ""):
++                        if t["nombre"] in sug.get("mensaje", "XXXX"):
+                             # Sacar las columnas dependientes
+                             columnas_removidas = []
+                             for d in deps:
+</pre><h3>Mutant 89</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -40,7 +40,7 @@
+                     for t in tablas:
+                         if t["nombre"] in sug.get("mensaje", ""):
+                             # Sacar las columnas dependientes
+-                            columnas_removidas = []
++                            columnas_removidas = None
+                             for d in deps:
+                                 if d in t["columnas"]:
+                                     t["columnas"].remove(d)
+</pre><h3>Mutant 90</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -42,7 +42,7 @@
+                             # Sacar las columnas dependientes
+                             columnas_removidas = []
+                             for d in deps:
+-                                if d in t["columnas"]:
++                                if d not in t["columnas"]:
+                                     t["columnas"].remove(d)
+                                     columnas_removidas.append(d)
+                             
+</pre><h3>Mutant 91</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -42,7 +42,7 @@
+                             # Sacar las columnas dependientes
+                             columnas_removidas = []
+                             for d in deps:
+-                                if d in t["columnas"]:
++                                if d in t["XXcolumnasXX"]:
+                                     t["columnas"].remove(d)
+                                     columnas_removidas.append(d)
+                             
+</pre><h3>Mutant 92</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -43,7 +43,7 @@
+                             columnas_removidas = []
+                             for d in deps:
+                                 if d in t["columnas"]:
+-                                    t["columnas"].remove(d)
++                                    t["XXcolumnasXX"].remove(d)
+                                     columnas_removidas.append(d)
+                             
+                             # Crear nueva tabla con los determinantes (simulado)
+</pre><h3>Mutant 93</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -48,7 +48,7 @@
+                             
+                             # Crear nueva tabla con los determinantes (simulado)
+                             if match_det:
+-                                dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
++                                dets = [x.strip().strip("XX'XX") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+</pre><h3>Mutant 94</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -48,7 +48,7 @@
+                             
+                             # Crear nueva tabla con los determinantes (simulado)
+                             if match_det:
+-                                dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
++                                dets = [x.strip().strip("'") for x in match_det.group(2).split(",")]
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+</pre><h3>Mutant 95</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -48,7 +48,7 @@
+                             
+                             # Crear nueva tabla con los determinantes (simulado)
+                             if match_det:
+-                                dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
++                                dets = [x.strip().strip("'") for x in match_det.group(1).split("XX,XX")]
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+</pre><h3>Mutant 96</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -48,7 +48,7 @@
+                             
+                             # Crear nueva tabla con los determinantes (simulado)
+                             if match_det:
+-                                dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
++                                dets = None
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+</pre><h3>Mutant 97</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -50,7 +50,7 @@
+                             if match_det:
+                                 dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+-                                if "fks" not in t: t["fks"] = []
++                                if "XXfksXX" not in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+</pre><h3>Mutant 98</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -50,7 +50,7 @@
+                             if match_det:
+                                 dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+-                                if "fks" not in t: t["fks"] = []
++                                if "fks"  in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+</pre><h3>Mutant 99</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -50,7 +50,7 @@
+                             if match_det:
+                                 dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+-                                if "fks" not in t: t["fks"] = []
++                                if "fks" not in t: t["XXfksXX"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+</pre><h3>Mutant 100</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -50,7 +50,7 @@
+                             if match_det:
+                                 dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+-                                if "fks" not in t: t["fks"] = []
++                                if "fks" not in t: t["fks"] = None
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+</pre><h3>Mutant 101</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -51,7 +51,7 @@
+                                 dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+-                                nueva_tabla_nombre = f"{t['nombre']}_detalle"
++                                nueva_tabla_nombre = f"{t['XXnombreXX']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+</pre><h3>Mutant 102</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -51,7 +51,7 @@
+                                 dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+-                                nueva_tabla_nombre = f"{t['nombre']}_detalle"
++                                nueva_tabla_nombre = f"XX{t['nombre']}_detalleXX"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+</pre><h3>Mutant 103</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -51,7 +51,7 @@
+                                 dets = [x.strip().strip("'") for x in match_det.group(1).split(",")]
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+-                                nueva_tabla_nombre = f"{t['nombre']}_detalle"
++                                nueva_tabla_nombre = None
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+</pre><h3>Mutant 104</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -52,7 +52,7 @@
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+-                                if len(dets) == 1:
++                                if len(dets) != 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+                                 
+</pre><h3>Mutant 105</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -52,7 +52,7 @@
+                                 # Añadir FK en la tabla original
+                                 if "fks" not in t: t["fks"] = []
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+-                                if len(dets) == 1:
++                                if len(dets) == 2:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+                                 
+</pre><h3>Mutant 106</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = dets[1].replace('_id', '').replace('id_', '') + "s"
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 107</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = dets[0].replace('XX_idXX', '').replace('id_', '') + "s"
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 108</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = dets[0].replace('_id', 'XXXX').replace('id_', '') + "s"
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 109</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('XXid_XX', '') + "s"
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 110</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', 'XXXX') + "s"
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 111</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') - "s"
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 112</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "XXsXX"
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 113</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -54,7 +54,7 @@
+                                 nueva_tabla_nombre = f"{t['nombre']}_detalle"
+                                 if len(dets) == 1:
+                                     # Tratar de nombrar mejor si es por ejemplo departamento_id -> departamentos
+-                                    nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
++                                    nueva_tabla_nombre = None
+                                 
+                                 for d in dets:
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+</pre><h3>Mutant 114</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -57,7 +57,7 @@
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+                                 
+                                 for d in dets:
+-                                    t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
++                                    t["XXfksXX"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+                                     
+                                 if columnas_removidas:
+                                     t["comentarios"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
+</pre><h3>Mutant 115</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -57,7 +57,7 @@
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+                                 
+                                 for d in dets:
+-                                    t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
++                                    t["fks"].append({"XXcolumnaXX": d, "tabla_destino": nueva_tabla_nombre})
+                                     
+                                 if columnas_removidas:
+                                     t["comentarios"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
+</pre><h3>Mutant 116</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -57,7 +57,7 @@
+                                     nueva_tabla_nombre = dets[0].replace('_id', '').replace('id_', '') + "s"
+                                 
+                                 for d in dets:
+-                                    t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
++                                    t["fks"].append({"columna": d, "XXtabla_destinoXX": nueva_tabla_nombre})
+                                     
+                                 if columnas_removidas:
+                                     t["comentarios"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
+</pre><h3>Mutant 117</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -60,7 +60,7 @@
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+                                     
+                                 if columnas_removidas:
+-                                    t["comentarios"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
++                                    t["XXcomentariosXX"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
+                                     
+                                 nuevas_tablas_agregadas.append({
+                                     "nombre": nueva_tabla_nombre,
+</pre><h3>Mutant 118</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -60,7 +60,7 @@
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+                                     
+                                 if columnas_removidas:
+-                                    t["comentarios"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
++                                    t["comentarios"].append(f"Se eliminaron las columnas [{'XX, XX'.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
+                                     
+                                 nuevas_tablas_agregadas.append({
+                                     "nombre": nueva_tabla_nombre,
+</pre><h3>Mutant 119</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -60,7 +60,7 @@
+                                     t["fks"].append({"columna": d, "tabla_destino": nueva_tabla_nombre})
+                                     
+                                 if columnas_removidas:
+-                                    t["comentarios"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
++                                    t["comentarios"].append(f"XXSe eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.XX")
+                                     
+                                 nuevas_tablas_agregadas.append({
+                                     "nombre": nueva_tabla_nombre,
+</pre><h3>Mutant 120</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -63,7 +63,7 @@
+                                     t["comentarios"].append(f"Se eliminaron las columnas [{', '.join(columnas_removidas)}] y se movieron a '{nueva_tabla_nombre}' para cumplir con {nivel}.")
+                                     
+                                 nuevas_tablas_agregadas.append({
+-                                    "nombre": nueva_tabla_nombre,
++                                    "XXnombreXX": nueva_tabla_nombre,
+                                     "columnas": dets + deps,
+                                     "pks": dets,
+                                     "fks": [],
+</pre><h3>Mutant 121</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -64,7 +64,7 @@
+                                     
+                                 nuevas_tablas_agregadas.append({
+                                     "nombre": nueva_tabla_nombre,
+-                                    "columnas": dets + deps,
++                                    "XXcolumnasXX": dets + deps,
+                                     "pks": dets,
+                                     "fks": [],
+                                     "sql_original": "",
+</pre><h3>Mutant 122</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -64,7 +64,7 @@
+                                     
+                                 nuevas_tablas_agregadas.append({
+                                     "nombre": nueva_tabla_nombre,
+-                                    "columnas": dets + deps,
++                                    "columnas": dets - deps,
+                                     "pks": dets,
+                                     "fks": [],
+                                     "sql_original": "",
+</pre><h3>Mutant 123</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -65,7 +65,7 @@
+                                 nuevas_tablas_agregadas.append({
+                                     "nombre": nueva_tabla_nombre,
+                                     "columnas": dets + deps,
+-                                    "pks": dets,
++                                    "XXpksXX": dets,
+                                     "fks": [],
+                                     "sql_original": "",
+                                     "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+</pre><h3>Mutant 124</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -66,7 +66,7 @@
+                                     "nombre": nueva_tabla_nombre,
+                                     "columnas": dets + deps,
+                                     "pks": dets,
+-                                    "fks": [],
++                                    "XXfksXX": [],
+                                     "sql_original": "",
+                                     "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+                                                     f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
+</pre><h3>Mutant 125</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -67,7 +67,7 @@
+                                     "columnas": dets + deps,
+                                     "pks": dets,
+                                     "fks": [],
+-                                    "sql_original": "",
++                                    "XXsql_originalXX": "",
+                                     "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+                                                     f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
+                                 })
+</pre><h3>Mutant 126</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -67,7 +67,7 @@
+                                     "columnas": dets + deps,
+                                     "pks": dets,
+                                     "fks": [],
+-                                    "sql_original": "",
++                                    "sql_original": "XXXX",
+                                     "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+                                                     f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
+                                 })
+</pre><h3>Mutant 127</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -68,7 +68,7 @@
+                                     "pks": dets,
+                                     "fks": [],
+                                     "sql_original": "",
+-                                    "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
++                                    "XXcomentariosXX": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+                                                     f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
+                                 })
+             except Exception:
+</pre><h3>Mutant 128</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -68,7 +68,7 @@
+                                     "pks": dets,
+                                     "fks": [],
+                                     "sql_original": "",
+-                                    "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
++                                    "comentarios": [f"Nueva tabla extraída de '{t['XXnombreXX']}' para resolver violaciones de {nivel}.",
+                                                     f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
+                                 })
+             except Exception:
+</pre><h3>Mutant 129</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -68,7 +68,7 @@
+                                     "pks": dets,
+                                     "fks": [],
+                                     "sql_original": "",
+-                                    "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
++                                    "comentarios": [f"XXNueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.XX",
+                                                     f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
+                                 })
+             except Exception:
+</pre><h3>Mutant 130</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -69,7 +69,7 @@
+                                     "fks": [],
+                                     "sql_original": "",
+                                     "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+-                                                    f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
++                                                    f"Contiene las dependencias: [{'XX, XX'.join(deps)}] determinadas por [{', '.join(dets)}]."]
+                                 })
+             except Exception:
+                 pass
+</pre><h3>Mutant 131</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -69,7 +69,7 @@
+                                     "fks": [],
+                                     "sql_original": "",
+                                     "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+-                                                    f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
++                                                    f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{'XX, XX'.join(dets)}]."]
+                                 })
+             except Exception:
+                 pass
+</pre><h3>Mutant 132</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -69,7 +69,7 @@
+                                     "fks": [],
+                                     "sql_original": "",
+                                     "comentarios": [f"Nueva tabla extraída de '{t['nombre']}' para resolver violaciones de {nivel}.",
+-                                                    f"Contiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}]."]
++                                                    f"XXContiene las dependencias: [{', '.join(deps)}] determinadas por [{', '.join(dets)}].XX"]
+                                 })
+             except Exception:
+                 pass
+</pre><h3>Mutant 133</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -73,7 +73,7 @@
+                                 })
+             except Exception:
+                 pass
+-        elif nivel == "Opcional":
++        elif nivel != "Opcional":
+             # División semántica de columnas
+             tabla_nombre = sug.get("tabla")
+             columna_original = sug.get("columna")
+</pre><h3>Mutant 134</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -73,7 +73,7 @@
+                                 })
+             except Exception:
+                 pass
+-        elif nivel == "Opcional":
++        elif nivel == "XXOpcionalXX":
+             # División semántica de columnas
+             tabla_nombre = sug.get("tabla")
+             columna_original = sug.get("columna")
+</pre><h3>Mutant 135</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -75,7 +75,7 @@
+                 pass
+         elif nivel == "Opcional":
+             # División semántica de columnas
+-            tabla_nombre = sug.get("tabla")
++            tabla_nombre = sug.get("XXtablaXX")
+             columna_original = sug.get("columna")
+             nuevas_cols = sug.get("sugerencia_columnas", [])
+             
+</pre><h3>Mutant 136</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -75,7 +75,7 @@
+                 pass
+         elif nivel == "Opcional":
+             # División semántica de columnas
+-            tabla_nombre = sug.get("tabla")
++            tabla_nombre = None
+             columna_original = sug.get("columna")
+             nuevas_cols = sug.get("sugerencia_columnas", [])
+             
+</pre><h3>Mutant 137</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -76,7 +76,7 @@
+         elif nivel == "Opcional":
+             # División semántica de columnas
+             tabla_nombre = sug.get("tabla")
+-            columna_original = sug.get("columna")
++            columna_original = sug.get("XXcolumnaXX")
+             nuevas_cols = sug.get("sugerencia_columnas", [])
+             
+             for t in tablas:
+</pre><h3>Mutant 138</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -76,7 +76,7 @@
+         elif nivel == "Opcional":
+             # División semántica de columnas
+             tabla_nombre = sug.get("tabla")
+-            columna_original = sug.get("columna")
++            columna_original = None
+             nuevas_cols = sug.get("sugerencia_columnas", [])
+             
+             for t in tablas:
+</pre><h3>Mutant 139</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -77,7 +77,7 @@
+             # División semántica de columnas
+             tabla_nombre = sug.get("tabla")
+             columna_original = sug.get("columna")
+-            nuevas_cols = sug.get("sugerencia_columnas", [])
++            nuevas_cols = sug.get("XXsugerencia_columnasXX", [])
+             
+             for t in tablas:
+                 if t["nombre"] == tabla_nombre:
+</pre><h3>Mutant 140</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -77,7 +77,7 @@
+             # División semántica de columnas
+             tabla_nombre = sug.get("tabla")
+             columna_original = sug.get("columna")
+-            nuevas_cols = sug.get("sugerencia_columnas", [])
++            nuevas_cols = None
+             
+             for t in tablas:
+                 if t["nombre"] == tabla_nombre:
+</pre><h3>Mutant 141</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -80,7 +80,7 @@
+             nuevas_cols = sug.get("sugerencia_columnas", [])
+             
+             for t in tablas:
+-                if t["nombre"] == tabla_nombre:
++                if t["XXnombreXX"] == tabla_nombre:
+                     if columna_original in t["columnas"]:
+                         idx = t["columnas"].index(columna_original)
+                         t["columnas"].remove(columna_original)
+</pre><h3>Mutant 142</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -80,7 +80,7 @@
+             nuevas_cols = sug.get("sugerencia_columnas", [])
+             
+             for t in tablas:
+-                if t["nombre"] == tabla_nombre:
++                if t["nombre"] != tabla_nombre:
+                     if columna_original in t["columnas"]:
+                         idx = t["columnas"].index(columna_original)
+                         t["columnas"].remove(columna_original)
+</pre><h3>Mutant 143</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -81,7 +81,7 @@
+             
+             for t in tablas:
+                 if t["nombre"] == tabla_nombre:
+-                    if columna_original in t["columnas"]:
++                    if columna_original not in t["columnas"]:
+                         idx = t["columnas"].index(columna_original)
+                         t["columnas"].remove(columna_original)
+                         # Insertar las nuevas columnas en el mismo lugar
+</pre><h3>Mutant 144</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -81,7 +81,7 @@
+             
+             for t in tablas:
+                 if t["nombre"] == tabla_nombre:
+-                    if columna_original in t["columnas"]:
++                    if columna_original in t["XXcolumnasXX"]:
+                         idx = t["columnas"].index(columna_original)
+                         t["columnas"].remove(columna_original)
+                         # Insertar las nuevas columnas en el mismo lugar
+</pre><h3>Mutant 145</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -82,7 +82,7 @@
+             for t in tablas:
+                 if t["nombre"] == tabla_nombre:
+                     if columna_original in t["columnas"]:
+-                        idx = t["columnas"].index(columna_original)
++                        idx = t["XXcolumnasXX"].index(columna_original)
+                         t["columnas"].remove(columna_original)
+                         # Insertar las nuevas columnas en el mismo lugar
+                         for i, nc in enumerate(nuevas_cols):
+</pre><h3>Mutant 146</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -82,7 +82,7 @@
+             for t in tablas:
+                 if t["nombre"] == tabla_nombre:
+                     if columna_original in t["columnas"]:
+-                        idx = t["columnas"].index(columna_original)
++                        idx = None
+                         t["columnas"].remove(columna_original)
+                         # Insertar las nuevas columnas en el mismo lugar
+                         for i, nc in enumerate(nuevas_cols):
+</pre><h3>Mutant 147</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -83,7 +83,7 @@
+                 if t["nombre"] == tabla_nombre:
+                     if columna_original in t["columnas"]:
+                         idx = t["columnas"].index(columna_original)
+-                        t["columnas"].remove(columna_original)
++                        t["XXcolumnasXX"].remove(columna_original)
+                         # Insertar las nuevas columnas en el mismo lugar
+                         for i, nc in enumerate(nuevas_cols):
+                             t["columnas"].insert(idx + i, nc)
+</pre><h3>Mutant 148</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -86,7 +86,7 @@
+                         t["columnas"].remove(columna_original)
+                         # Insertar las nuevas columnas en el mismo lugar
+                         for i, nc in enumerate(nuevas_cols):
+-                            t["columnas"].insert(idx + i, nc)
++                            t["XXcolumnasXX"].insert(idx + i, nc)
+                         
+                         t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
+ 
+</pre><h3>Mutant 149</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -86,7 +86,7 @@
+                         t["columnas"].remove(columna_original)
+                         # Insertar las nuevas columnas en el mismo lugar
+                         for i, nc in enumerate(nuevas_cols):
+-                            t["columnas"].insert(idx + i, nc)
++                            t["columnas"].insert(idx - i, nc)
+                         
+                         t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
+ 
+</pre><h3>Mutant 150</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -88,7 +88,7 @@
+                         for i, nc in enumerate(nuevas_cols):
+                             t["columnas"].insert(idx + i, nc)
+                         
+-                        t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
++                        t["XXcomentariosXX"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
+ 
+     # Unir las tablas originales y las nuevas
+     nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
+</pre><h3>Mutant 151</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -88,7 +88,7 @@
+                         for i, nc in enumerate(nuevas_cols):
+                             t["columnas"].insert(idx + i, nc)
+                         
+-                        t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
++                        t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{'XX, XX'.join(nuevas_cols)}].")
+ 
+     # Unir las tablas originales y las nuevas
+     nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
+</pre><h3>Mutant 152</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -88,7 +88,7 @@
+                         for i, nc in enumerate(nuevas_cols):
+                             t["columnas"].insert(idx + i, nc)
+                         
+-                        t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
++                        t["comentarios"].append(f"XXMejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].XX")
+ 
+     # Unir las tablas originales y las nuevas
+     nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
+</pre><h3>Mutant 153</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -91,7 +91,7 @@
+                         t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
+ 
+     # Unir las tablas originales y las nuevas
+-    nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
++    nuevo_esquema["XXtablasXX"] = tablas + nuevas_tablas_agregadas
+     
+     # Generar SQL
+     sql_generado = ""
+</pre><h3>Mutant 154</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -91,7 +91,7 @@
+                         t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
+ 
+     # Unir las tablas originales y las nuevas
+-    nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
++    nuevo_esquema["tablas"] = tablas - nuevas_tablas_agregadas
+     
+     # Generar SQL
+     sql_generado = ""
+</pre><h3>Mutant 155</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -91,7 +91,7 @@
+                         t["comentarios"].append(f"Mejora Opcional: Se dividió la columna original '{columna_original}' en múltiples columnas: [{', '.join(nuevas_cols)}].")
+ 
+     # Unir las tablas originales y las nuevas
+-    nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
++    nuevo_esquema["tablas"] = None
+     
+     # Generar SQL
+     sql_generado = ""
+</pre><h3>Mutant 156</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -94,7 +94,7 @@
+     nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
+     
+     # Generar SQL
+-    sql_generado = ""
++    sql_generado = "XXXX"
+     for t in nuevo_esquema["tablas"]:
+         sql_generado += f"-- Tabla: {t['nombre']}\n"
+         
+</pre><h3>Mutant 157</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -94,7 +94,7 @@
+     nuevo_esquema["tablas"] = tablas + nuevas_tablas_agregadas
+     
+     # Generar SQL
+-    sql_generado = ""
++    sql_generado = None
+     for t in nuevo_esquema["tablas"]:
+         sql_generado += f"-- Tabla: {t['nombre']}\n"
+         
+</pre><h3>Mutant 158</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -95,7 +95,7 @@
+     
+     # Generar SQL
+     sql_generado = ""
+-    for t in nuevo_esquema["tablas"]:
++    for t in nuevo_esquema["XXtablasXX"]:
+         sql_generado += f"-- Tabla: {t['nombre']}\n"
+         
+         # Inyectar comentarios descriptivos de los cambios
+</pre><h3>Mutant 159</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -96,7 +96,7 @@
+     # Generar SQL
+     sql_generado = ""
+     for t in nuevo_esquema["tablas"]:
+-        sql_generado += f"-- Tabla: {t['nombre']}\n"
++        sql_generado = f"-- Tabla: {t['nombre']}\n"
+         
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+</pre><h3>Mutant 160</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -96,7 +96,7 @@
+     # Generar SQL
+     sql_generado = ""
+     for t in nuevo_esquema["tablas"]:
+-        sql_generado += f"-- Tabla: {t['nombre']}\n"
++        sql_generado -= f"-- Tabla: {t['nombre']}\n"
+         
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+</pre><h3>Mutant 161</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -96,7 +96,7 @@
+     # Generar SQL
+     sql_generado = ""
+     for t in nuevo_esquema["tablas"]:
+-        sql_generado += f"-- Tabla: {t['nombre']}\n"
++        sql_generado += f"-- Tabla: {t['XXnombreXX']}\n"
+         
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+</pre><h3>Mutant 162</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -96,7 +96,7 @@
+     # Generar SQL
+     sql_generado = ""
+     for t in nuevo_esquema["tablas"]:
+-        sql_generado += f"-- Tabla: {t['nombre']}\n"
++        sql_generado += f"XX-- Tabla: {t['nombre']}\nXX"
+         
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+</pre><h3>Mutant 163</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -99,7 +99,7 @@
+         sql_generado += f"-- Tabla: {t['nombre']}\n"
+         
+         # Inyectar comentarios descriptivos de los cambios
+-        if t.get("comentarios"):
++        if t.get("XXcomentariosXX"):
+             for comentario in t["comentarios"]:
+                 sql_generado += f"-- [Auto-Fix] {comentario}\n"
+                 
+</pre><h3>Mutant 164</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -100,7 +100,7 @@
+         
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+-            for comentario in t["comentarios"]:
++            for comentario in t["XXcomentariosXX"]:
+                 sql_generado += f"-- [Auto-Fix] {comentario}\n"
+                 
+         sql_generado += f"CREATE TABLE {t['nombre']} (\n"
+</pre><h3>Mutant 165</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -101,7 +101,7 @@
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+             for comentario in t["comentarios"]:
+-                sql_generado += f"-- [Auto-Fix] {comentario}\n"
++                sql_generado = f"-- [Auto-Fix] {comentario}\n"
+                 
+         sql_generado += f"CREATE TABLE {t['nombre']} (\n"
+         
+</pre><h3>Mutant 166</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -101,7 +101,7 @@
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+             for comentario in t["comentarios"]:
+-                sql_generado += f"-- [Auto-Fix] {comentario}\n"
++                sql_generado -= f"-- [Auto-Fix] {comentario}\n"
+                 
+         sql_generado += f"CREATE TABLE {t['nombre']} (\n"
+         
+</pre><h3>Mutant 167</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -101,7 +101,7 @@
+         # Inyectar comentarios descriptivos de los cambios
+         if t.get("comentarios"):
+             for comentario in t["comentarios"]:
+-                sql_generado += f"-- [Auto-Fix] {comentario}\n"
++                sql_generado += f"XX-- [Auto-Fix] {comentario}\nXX"
+                 
+         sql_generado += f"CREATE TABLE {t['nombre']} (\n"
+         
+</pre><h3>Mutant 168</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -103,7 +103,7 @@
+             for comentario in t["comentarios"]:
+                 sql_generado += f"-- [Auto-Fix] {comentario}\n"
+                 
+-        sql_generado += f"CREATE TABLE {t['nombre']} (\n"
++        sql_generado = f"CREATE TABLE {t['nombre']} (\n"
+         
+         cols_def = []
+         for c in t["columnas"]:
+</pre><h3>Mutant 169</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -103,7 +103,7 @@
+             for comentario in t["comentarios"]:
+                 sql_generado += f"-- [Auto-Fix] {comentario}\n"
+                 
+-        sql_generado += f"CREATE TABLE {t['nombre']} (\n"
++        sql_generado -= f"CREATE TABLE {t['nombre']} (\n"
+         
+         cols_def = []
+         for c in t["columnas"]:
+</pre><h3>Mutant 170</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -103,7 +103,7 @@
+             for comentario in t["comentarios"]:
+                 sql_generado += f"-- [Auto-Fix] {comentario}\n"
+                 
+-        sql_generado += f"CREATE TABLE {t['nombre']} (\n"
++        sql_generado += f"CREATE TABLE {t['XXnombreXX']} (\n"
+         
+         cols_def = []
+         for c in t["columnas"]:
+</pre><h3>Mutant 171</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -103,7 +103,7 @@
+             for comentario in t["comentarios"]:
+                 sql_generado += f"-- [Auto-Fix] {comentario}\n"
+                 
+-        sql_generado += f"CREATE TABLE {t['nombre']} (\n"
++        sql_generado += f"XXCREATE TABLE {t['nombre']} (\nXX"
+         
+         cols_def = []
+         for c in t["columnas"]:
+</pre><h3>Mutant 172</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -105,7 +105,7 @@
+                 
+         sql_generado += f"CREATE TABLE {t['nombre']} (\n"
+         
+-        cols_def = []
++        cols_def = None
+         for c in t["columnas"]:
+             tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
+             cols_def.append(f"    {c} {tipo}")
+</pre><h3>Mutant 173</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -106,7 +106,7 @@
+         sql_generado += f"CREATE TABLE {t['nombre']} (\n"
+         
+         cols_def = []
+-        for c in t["columnas"]:
++        for c in t["XXcolumnasXX"]:
+             tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
+             cols_def.append(f"    {c} {tipo}")
+             
+</pre><h3>Mutant 174</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -107,7 +107,7 @@
+         
+         cols_def = []
+         for c in t["columnas"]:
+-            tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
++            tipo = "XXINTXX" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+</pre><h3>Mutant 175</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -107,7 +107,7 @@
+         
+         cols_def = []
+         for c in t["columnas"]:
+-            tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
++            tipo = "INT" if c.startswith("XXidXX") or c.endswith("id") else "VARCHAR(255)"
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+</pre><h3>Mutant 176</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -107,7 +107,7 @@
+         
+         cols_def = []
+         for c in t["columnas"]:
+-            tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
++            tipo = "INT" if c.startswith("id") or c.endswith("XXidXX") else "VARCHAR(255)"
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+</pre><h3>Mutant 177</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -107,7 +107,7 @@
+         
+         cols_def = []
+         for c in t["columnas"]:
+-            tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
++            tipo = "INT" if c.startswith("id") and c.endswith("id") else "VARCHAR(255)"
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+</pre><h3>Mutant 178</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -107,7 +107,7 @@
+         
+         cols_def = []
+         for c in t["columnas"]:
+-            tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
++            tipo = "INT" if c.startswith("id") or c.endswith("id") else "XXVARCHAR(255)XX"
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+</pre><h3>Mutant 179</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -107,7 +107,7 @@
+         
+         cols_def = []
+         for c in t["columnas"]:
+-            tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
++            tipo = None
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+</pre><h3>Mutant 180</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -108,7 +108,7 @@
+         cols_def = []
+         for c in t["columnas"]:
+             tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
+-            cols_def.append(f"    {c} {tipo}")
++            cols_def.append(f"XX    {c} {tipo}XX")
+             
+         if t.get("pks"):
+             pk_str = ", ".join(t["pks"])
+</pre><h3>Mutant 181</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -110,7 +110,7 @@
+             tipo = "INT" if c.startswith("id") or c.endswith("id") else "VARCHAR(255)"
+             cols_def.append(f"    {c} {tipo}")
+             
+-        if t.get("pks"):
++        if t.get("XXpksXX"):
+             pk_str = ", ".join(t["pks"])
+             cols_def.append(f"    PRIMARY KEY ({pk_str})")
+             
+</pre><h3>Mutant 182</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -111,7 +111,7 @@
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+-            pk_str = ", ".join(t["pks"])
++            pk_str = "XX, XX".join(t["pks"])
+             cols_def.append(f"    PRIMARY KEY ({pk_str})")
+             
+         if t.get("fks"):
+</pre><h3>Mutant 183</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -111,7 +111,7 @@
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+-            pk_str = ", ".join(t["pks"])
++            pk_str = ", ".join(t["XXpksXX"])
+             cols_def.append(f"    PRIMARY KEY ({pk_str})")
+             
+         if t.get("fks"):
+</pre><h3>Mutant 184</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -111,7 +111,7 @@
+             cols_def.append(f"    {c} {tipo}")
+             
+         if t.get("pks"):
+-            pk_str = ", ".join(t["pks"])
++            pk_str = None
+             cols_def.append(f"    PRIMARY KEY ({pk_str})")
+             
+         if t.get("fks"):
+</pre><h3>Mutant 185</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -112,7 +112,7 @@
+             
+         if t.get("pks"):
+             pk_str = ", ".join(t["pks"])
+-            cols_def.append(f"    PRIMARY KEY ({pk_str})")
++            cols_def.append(f"XX    PRIMARY KEY ({pk_str})XX")
+             
+         if t.get("fks"):
+             for fk in t["fks"]:
+</pre><h3>Mutant 186</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -114,7 +114,7 @@
+             pk_str = ", ".join(t["pks"])
+             cols_def.append(f"    PRIMARY KEY ({pk_str})")
+             
+-        if t.get("fks"):
++        if t.get("XXfksXX"):
+             for fk in t["fks"]:
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+</pre><h3>Mutant 187</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -115,7 +115,7 @@
+             cols_def.append(f"    PRIMARY KEY ({pk_str})")
+             
+         if t.get("fks"):
+-            for fk in t["fks"]:
++            for fk in t["XXfksXX"]:
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+         sql_generado += ",\n".join(cols_def)
+</pre><h3>Mutant 188</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -116,7 +116,7 @@
+             
+         if t.get("fks"):
+             for fk in t["fks"]:
+-                cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
++                cols_def.append(f"    FOREIGN KEY ({fk['XXcolumnaXX']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+         sql_generado += ",\n".join(cols_def)
+         sql_generado += "\n);\n\n"
+</pre><h3>Mutant 189</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -116,7 +116,7 @@
+             
+         if t.get("fks"):
+             for fk in t["fks"]:
+-                cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
++                cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['XXtabla_destinoXX']}({fk['columna']})")
+             
+         sql_generado += ",\n".join(cols_def)
+         sql_generado += "\n);\n\n"
+</pre><h3>Mutant 190</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -116,7 +116,7 @@
+             
+         if t.get("fks"):
+             for fk in t["fks"]:
+-                cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
++                cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['XXcolumnaXX']})")
+             
+         sql_generado += ",\n".join(cols_def)
+         sql_generado += "\n);\n\n"
+</pre><h3>Mutant 191</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -116,7 +116,7 @@
+             
+         if t.get("fks"):
+             for fk in t["fks"]:
+-                cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
++                cols_def.append(f"XX    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})XX")
+             
+         sql_generado += ",\n".join(cols_def)
+         sql_generado += "\n);\n\n"
+</pre><h3>Mutant 192</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -118,7 +118,7 @@
+             for fk in t["fks"]:
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+-        sql_generado += ",\n".join(cols_def)
++        sql_generado = ",\n".join(cols_def)
+         sql_generado += "\n);\n\n"
+         
+     return nuevo_esquema, sql_generado
+</pre><h3>Mutant 193</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -118,7 +118,7 @@
+             for fk in t["fks"]:
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+-        sql_generado += ",\n".join(cols_def)
++        sql_generado -= ",\n".join(cols_def)
+         sql_generado += "\n);\n\n"
+         
+     return nuevo_esquema, sql_generado
+</pre><h3>Mutant 194</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -118,7 +118,7 @@
+             for fk in t["fks"]:
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+-        sql_generado += ",\n".join(cols_def)
++        sql_generado += "XX,\nXX".join(cols_def)
+         sql_generado += "\n);\n\n"
+         
+     return nuevo_esquema, sql_generado
+</pre><h3>Mutant 195</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -119,7 +119,7 @@
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+         sql_generado += ",\n".join(cols_def)
+-        sql_generado += "\n);\n\n"
++        sql_generado = "\n);\n\n"
+         
+     return nuevo_esquema, sql_generado
+ 
+</pre><h3>Mutant 196</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -119,7 +119,7 @@
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+         sql_generado += ",\n".join(cols_def)
+-        sql_generado += "\n);\n\n"
++        sql_generado -= "\n);\n\n"
+         
+     return nuevo_esquema, sql_generado
+ 
+</pre><h3>Mutant 197</h3><pre>--- core/generador_sql.py
++++ core/generador_sql.py
+@@ -119,7 +119,7 @@
+                 cols_def.append(f"    FOREIGN KEY ({fk['columna']}) REFERENCES {fk['tabla_destino']}({fk['columna']})")
+             
+         sql_generado += ",\n".join(cols_def)
+-        sql_generado += "\n);\n\n"
++        sql_generado += "XX\n);\n\nXX"
+         
+     return nuevo_esquema, sql_generado
+ 
+</pre></body></html>

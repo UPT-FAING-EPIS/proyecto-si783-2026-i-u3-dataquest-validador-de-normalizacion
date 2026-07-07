@@ -1,0 +1,416 @@
+<html><body><h1>core/validador_1fn.py</h1>Killed 0 out of 38 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 445</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -5,7 +5,7 @@
+     1. Debe tener una clave primaria (Primary Key) definida.
+     2. (Heurística) No debe tener columnas que parezcan arreglos o listas.
+     """
+-    violaciones = []
++    violaciones = None
+     
+     # Regla 1: Debe tener PK
+     if not tabla.get("pks"):
+</pre><h3>Mutant 446</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -8,7 +8,7 @@
+     violaciones = []
+     
+     # Regla 1: Debe tener PK
+-    if not tabla.get("pks"):
++    if  tabla.get("pks"):
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+             "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+</pre><h3>Mutant 447</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -8,7 +8,7 @@
+     violaciones = []
+     
+     # Regla 1: Debe tener PK
+-    if not tabla.get("pks"):
++    if not tabla.get("XXpksXX"):
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+             "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+</pre><h3>Mutant 448</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -10,7 +10,7 @@
+     # Regla 1: Debe tener PK
+     if not tabla.get("pks"):
+         violaciones.append({
+-            "tipo": "Sin Primary Key",
++            "XXtipoXX": "Sin Primary Key",
+             "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+             "sql_original": tabla.get("sql_original", "")
+         })
+</pre><h3>Mutant 449</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -10,7 +10,7 @@
+     # Regla 1: Debe tener PK
+     if not tabla.get("pks"):
+         violaciones.append({
+-            "tipo": "Sin Primary Key",
++            "tipo": "XXSin Primary KeyXX",
+             "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+             "sql_original": tabla.get("sql_original", "")
+         })
+</pre><h3>Mutant 450</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -11,7 +11,7 @@
+     if not tabla.get("pks"):
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+-            "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
++            "XXmensajeXX": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+             "sql_original": tabla.get("sql_original", "")
+         })
+         
+</pre><h3>Mutant 451</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -11,7 +11,7 @@
+     if not tabla.get("pks"):
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+-            "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
++            "mensaje": f"La tabla '{tabla['XXnombreXX']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+             "sql_original": tabla.get("sql_original", "")
+         })
+         
+</pre><h3>Mutant 452</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -11,7 +11,7 @@
+     if not tabla.get("pks"):
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+-            "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
++            "mensaje": f"XXLa tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.XX",
+             "sql_original": tabla.get("sql_original", "")
+         })
+         
+</pre><h3>Mutant 453</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -12,7 +12,7 @@
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+             "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+-            "sql_original": tabla.get("sql_original", "")
++            "XXsql_originalXX": tabla.get("sql_original", "")
+         })
+         
+     # Regla 2: Sin grupos repetitivos (heurística simple por nombre de columna)
+</pre><h3>Mutant 454</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -12,7 +12,7 @@
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+             "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+-            "sql_original": tabla.get("sql_original", "")
++            "sql_original": tabla.get("XXsql_originalXX", "")
+         })
+         
+     # Regla 2: Sin grupos repetitivos (heurística simple por nombre de columna)
+</pre><h3>Mutant 455</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -12,7 +12,7 @@
+         violaciones.append({
+             "tipo": "Sin Primary Key",
+             "mensaje": f"La tabla '{tabla['nombre']}' no tiene definida una Clave Primaria (Primary Key). Esto viola la 1FN.",
+-            "sql_original": tabla.get("sql_original", "")
++            "sql_original": tabla.get("sql_original", "XXXX")
+         })
+         
+     # Regla 2: Sin grupos repetitivos (heurística simple por nombre de columna)
+</pre><h3>Mutant 456</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -17,7 +17,7 @@
+         
+     # Regla 2: Sin grupos repetitivos (heurística simple por nombre de columna)
+     import re
+-    for col in tabla.get("columnas", []):
++    for col in tabla.get("XXcolumnasXX", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+</pre><h3>Mutant 457</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -18,7 +18,7 @@
+     # Regla 2: Sin grupos repetitivos (heurística simple por nombre de columna)
+     import re
+     for col in tabla.get("columnas", []):
+-        col_lower = col.lower()
++        col_lower = None
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+</pre><h3>Mutant 458</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -20,7 +20,7 @@
+     for col in tabla.get("columnas", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+-        if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
++        if "XXlistaXX" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+</pre><h3>Mutant 459</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -20,7 +20,7 @@
+     for col in tabla.get("columnas", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+-        if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
++        if "lista" not in col_lower or "array" in col_lower or "grupo" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+</pre><h3>Mutant 460</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -20,7 +20,7 @@
+     for col in tabla.get("columnas", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+-        if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
++        if "lista" in col_lower or "XXarrayXX" in col_lower or "grupo" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+</pre><h3>Mutant 461</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -20,7 +20,7 @@
+     for col in tabla.get("columnas", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+-        if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
++        if "lista" in col_lower or "array" not in col_lower or "grupo" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+</pre><h3>Mutant 462</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -20,7 +20,7 @@
+     for col in tabla.get("columnas", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+-        if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
++        if "lista" in col_lower or "array" in col_lower or "XXgrupoXX" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+</pre><h3>Mutant 463</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -20,7 +20,7 @@
+     for col in tabla.get("columnas", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+-        if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
++        if "lista" in col_lower or "array" in col_lower or "grupo" not in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+</pre><h3>Mutant 464</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -21,7 +21,7 @@
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+-           "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
++           "XXtelefonosXX" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+</pre><h3>Mutant 465</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -21,7 +21,7 @@
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+-           "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
++           "telefonos" not in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+</pre><h3>Mutant 466</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -21,7 +21,7 @@
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+-           "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
++           "telefonos" in col_lower or "XXdireccionesXX" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+</pre><h3>Mutant 467</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -21,7 +21,7 @@
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+-           "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
++           "telefonos" in col_lower or "direcciones" not in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+</pre><h3>Mutant 468</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -21,7 +21,7 @@
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+-           "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
++           "telefonos" in col_lower or "direcciones" in col_lower or "XXemailsXX" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+</pre><h3>Mutant 469</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -21,7 +21,7 @@
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+-           "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
++           "telefonos" in col_lower or "direcciones" in col_lower or "emails" not in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+</pre><h3>Mutant 470</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -22,7 +22,7 @@
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+         if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+-           re.search(r'\d+$', col_lower): # Termina en número
++           re.search(r'XX\d+$XX', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+                 "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+</pre><h3>Mutant 471</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -20,7 +20,7 @@
+     for col in tabla.get("columnas", []):
+         col_lower = col.lower()
+         # Detectar palabras plurales comunes o sufijos numéricos (ej. telefono1, telefono2)
+-        if "lista" in col_lower or "array" in col_lower or "grupo" in col_lower or \
++        if "lista" in col_lower and "array" in col_lower or "grupo" in col_lower or \
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+</pre><h3>Mutant 472</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -24,7 +24,7 @@
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+-                "tipo": "Grupo Repetitivo (1FN)",
++                "XXtipoXX": "Grupo Repetitivo (1FN)",
+                 "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+</pre><h3>Mutant 473</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -24,7 +24,7 @@
+            "telefonos" in col_lower or "direcciones" in col_lower or "emails" in col_lower or \
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+-                "tipo": "Grupo Repetitivo (1FN)",
++                "tipo": "XXGrupo Repetitivo (1FN)XX",
+                 "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+</pre><h3>Mutant 474</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -25,7 +25,7 @@
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+-                "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
++                "XXmensajeXX": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+</pre><h3>Mutant 475</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -25,7 +25,7 @@
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+-                "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
++                "mensaje": f"La columna '{col}' en la tabla '{tabla['XXnombreXX']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+</pre><h3>Mutant 476</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -25,7 +25,7 @@
+            re.search(r'\d+$', col_lower): # Termina en número
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+-                "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
++                "mensaje": f"XXLa columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.XX",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+</pre><h3>Mutant 477</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -26,7 +26,7 @@
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+                 "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+-                "sql_original": tabla.get("sql_original", "")
++                "XXsql_originalXX": tabla.get("sql_original", "")
+             })
+             
+     cumple_1fn = len(violaciones) == 0
+</pre><h3>Mutant 478</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -26,7 +26,7 @@
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+                 "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+-                "sql_original": tabla.get("sql_original", "")
++                "sql_original": tabla.get("XXsql_originalXX", "")
+             })
+             
+     cumple_1fn = len(violaciones) == 0
+</pre><h3>Mutant 479</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -26,7 +26,7 @@
+             violaciones.append({
+                 "tipo": "Grupo Repetitivo (1FN)",
+                 "mensaje": f"La columna '{col}' en la tabla '{tabla['nombre']}' parece ser un grupo repetitivo o contener múltiples valores. Separar atributos multivaluados para cumplir 1FN.",
+-                "sql_original": tabla.get("sql_original", "")
++                "sql_original": tabla.get("sql_original", "XXXX")
+             })
+             
+     cumple_1fn = len(violaciones) == 0
+</pre><h3>Mutant 480</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -29,6 +29,6 @@
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+-    cumple_1fn = len(violaciones) == 0
++    cumple_1fn = len(violaciones) != 0
+     return cumple_1fn, violaciones
+ 
+</pre><h3>Mutant 481</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -29,6 +29,6 @@
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+-    cumple_1fn = len(violaciones) == 0
++    cumple_1fn = len(violaciones) == 1
+     return cumple_1fn, violaciones
+ 
+</pre><h3>Mutant 482</h3><pre>--- core/validador_1fn.py
++++ core/validador_1fn.py
+@@ -29,6 +29,6 @@
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+-    cumple_1fn = len(violaciones) == 0
++    cumple_1fn = None
+     return cumple_1fn, violaciones
+ 
+</pre></body></html>

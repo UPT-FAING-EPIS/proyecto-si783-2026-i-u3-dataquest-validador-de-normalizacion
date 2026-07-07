@@ -1,0 +1,372 @@
+<html><body><h1>core/validador_3fn.py</h1>Killed 0 out of 34 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 483</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -6,7 +6,7 @@
+     2. No debe haber dependencias transitivas entre atributos no clave.
+        (X -> Y, donde X no es superclave y Y no es parte de una clave candidata)
+     """
+-    violaciones = []
++    violaciones = None
+     
+     pks_set = set(tabla.get("pks", []))
+     columnas_tabla = set(tabla.get("columnas", []))
+</pre><h3>Mutant 484</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -8,7 +8,7 @@
+     """
+     violaciones = []
+     
+-    pks_set = set(tabla.get("pks", []))
++    pks_set = set(tabla.get("XXpksXX", []))
+     columnas_tabla = set(tabla.get("columnas", []))
+     
+     # Evaluar las dependencias funcionales dadas
+</pre><h3>Mutant 485</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -8,7 +8,7 @@
+     """
+     violaciones = []
+     
+-    pks_set = set(tabla.get("pks", []))
++    pks_set = None
+     columnas_tabla = set(tabla.get("columnas", []))
+     
+     # Evaluar las dependencias funcionales dadas
+</pre><h3>Mutant 486</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -9,7 +9,7 @@
+     violaciones = []
+     
+     pks_set = set(tabla.get("pks", []))
+-    columnas_tabla = set(tabla.get("columnas", []))
++    columnas_tabla = set(tabla.get("XXcolumnasXX", []))
+     
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+</pre><h3>Mutant 487</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -9,7 +9,7 @@
+     violaciones = []
+     
+     pks_set = set(tabla.get("pks", []))
+-    columnas_tabla = set(tabla.get("columnas", []))
++    columnas_tabla = None
+     
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+</pre><h3>Mutant 488</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -13,7 +13,7 @@
+     
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+-        determinantes = set(fd["determinantes"])
++        determinantes = set(fd["XXdeterminantesXX"])
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+</pre><h3>Mutant 489</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -13,7 +13,7 @@
+     
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+-        determinantes = set(fd["determinantes"])
++        determinantes = None
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+</pre><h3>Mutant 490</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -14,7 +14,7 @@
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+         determinantes = set(fd["determinantes"])
+-        dependientes = set(fd["dependientes"])
++        dependientes = set(fd["XXdependientesXX"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+         if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+</pre><h3>Mutant 491</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -14,7 +14,7 @@
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+         determinantes = set(fd["determinantes"])
+-        dependientes = set(fd["dependientes"])
++        dependientes = None
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+         if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+</pre><h3>Mutant 492</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -17,7 +17,7 @@
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+-        if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
++        if  determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+             continue
+             
+         # Para cada dependencia funcional X -> Y en la tabla
+</pre><h3>Mutant 493</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -17,7 +17,7 @@
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+-        if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
++        if not determinantes.issubset(columnas_tabla) or  dependientes.issubset(columnas_tabla):
+             continue
+             
+         # Para cada dependencia funcional X -> Y en la tabla
+</pre><h3>Mutant 494</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -17,7 +17,7 @@
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+-        if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
++        if not determinantes.issubset(columnas_tabla) and not dependientes.issubset(columnas_tabla):
+             continue
+             
+         # Para cada dependencia funcional X -> Y en la tabla
+</pre><h3>Mutant 495</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -18,7 +18,7 @@
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+         if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+-            continue
++            break
+             
+         # Para cada dependencia funcional X -> Y en la tabla
+         # Se viola 3FN si se cumplen TODAS estas condiciones:
+</pre><h3>Mutant 496</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -24,7 +24,7 @@
+         # Se viola 3FN si se cumplen TODAS estas condiciones:
+         # 1. X NO es una superclave (en nuestro modelo simple, X no contiene a la PK)
+         # Si no hay PK, nada es superclave. Si hay PK, verificamos si X la contiene.
+-        es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
++        es_superclave = len(pks_set) >= 0 and pks_set.issubset(determinantes)
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+         es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
+</pre><h3>Mutant 497</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -24,7 +24,7 @@
+         # Se viola 3FN si se cumplen TODAS estas condiciones:
+         # 1. X NO es una superclave (en nuestro modelo simple, X no contiene a la PK)
+         # Si no hay PK, nada es superclave. Si hay PK, verificamos si X la contiene.
+-        es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
++        es_superclave = len(pks_set) > 1 and pks_set.issubset(determinantes)
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+         es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
+</pre><h3>Mutant 498</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -24,7 +24,7 @@
+         # Se viola 3FN si se cumplen TODAS estas condiciones:
+         # 1. X NO es una superclave (en nuestro modelo simple, X no contiene a la PK)
+         # Si no hay PK, nada es superclave. Si hay PK, verificamos si X la contiene.
+-        es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
++        es_superclave = len(pks_set) > 0 or pks_set.issubset(determinantes)
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+         es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
+</pre><h3>Mutant 499</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -24,7 +24,7 @@
+         # Se viola 3FN si se cumplen TODAS estas condiciones:
+         # 1. X NO es una superclave (en nuestro modelo simple, X no contiene a la PK)
+         # Si no hay PK, nada es superclave. Si hay PK, verificamos si X la contiene.
+-        es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
++        es_superclave = None
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+         es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
+</pre><h3>Mutant 500</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -27,7 +27,7 @@
+         es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+-        es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
++        es_primo = len(pks_set) >= 0 and dependientes.issubset(pks_set)
+         
+         if not es_superclave:
+             if not es_primo:
+</pre><h3>Mutant 501</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -27,7 +27,7 @@
+         es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+-        es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
++        es_primo = len(pks_set) > 1 and dependientes.issubset(pks_set)
+         
+         if not es_superclave:
+             if not es_primo:
+</pre><h3>Mutant 502</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -27,7 +27,7 @@
+         es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+-        es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
++        es_primo = len(pks_set) > 0 or dependientes.issubset(pks_set)
+         
+         if not es_superclave:
+             if not es_primo:
+</pre><h3>Mutant 503</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -27,7 +27,7 @@
+         es_superclave = len(pks_set) > 0 and pks_set.issubset(determinantes)
+         
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+-        es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
++        es_primo = None
+         
+         if not es_superclave:
+             if not es_primo:
+</pre><h3>Mutant 504</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -29,7 +29,7 @@
+         # 2. Y NO es un atributo primo (Y no es subconjunto de PK)
+         es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
+         
+-        if not es_superclave:
++        if  es_superclave:
+             if not es_primo:
+                 # Es una dependencia transitiva
+                 # Y no es atributo primo
+</pre><h3>Mutant 505</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -30,7 +30,7 @@
+         es_primo = len(pks_set) > 0 and dependientes.issubset(pks_set)
+         
+         if not es_superclave:
+-            if not es_primo:
++            if  es_primo:
+                 # Es una dependencia transitiva
+                 # Y no es atributo primo
+                 # Es una dependencia transitiva
+</pre><h3>Mutant 506</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -35,7 +35,7 @@
+                 # Y no es atributo primo
+                 # Es una dependencia transitiva
+                 violaciones.append({
+-                    "tipo": "Dependencia Transitiva (3FN)",
++                    "XXtipoXX": "Dependencia Transitiva (3FN)",
+                     "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+</pre><h3>Mutant 507</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -35,7 +35,7 @@
+                 # Y no es atributo primo
+                 # Es una dependencia transitiva
+                 violaciones.append({
+-                    "tipo": "Dependencia Transitiva (3FN)",
++                    "tipo": "XXDependencia Transitiva (3FN)XX",
+                     "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+</pre><h3>Mutant 508</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -36,7 +36,7 @@
+                 # Es una dependencia transitiva
+                 violaciones.append({
+                     "tipo": "Dependencia Transitiva (3FN)",
+-                    "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
++                    "XXmensajeXX": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+                 
+</pre><h3>Mutant 509</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -36,7 +36,7 @@
+                 # Es una dependencia transitiva
+                 violaciones.append({
+                     "tipo": "Dependencia Transitiva (3FN)",
+-                    "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
++                    "mensaje": f"En la tabla '{tabla['XXnombreXX']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+                 
+</pre><h3>Mutant 510</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -36,7 +36,7 @@
+                 # Es una dependencia transitiva
+                 violaciones.append({
+                     "tipo": "Dependencia Transitiva (3FN)",
+-                    "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
++                    "mensaje": f"XXEn la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.XX",
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+                 
+</pre><h3>Mutant 511</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -37,7 +37,7 @@
+                 violaciones.append({
+                     "tipo": "Dependencia Transitiva (3FN)",
+                     "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
+-                    "sql_original": tabla.get("sql_original", "")
++                    "XXsql_originalXX": tabla.get("sql_original", "")
+                 })
+                 
+     cumple_3fn = len(violaciones) == 0
+</pre><h3>Mutant 512</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -37,7 +37,7 @@
+                 violaciones.append({
+                     "tipo": "Dependencia Transitiva (3FN)",
+                     "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
+-                    "sql_original": tabla.get("sql_original", "")
++                    "sql_original": tabla.get("XXsql_originalXX", "")
+                 })
+                 
+     cumple_3fn = len(violaciones) == 0
+</pre><h3>Mutant 513</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -37,7 +37,7 @@
+                 violaciones.append({
+                     "tipo": "Dependencia Transitiva (3FN)",
+                     "mensaje": f"En la tabla '{tabla['nombre']}', los atributos no clave {list(dependientes)} dependen funcionalmente del atributo no clave {list(determinantes)}.",
+-                    "sql_original": tabla.get("sql_original", "")
++                    "sql_original": tabla.get("sql_original", "XXXX")
+                 })
+                 
+     cumple_3fn = len(violaciones) == 0
+</pre><h3>Mutant 514</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -40,6 +40,6 @@
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+                 
+-    cumple_3fn = len(violaciones) == 0
++    cumple_3fn = len(violaciones) != 0
+     return cumple_3fn, violaciones
+ 
+</pre><h3>Mutant 515</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -40,6 +40,6 @@
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+                 
+-    cumple_3fn = len(violaciones) == 0
++    cumple_3fn = len(violaciones) == 1
+     return cumple_3fn, violaciones
+ 
+</pre><h3>Mutant 516</h3><pre>--- core/validador_3fn.py
++++ core/validador_3fn.py
+@@ -40,6 +40,6 @@
+                     "sql_original": tabla.get("sql_original", "")
+                 })
+                 
+-    cumple_3fn = len(violaciones) == 0
++    cumple_3fn = None
+     return cumple_3fn, violaciones
+ 
+</pre></body></html>

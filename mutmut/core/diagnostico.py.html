@@ -1,0 +1,1860 @@
+<html><body><h1>core/diagnostico.py</h1>Killed 0 out of 168 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 277</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -7,7 +7,7 @@
+     Infiere dependencias funcionales basadas en patrones de nombres de columnas.
+     Esto permite al sistema auto-detectar violaciones 2FN y 3FN sin entrada del usuario.
+     """
+-    fds = []
++    fds = None
+     columnas = tabla.get("columnas", [])
+     pks = tabla.get("pks", [])
+     
+</pre><h3>Mutant 278</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -8,7 +8,7 @@
+     Esto permite al sistema auto-detectar violaciones 2FN y 3FN sin entrada del usuario.
+     """
+     fds = []
+-    columnas = tabla.get("columnas", [])
++    columnas = tabla.get("XXcolumnasXX", [])
+     pks = tabla.get("pks", [])
+     
+     # Heurística 1: Dependencias parciales (2FN)
+</pre><h3>Mutant 279</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -8,7 +8,7 @@
+     Esto permite al sistema auto-detectar violaciones 2FN y 3FN sin entrada del usuario.
+     """
+     fds = []
+-    columnas = tabla.get("columnas", [])
++    columnas = None
+     pks = tabla.get("pks", [])
+     
+     # Heurística 1: Dependencias parciales (2FN)
+</pre><h3>Mutant 280</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -9,7 +9,7 @@
+     """
+     fds = []
+     columnas = tabla.get("columnas", [])
+-    pks = tabla.get("pks", [])
++    pks = tabla.get("XXpksXX", [])
+     
+     # Heurística 1: Dependencias parciales (2FN)
+     # Si la PK es compuesta, buscar atributos que parezcan pertenecer a solo una parte de la PK.
+</pre><h3>Mutant 281</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -9,7 +9,7 @@
+     """
+     fds = []
+     columnas = tabla.get("columnas", [])
+-    pks = tabla.get("pks", [])
++    pks = None
+     
+     # Heurística 1: Dependencias parciales (2FN)
+     # Si la PK es compuesta, buscar atributos que parezcan pertenecer a solo una parte de la PK.
+</pre><h3>Mutant 282</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -14,7 +14,7 @@
+     # Heurística 1: Dependencias parciales (2FN)
+     # Si la PK es compuesta, buscar atributos que parezcan pertenecer a solo una parte de la PK.
+     # Ej: PK(curso_id, profesor_id), atributo: curso_nombre -> depende de curso_id
+-    if len(pks) > 1:
++    if len(pks) >= 1:
+         for pk in pks:
+             pk_base = pk.replace('_id', '').replace('id_', '')
+             deps_parciales = []
+</pre><h3>Mutant 283</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -14,7 +14,7 @@
+     # Heurística 1: Dependencias parciales (2FN)
+     # Si la PK es compuesta, buscar atributos que parezcan pertenecer a solo una parte de la PK.
+     # Ej: PK(curso_id, profesor_id), atributo: curso_nombre -> depende de curso_id
+-    if len(pks) > 1:
++    if len(pks) > 2:
+         for pk in pks:
+             pk_base = pk.replace('_id', '').replace('id_', '')
+             deps_parciales = []
+</pre><h3>Mutant 284</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -16,7 +16,7 @@
+     # Ej: PK(curso_id, profesor_id), atributo: curso_nombre -> depende de curso_id
+     if len(pks) > 1:
+         for pk in pks:
+-            pk_base = pk.replace('_id', '').replace('id_', '')
++            pk_base = pk.replace('XX_idXX', '').replace('id_', '')
+             deps_parciales = []
+             for col in columnas:
+                 if col not in pks and pk_base in col and col != pk:
+</pre><h3>Mutant 285</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -16,7 +16,7 @@
+     # Ej: PK(curso_id, profesor_id), atributo: curso_nombre -> depende de curso_id
+     if len(pks) > 1:
+         for pk in pks:
+-            pk_base = pk.replace('_id', '').replace('id_', '')
++            pk_base = pk.replace('_id', 'XXXX').replace('id_', '')
+             deps_parciales = []
+             for col in columnas:
+                 if col not in pks and pk_base in col and col != pk:
+</pre><h3>Mutant 286</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -16,7 +16,7 @@
+     # Ej: PK(curso_id, profesor_id), atributo: curso_nombre -> depende de curso_id
+     if len(pks) > 1:
+         for pk in pks:
+-            pk_base = pk.replace('_id', '').replace('id_', '')
++            pk_base = pk.replace('_id', '').replace('XXid_XX', '')
+             deps_parciales = []
+             for col in columnas:
+                 if col not in pks and pk_base in col and col != pk:
+</pre><h3>Mutant 287</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -16,7 +16,7 @@
+     # Ej: PK(curso_id, profesor_id), atributo: curso_nombre -> depende de curso_id
+     if len(pks) > 1:
+         for pk in pks:
+-            pk_base = pk.replace('_id', '').replace('id_', '')
++            pk_base = pk.replace('_id', '').replace('id_', 'XXXX')
+             deps_parciales = []
+             for col in columnas:
+                 if col not in pks and pk_base in col and col != pk:
+</pre><h3>Mutant 288</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -16,7 +16,7 @@
+     # Ej: PK(curso_id, profesor_id), atributo: curso_nombre -> depende de curso_id
+     if len(pks) > 1:
+         for pk in pks:
+-            pk_base = pk.replace('_id', '').replace('id_', '')
++            pk_base = None
+             deps_parciales = []
+             for col in columnas:
+                 if col not in pks and pk_base in col and col != pk:
+</pre><h3>Mutant 289</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -17,7 +17,7 @@
+     if len(pks) > 1:
+         for pk in pks:
+             pk_base = pk.replace('_id', '').replace('id_', '')
+-            deps_parciales = []
++            deps_parciales = None
+             for col in columnas:
+                 if col not in pks and pk_base in col and col != pk:
+                     deps_parciales.append(col)
+</pre><h3>Mutant 290</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -19,7 +19,7 @@
+             pk_base = pk.replace('_id', '').replace('id_', '')
+             deps_parciales = []
+             for col in columnas:
+-                if col not in pks and pk_base in col and col != pk:
++                if col  in pks and pk_base in col and col != pk:
+                     deps_parciales.append(col)
+             if deps_parciales:
+                 fds.append({"determinantes": [pk], "dependientes": deps_parciales})
+</pre><h3>Mutant 291</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -19,7 +19,7 @@
+             pk_base = pk.replace('_id', '').replace('id_', '')
+             deps_parciales = []
+             for col in columnas:
+-                if col not in pks and pk_base in col and col != pk:
++                if col not in pks and pk_base not in col and col != pk:
+                     deps_parciales.append(col)
+             if deps_parciales:
+                 fds.append({"determinantes": [pk], "dependientes": deps_parciales})
+</pre><h3>Mutant 292</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -19,7 +19,7 @@
+             pk_base = pk.replace('_id', '').replace('id_', '')
+             deps_parciales = []
+             for col in columnas:
+-                if col not in pks and pk_base in col and col != pk:
++                if col not in pks and pk_base in col and col == pk:
+                     deps_parciales.append(col)
+             if deps_parciales:
+                 fds.append({"determinantes": [pk], "dependientes": deps_parciales})
+</pre><h3>Mutant 293</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -19,7 +19,7 @@
+             pk_base = pk.replace('_id', '').replace('id_', '')
+             deps_parciales = []
+             for col in columnas:
+-                if col not in pks and pk_base in col and col != pk:
++                if col not in pks or pk_base in col and col != pk:
+                     deps_parciales.append(col)
+             if deps_parciales:
+                 fds.append({"determinantes": [pk], "dependientes": deps_parciales})
+</pre><h3>Mutant 294</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -22,7 +22,7 @@
+                 if col not in pks and pk_base in col and col != pk:
+                     deps_parciales.append(col)
+             if deps_parciales:
+-                fds.append({"determinantes": [pk], "dependientes": deps_parciales})
++                fds.append({"XXdeterminantesXX": [pk], "dependientes": deps_parciales})
+                 
+     # Heurística 2: Dependencias transitivas (3FN)
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+</pre><h3>Mutant 295</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -22,7 +22,7 @@
+                 if col not in pks and pk_base in col and col != pk:
+                     deps_parciales.append(col)
+             if deps_parciales:
+-                fds.append({"determinantes": [pk], "dependientes": deps_parciales})
++                fds.append({"determinantes": [pk], "XXdependientesXX": deps_parciales})
+                 
+     # Heurística 2: Dependencias transitivas (3FN)
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+</pre><h3>Mutant 296</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -27,7 +27,7 @@
+     # Heurística 2: Dependencias transitivas (3FN)
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+-        if col not in pks and (col.endswith('_id') or col.startswith('id_')):
++        if col  in pks and (col.endswith('_id') or col.startswith('id_')):
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+</pre><h3>Mutant 297</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -27,7 +27,7 @@
+     # Heurística 2: Dependencias transitivas (3FN)
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+-        if col not in pks and (col.endswith('_id') or col.startswith('id_')):
++        if col not in pks and (col.endswith('XX_idXX') or col.startswith('id_')):
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+</pre><h3>Mutant 298</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -27,7 +27,7 @@
+     # Heurística 2: Dependencias transitivas (3FN)
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+-        if col not in pks and (col.endswith('_id') or col.startswith('id_')):
++        if col not in pks and (col.endswith('_id') or col.startswith('XXid_XX')):
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+</pre><h3>Mutant 299</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -27,7 +27,7 @@
+     # Heurística 2: Dependencias transitivas (3FN)
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+-        if col not in pks and (col.endswith('_id') or col.startswith('id_')):
++        if col not in pks and (col.endswith('_id') and col.startswith('id_')):
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+</pre><h3>Mutant 300</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -27,7 +27,7 @@
+     # Heurística 2: Dependencias transitivas (3FN)
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+-        if col not in pks and (col.endswith('_id') or col.startswith('id_')):
++        if col not in pks or (col.endswith('_id') or col.startswith('id_')):
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+</pre><h3>Mutant 301</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -28,7 +28,7 @@
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+         if col not in pks and (col.endswith('_id') or col.startswith('id_')):
+-            base = col.replace('_id', '').replace('id_', '')
++            base = col.replace('XX_idXX', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+</pre><h3>Mutant 302</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -28,7 +28,7 @@
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+         if col not in pks and (col.endswith('_id') or col.startswith('id_')):
+-            base = col.replace('_id', '').replace('id_', '')
++            base = col.replace('_id', 'XXXX').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+</pre><h3>Mutant 303</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -28,7 +28,7 @@
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+         if col not in pks and (col.endswith('_id') or col.startswith('id_')):
+-            base = col.replace('_id', '').replace('id_', '')
++            base = col.replace('_id', '').replace('XXid_XX', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+</pre><h3>Mutant 304</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -28,7 +28,7 @@
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+         if col not in pks and (col.endswith('_id') or col.startswith('id_')):
+-            base = col.replace('_id', '').replace('id_', '')
++            base = col.replace('_id', '').replace('id_', 'XXXX')
+             deps_transitivas = []
+             for otra_col in columnas:
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+</pre><h3>Mutant 305</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -28,7 +28,7 @@
+     # Patrón A: columnas con prefijo/sufijo id (ej. departamento_id y departamento_nombre)
+     for col in columnas:
+         if col not in pks and (col.endswith('_id') or col.startswith('id_')):
+-            base = col.replace('_id', '').replace('id_', '')
++            base = None
+             deps_transitivas = []
+             for otra_col in columnas:
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+</pre><h3>Mutant 306</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -29,7 +29,7 @@
+     for col in columnas:
+         if col not in pks and (col.endswith('_id') or col.startswith('id_')):
+             base = col.replace('_id', '').replace('id_', '')
+-            deps_transitivas = []
++            deps_transitivas = None
+             for otra_col in columnas:
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+                     deps_transitivas.append(otra_col)
+</pre><h3>Mutant 307</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -31,7 +31,7 @@
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+-                if otra_col != col and otra_col not in pks and otra_col.startswith(base):
++                if otra_col == col and otra_col not in pks and otra_col.startswith(base):
+                     deps_transitivas.append(otra_col)
+             if deps_transitivas:
+                 fds.append({"determinantes": [col], "dependientes": deps_transitivas})
+</pre><h3>Mutant 308</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -31,7 +31,7 @@
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+-                if otra_col != col and otra_col not in pks and otra_col.startswith(base):
++                if otra_col != col and otra_col  in pks and otra_col.startswith(base):
+                     deps_transitivas.append(otra_col)
+             if deps_transitivas:
+                 fds.append({"determinantes": [col], "dependientes": deps_transitivas})
+</pre><h3>Mutant 309</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -31,7 +31,7 @@
+             base = col.replace('_id', '').replace('id_', '')
+             deps_transitivas = []
+             for otra_col in columnas:
+-                if otra_col != col and otra_col not in pks and otra_col.startswith(base):
++                if otra_col != col or otra_col not in pks and otra_col.startswith(base):
+                     deps_transitivas.append(otra_col)
+             if deps_transitivas:
+                 fds.append({"determinantes": [col], "dependientes": deps_transitivas})
+</pre><h3>Mutant 310</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -34,7 +34,7 @@
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+                     deps_transitivas.append(otra_col)
+             if deps_transitivas:
+-                fds.append({"determinantes": [col], "dependientes": deps_transitivas})
++                fds.append({"XXdeterminantesXX": [col], "dependientes": deps_transitivas})
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+</pre><h3>Mutant 311</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -34,7 +34,7 @@
+                 if otra_col != col and otra_col not in pks and otra_col.startswith(base):
+                     deps_transitivas.append(otra_col)
+             if deps_transitivas:
+-                fds.append({"determinantes": [col], "dependientes": deps_transitivas})
++                fds.append({"determinantes": [col], "XXdependientesXX": deps_transitivas})
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+</pre><h3>Mutant 312</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -38,7 +38,7 @@
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+-        "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
++        "XXdepartamentoXX", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+</pre><h3>Mutant 313</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -38,7 +38,7 @@
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+-        "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
++        "departamento", "XXciudadXX", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+</pre><h3>Mutant 314</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -38,7 +38,7 @@
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+-        "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
++        "departamento", "ciudad", "XXpaisXX", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+</pre><h3>Mutant 315</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -38,7 +38,7 @@
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+-        "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
++        "departamento", "ciudad", "pais", "XXmarcaXX", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+</pre><h3>Mutant 316</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -38,7 +38,7 @@
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+-        "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
++        "departamento", "ciudad", "pais", "marca", "XXcategoriaXX", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+</pre><h3>Mutant 317</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -38,7 +38,7 @@
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+-        "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
++        "departamento", "ciudad", "pais", "marca", "categoria", "XXproveedorXX", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+</pre><h3>Mutant 318</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -39,7 +39,7 @@
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+-        "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
++        "XXcarreraXX", "facultad", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+</pre><h3>Mutant 319</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -39,7 +39,7 @@
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+-        "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
++        "carrera", "XXfacultadXX", "sucursal", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+</pre><h3>Mutant 320</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -39,7 +39,7 @@
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+-        "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
++        "carrera", "facultad", "XXsucursalXX", "autor", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+</pre><h3>Mutant 321</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -39,7 +39,7 @@
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+-        "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
++        "carrera", "facultad", "sucursal", "XXautorXX", "editorial", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+</pre><h3>Mutant 322</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -39,7 +39,7 @@
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+-        "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
++        "carrera", "facultad", "sucursal", "autor", "XXeditorialXX", "cliente",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+</pre><h3>Mutant 323</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -39,7 +39,7 @@
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+-        "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
++        "carrera", "facultad", "sucursal", "autor", "editorial", "XXclienteXX",
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+</pre><h3>Mutant 324</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -40,7 +40,7 @@
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
++        "XXpacienteXX", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+         if col not in pks:
+</pre><h3>Mutant 325</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -40,7 +40,7 @@
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
++        "paciente", "XXmedicoXX", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+         if col not in pks:
+</pre><h3>Mutant 326</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -40,7 +40,7 @@
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
++        "paciente", "medico", "XXproductoXX", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+         if col not in pks:
+</pre><h3>Mutant 327</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -40,7 +40,7 @@
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
++        "paciente", "medico", "producto", "XXestadoXX", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+         if col not in pks:
+</pre><h3>Mutant 328</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -40,7 +40,7 @@
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
++        "paciente", "medico", "producto", "estado", "XXregionXX", "tipo", "rol"
+     ]
+     for col in columnas:
+         if col not in pks:
+</pre><h3>Mutant 329</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -40,7 +40,7 @@
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
++        "paciente", "medico", "producto", "estado", "region", "XXtipoXX", "rol"
+     ]
+     for col in columnas:
+         if col not in pks:
+</pre><h3>Mutant 330</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -40,7 +40,7 @@
+     entidades_comunes = [
+         "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+         "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
++        "paciente", "medico", "producto", "estado", "region", "tipo", "XXrolXX"
+     ]
+     for col in columnas:
+         if col not in pks:
+</pre><h3>Mutant 331</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -37,11 +37,7 @@
+                 fds.append({"determinantes": [col], "dependientes": deps_transitivas})
+                 
+     # Patrón B: Entidades conceptuales comunes que suelen requerir su propia tabla
+-    entidades_comunes = [
+-        "departamento", "ciudad", "pais", "marca", "categoria", "proveedor", 
+-        "carrera", "facultad", "sucursal", "autor", "editorial", "cliente",
+-        "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+-    ]
++    entidades_comunes = None
+     for col in columnas:
+         if col not in pks:
+             col_lower = col.lower()
+</pre><h3>Mutant 332</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -43,7 +43,7 @@
+         "paciente", "medico", "producto", "estado", "region", "tipo", "rol"
+     ]
+     for col in columnas:
+-        if col not in pks:
++        if col  in pks:
+             col_lower = col.lower()
+             for entidad in entidades_comunes:
+                 if entidad in col_lower:
+</pre><h3>Mutant 333</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -44,7 +44,7 @@
+     ]
+     for col in columnas:
+         if col not in pks:
+-            col_lower = col.lower()
++            col_lower = None
+             for entidad in entidades_comunes:
+                 if entidad in col_lower:
+                     # Encontramos una posible entidad transitiva. Veamos si hay otra que también la mencione.
+</pre><h3>Mutant 334</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -46,7 +46,7 @@
+         if col not in pks:
+             col_lower = col.lower()
+             for entidad in entidades_comunes:
+-                if entidad in col_lower:
++                if entidad not in col_lower:
+                     # Encontramos una posible entidad transitiva. Veamos si hay otra que también la mencione.
+                     deps = []
+                     for otra_col in columnas:
+</pre><h3>Mutant 335</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -48,7 +48,7 @@
+             for entidad in entidades_comunes:
+                 if entidad in col_lower:
+                     # Encontramos una posible entidad transitiva. Veamos si hay otra que también la mencione.
+-                    deps = []
++                    deps = None
+                     for otra_col in columnas:
+                         if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
+                             deps.append(otra_col)
+</pre><h3>Mutant 336</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -50,7 +50,7 @@
+                     # Encontramos una posible entidad transitiva. Veamos si hay otra que también la mencione.
+                     deps = []
+                     for otra_col in columnas:
+-                        if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
++                        if otra_col == col and otra_col not in pks and entidad in otra_col.lower():
+                             deps.append(otra_col)
+                     if deps:
+                         existe = any(d["determinantes"] == [col] for d in fds)
+</pre><h3>Mutant 337</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -50,7 +50,7 @@
+                     # Encontramos una posible entidad transitiva. Veamos si hay otra que también la mencione.
+                     deps = []
+                     for otra_col in columnas:
+-                        if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
++                        if otra_col != col and otra_col  in pks and entidad in otra_col.lower():
+                             deps.append(otra_col)
+                     if deps:
+                         existe = any(d["determinantes"] == [col] for d in fds)
+</pre><h3>Mutant 338</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -50,7 +50,7 @@
+                     # Encontramos una posible entidad transitiva. Veamos si hay otra que también la mencione.
+                     deps = []
+                     for otra_col in columnas:
+-                        if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
++                        if otra_col != col and otra_col not in pks and entidad not in otra_col.lower():
+                             deps.append(otra_col)
+                     if deps:
+                         existe = any(d["determinantes"] == [col] for d in fds)
+</pre><h3>Mutant 339</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -50,7 +50,7 @@
+                     # Encontramos una posible entidad transitiva. Veamos si hay otra que también la mencione.
+                     deps = []
+                     for otra_col in columnas:
+-                        if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
++                        if otra_col != col or otra_col not in pks and entidad in otra_col.lower():
+                             deps.append(otra_col)
+                     if deps:
+                         existe = any(d["determinantes"] == [col] for d in fds)
+</pre><h3>Mutant 340</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -53,7 +53,7 @@
+                         if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
+                             deps.append(otra_col)
+                     if deps:
+-                        existe = any(d["determinantes"] == [col] for d in fds)
++                        existe = any(d["XXdeterminantesXX"] == [col] for d in fds)
+                         if not existe:
+                             fds.append({"determinantes": [col], "dependientes": deps})
+                             
+</pre><h3>Mutant 341</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -53,7 +53,7 @@
+                         if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
+                             deps.append(otra_col)
+                     if deps:
+-                        existe = any(d["determinantes"] == [col] for d in fds)
++                        existe = any(d["determinantes"] != [col] for d in fds)
+                         if not existe:
+                             fds.append({"determinantes": [col], "dependientes": deps})
+                             
+</pre><h3>Mutant 342</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -53,7 +53,7 @@
+                         if otra_col != col and otra_col not in pks and entidad in otra_col.lower():
+                             deps.append(otra_col)
+                     if deps:
+-                        existe = any(d["determinantes"] == [col] for d in fds)
++                        existe = None
+                         if not existe:
+                             fds.append({"determinantes": [col], "dependientes": deps})
+                             
+</pre><h3>Mutant 343</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -54,7 +54,7 @@
+                             deps.append(otra_col)
+                     if deps:
+                         existe = any(d["determinantes"] == [col] for d in fds)
+-                        if not existe:
++                        if  existe:
+                             fds.append({"determinantes": [col], "dependientes": deps})
+                             
+     # Patrón C: Heurística de demasiadas columnas (Tabla "Sábana")
+</pre><h3>Mutant 344</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -55,7 +55,7 @@
+                     if deps:
+                         existe = any(d["determinantes"] == [col] for d in fds)
+                         if not existe:
+-                            fds.append({"determinantes": [col], "dependientes": deps})
++                            fds.append({"XXdeterminantesXX": [col], "dependientes": deps})
+                             
+     # Patrón C: Heurística de demasiadas columnas (Tabla "Sábana")
+     # Si una tabla tiene muchas columnas no-clave (ej. > 6), es muy probable que no esté en 3FN.
+</pre><h3>Mutant 345</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -55,7 +55,7 @@
+                     if deps:
+                         existe = any(d["determinantes"] == [col] for d in fds)
+                         if not existe:
+-                            fds.append({"determinantes": [col], "dependientes": deps})
++                            fds.append({"determinantes": [col], "XXdependientesXX": deps})
+                             
+     # Patrón C: Heurística de demasiadas columnas (Tabla "Sábana")
+     # Si una tabla tiene muchas columnas no-clave (ej. > 6), es muy probable que no esté en 3FN.
+</pre><h3>Mutant 346</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -60,7 +60,7 @@
+     # Patrón C: Heurística de demasiadas columnas (Tabla "Sábana")
+     # Si una tabla tiene muchas columnas no-clave (ej. > 6), es muy probable que no esté en 3FN.
+     # En ese caso, forzamos una dependencia simulada para sugerir separación.
+-    columnas_no_clave = [c for c in columnas if c not in pks]
++    columnas_no_clave = [c for c in columnas if c  in pks]
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+</pre><h3>Mutant 347</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -60,7 +60,7 @@
+     # Patrón C: Heurística de demasiadas columnas (Tabla "Sábana")
+     # Si una tabla tiene muchas columnas no-clave (ej. > 6), es muy probable que no esté en 3FN.
+     # En ese caso, forzamos una dependencia simulada para sugerir separación.
+-    columnas_no_clave = [c for c in columnas if c not in pks]
++    columnas_no_clave = None
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+</pre><h3>Mutant 348</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -61,7 +61,7 @@
+     # Si una tabla tiene muchas columnas no-clave (ej. > 6), es muy probable que no esté en 3FN.
+     # En ese caso, forzamos una dependencia simulada para sugerir separación.
+     columnas_no_clave = [c for c in columnas if c not in pks]
+-    if len(columnas_no_clave) >= 6:
++    if len(columnas_no_clave) > 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+</pre><h3>Mutant 349</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -61,7 +61,7 @@
+     # Si una tabla tiene muchas columnas no-clave (ej. > 6), es muy probable que no esté en 3FN.
+     # En ese caso, forzamos una dependencia simulada para sugerir separación.
+     columnas_no_clave = [c for c in columnas if c not in pks]
+-    if len(columnas_no_clave) >= 6:
++    if len(columnas_no_clave) >= 7:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+</pre><h3>Mutant 350</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -63,7 +63,7 @@
+     columnas_no_clave = [c for c in columnas if c not in pks]
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+-        det = columnas_no_clave[0]
++        det = columnas_no_clave[1]
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+</pre><h3>Mutant 351</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -63,7 +63,7 @@
+     columnas_no_clave = [c for c in columnas if c not in pks]
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+-        det = columnas_no_clave[0]
++        det = None
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+</pre><h3>Mutant 352</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -64,7 +64,7 @@
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+-        deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
++        deps = columnas_no_clave[2:len(columnas_no_clave)//2 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+</pre><h3>Mutant 353</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -64,7 +64,7 @@
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+-        deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
++        deps = columnas_no_clave[1:len(columnas_no_clave)/2 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+</pre><h3>Mutant 354</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -64,7 +64,7 @@
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+-        deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
++        deps = columnas_no_clave[1:len(columnas_no_clave)//3 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+</pre><h3>Mutant 355</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -64,7 +64,7 @@
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+-        deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
++        deps = columnas_no_clave[1:len(columnas_no_clave)//2 - 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+</pre><h3>Mutant 356</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -64,7 +64,7 @@
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+-        deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
++        deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 2]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+</pre><h3>Mutant 357</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -64,7 +64,7 @@
+     if len(columnas_no_clave) >= 6:
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+-        deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
++        deps = None
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+</pre><h3>Mutant 358</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -65,7 +65,7 @@
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+-        existe = any(d["determinantes"] == [det] for d in fds)
++        existe = any(d["XXdeterminantesXX"] == [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+                 
+</pre><h3>Mutant 359</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -65,7 +65,7 @@
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+-        existe = any(d["determinantes"] == [det] for d in fds)
++        existe = any(d["determinantes"] != [det] for d in fds)
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+                 
+</pre><h3>Mutant 360</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -65,7 +65,7 @@
+         # Tomar la mitad de las columnas no clave y simular que dependen de una columna inventada o de la primera
+         det = columnas_no_clave[0]
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+-        existe = any(d["determinantes"] == [det] for d in fds)
++        existe = None
+         if not existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+                 
+</pre><h3>Mutant 361</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -66,7 +66,7 @@
+         det = columnas_no_clave[0]
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+-        if not existe:
++        if  existe:
+             fds.append({"determinantes": [det], "dependientes": deps})
+                 
+     return fds
+</pre><h3>Mutant 362</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -67,7 +67,7 @@
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+-            fds.append({"determinantes": [det], "dependientes": deps})
++            fds.append({"XXdeterminantesXX": [det], "dependientes": deps})
+                 
+     return fds
+ 
+</pre><h3>Mutant 363</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -67,7 +67,7 @@
+         deps = columnas_no_clave[1:len(columnas_no_clave)//2 + 1]
+         existe = any(d["determinantes"] == [det] for d in fds)
+         if not existe:
+-            fds.append({"determinantes": [det], "dependientes": deps})
++            fds.append({"determinantes": [det], "XXdependientesXX": deps})
+                 
+     return fds
+ 
+</pre><h3>Mutant 364</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -76,7 +76,7 @@
+     Analiza un esquema parseado y determina su nivel de normalización actual.
+     Retorna: 'sin_normalizar', '1fn', '2fn', o '3fn' y un reporte de violaciones.
+     """
+-    tablas = esquema_parseado.get("tablas", [])
++    tablas = esquema_parseado.get("XXtablasXX", [])
+     # Usar las FDs provistas o inferirlas heurísticamente si no hay
+     fds_globales = esquema_parseado.get("dependencias_funcionales", [])
+     
+</pre><h3>Mutant 365</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -76,7 +76,7 @@
+     Analiza un esquema parseado y determina su nivel de normalización actual.
+     Retorna: 'sin_normalizar', '1fn', '2fn', o '3fn' y un reporte de violaciones.
+     """
+-    tablas = esquema_parseado.get("tablas", [])
++    tablas = None
+     # Usar las FDs provistas o inferirlas heurísticamente si no hay
+     fds_globales = esquema_parseado.get("dependencias_funcionales", [])
+     
+</pre><h3>Mutant 366</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -78,7 +78,7 @@
+     """
+     tablas = esquema_parseado.get("tablas", [])
+     # Usar las FDs provistas o inferirlas heurísticamente si no hay
+-    fds_globales = esquema_parseado.get("dependencias_funcionales", [])
++    fds_globales = esquema_parseado.get("XXdependencias_funcionalesXX", [])
+     
+     violaciones_1fn = []
+     violaciones_2fn = []
+</pre><h3>Mutant 367</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -78,7 +78,7 @@
+     """
+     tablas = esquema_parseado.get("tablas", [])
+     # Usar las FDs provistas o inferirlas heurísticamente si no hay
+-    fds_globales = esquema_parseado.get("dependencias_funcionales", [])
++    fds_globales = None
+     
+     violaciones_1fn = []
+     violaciones_2fn = []
+</pre><h3>Mutant 368</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -80,7 +80,7 @@
+     # Usar las FDs provistas o inferirlas heurísticamente si no hay
+     fds_globales = esquema_parseado.get("dependencias_funcionales", [])
+     
+-    violaciones_1fn = []
++    violaciones_1fn = None
+     violaciones_2fn = []
+     violaciones_3fn = []
+     
+</pre><h3>Mutant 369</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -81,7 +81,7 @@
+     fds_globales = esquema_parseado.get("dependencias_funcionales", [])
+     
+     violaciones_1fn = []
+-    violaciones_2fn = []
++    violaciones_2fn = None
+     violaciones_3fn = []
+     
+     # Reporte de mejoras opcionales
+</pre><h3>Mutant 370</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -82,7 +82,7 @@
+     
+     violaciones_1fn = []
+     violaciones_2fn = []
+-    violaciones_3fn = []
++    violaciones_3fn = None
+     
+     # Reporte de mejoras opcionales
+     mejoras_opcionales = []
+</pre><h3>Mutant 371</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -85,7 +85,7 @@
+     violaciones_3fn = []
+     
+     # Reporte de mejoras opcionales
+-    mejoras_opcionales = []
++    mejoras_opcionales = None
+     
+     nivel_actual = "3FN" # Asumimos optimismo y vamos degradando
+     
+</pre><h3>Mutant 372</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -87,7 +87,7 @@
+     # Reporte de mejoras opcionales
+     mejoras_opcionales = []
+     
+-    nivel_actual = "3FN" # Asumimos optimismo y vamos degradando
++    nivel_actual = "XX3FNXX" # Asumimos optimismo y vamos degradando
+     
+     for tabla in tablas:
+         columnas = tabla.get("columnas", [])
+</pre><h3>Mutant 373</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -87,7 +87,7 @@
+     # Reporte de mejoras opcionales
+     mejoras_opcionales = []
+     
+-    nivel_actual = "3FN" # Asumimos optimismo y vamos degradando
++    nivel_actual = None # Asumimos optimismo y vamos degradando
+     
+     for tabla in tablas:
+         columnas = tabla.get("columnas", [])
+</pre><h3>Mutant 374</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -90,7 +90,7 @@
+     nivel_actual = "3FN" # Asumimos optimismo y vamos degradando
+     
+     for tabla in tablas:
+-        columnas = tabla.get("columnas", [])
++        columnas = tabla.get("XXcolumnasXX", [])
+         
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+</pre><h3>Mutant 375</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -90,7 +90,7 @@
+     nivel_actual = "3FN" # Asumimos optimismo y vamos degradando
+     
+     for tabla in tablas:
+-        columnas = tabla.get("columnas", [])
++        columnas = None
+         
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+</pre><h3>Mutant 376</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -94,7 +94,7 @@
+         
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+-            col_lower = col.lower()
++            col_lower = None
+             if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+</pre><h3>Mutant 377</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -95,7 +95,7 @@
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+             col_lower = col.lower()
+-            if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
++            if "XXnombrecompletoXX" in col_lower or "nombre_completo" in col_lower:
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 378</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -95,7 +95,7 @@
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+             col_lower = col.lower()
+-            if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
++            if "nombrecompleto" not in col_lower or "nombre_completo" in col_lower:
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 379</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -95,7 +95,7 @@
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+             col_lower = col.lower()
+-            if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
++            if "nombrecompleto" in col_lower or "XXnombre_completoXX" in col_lower:
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 380</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -95,7 +95,7 @@
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+             col_lower = col.lower()
+-            if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
++            if "nombrecompleto" in col_lower or "nombre_completo" not in col_lower:
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 381</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -95,7 +95,7 @@
+         # Detectar mejoras opcionales (Semánticas)
+         for col in columnas:
+             col_lower = col.lower()
+-            if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
++            if "nombrecompleto" in col_lower and "nombre_completo" in col_lower:
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 382</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -97,7 +97,7 @@
+             col_lower = col.lower()
+             if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
+                 mejoras_opcionales.append({
+-                    "tabla": tabla["nombre"],
++                    "XXtablaXX": tabla["nombre"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+</pre><h3>Mutant 383</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -97,7 +97,7 @@
+             col_lower = col.lower()
+             if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
+                 mejoras_opcionales.append({
+-                    "tabla": tabla["nombre"],
++                    "tabla": tabla["XXnombreXX"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+</pre><h3>Mutant 384</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -98,7 +98,7 @@
+             if "nombrecompleto" in col_lower or "nombre_completo" in col_lower:
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+-                    "columna": col,
++                    "XXcolumnaXX": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+</pre><h3>Mutant 385</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -99,7 +99,7 @@
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+-                    "tipo": "División Semántica",
++                    "XXtipoXX": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+</pre><h3>Mutant 386</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -99,7 +99,7 @@
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+-                    "tipo": "División Semántica",
++                    "tipo": "XXDivisión SemánticaXX",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+</pre><h3>Mutant 387</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -100,7 +100,7 @@
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+-                    "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
++                    "XXmensajeXX": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+</pre><h3>Mutant 388</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -100,7 +100,7 @@
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+-                    "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
++                    "mensaje": f"XXEl atributo '{col}' puede dividirse para mayor flexibilidad.XX",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+</pre><h3>Mutant 389</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -101,7 +101,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+-                    "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
++                    "XXsugerencia_columnasXX": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+</pre><h3>Mutant 390</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -101,7 +101,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+-                    "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
++                    "sugerencia_columnas": ["XXnombreXX", "apellido_paterno", "apellido_materno"]
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+</pre><h3>Mutant 391</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -101,7 +101,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+-                    "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
++                    "sugerencia_columnas": ["nombre", "XXapellido_paternoXX", "apellido_materno"]
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+</pre><h3>Mutant 392</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -101,7 +101,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+-                    "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
++                    "sugerencia_columnas": ["nombre", "apellido_paterno", "XXapellido_maternoXX"]
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+</pre><h3>Mutant 393</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -103,7 +103,7 @@
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+-            elif col_lower == "direccion" or col_lower == "direccion_completa":
++            elif col_lower != "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 394</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -103,7 +103,7 @@
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+-            elif col_lower == "direccion" or col_lower == "direccion_completa":
++            elif col_lower == "XXdireccionXX" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 395</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -103,7 +103,7 @@
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+-            elif col_lower == "direccion" or col_lower == "direccion_completa":
++            elif col_lower == "direccion" or col_lower != "direccion_completa":
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 396</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -103,7 +103,7 @@
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+-            elif col_lower == "direccion" or col_lower == "direccion_completa":
++            elif col_lower == "direccion" or col_lower == "XXdireccion_completaXX":
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 397</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -103,7 +103,7 @@
+                     "mensaje": f"El atributo '{col}' puede dividirse para mayor flexibilidad.",
+                     "sugerencia_columnas": ["nombre", "apellido_paterno", "apellido_materno"]
+                 })
+-            elif col_lower == "direccion" or col_lower == "direccion_completa":
++            elif col_lower == "direccion" and col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+</pre><h3>Mutant 398</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -105,7 +105,7 @@
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+-                    "tabla": tabla["nombre"],
++                    "XXtablaXX": tabla["nombre"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+</pre><h3>Mutant 399</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -105,7 +105,7 @@
+                 })
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+-                    "tabla": tabla["nombre"],
++                    "tabla": tabla["XXnombreXX"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+</pre><h3>Mutant 400</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -106,7 +106,7 @@
+             elif col_lower == "direccion" or col_lower == "direccion_completa":
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+-                    "columna": col,
++                    "XXcolumnaXX": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+                     "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
+</pre><h3>Mutant 401</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -107,7 +107,7 @@
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+-                    "tipo": "División Semántica",
++                    "XXtipoXX": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+                     "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
+                 })
+</pre><h3>Mutant 402</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -107,7 +107,7 @@
+                 mejoras_opcionales.append({
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+-                    "tipo": "División Semántica",
++                    "tipo": "XXDivisión SemánticaXX",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+                     "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
+                 })
+</pre><h3>Mutant 403</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -108,7 +108,7 @@
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+-                    "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
++                    "XXmensajeXX": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+                     "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
+                 })
+         
+</pre><h3>Mutant 404</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -108,7 +108,7 @@
+                     "tabla": tabla["nombre"],
+                     "columna": col,
+                     "tipo": "División Semántica",
+-                    "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
++                    "mensaje": f"XXEl atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.XX",
+                     "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
+                 })
+         
+</pre><h3>Mutant 405</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -109,7 +109,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+-                    "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
++                    "XXsugerencia_columnasXX": ["calle", "ciudad", "estado", "codigo_postal"]
+                 })
+         
+         # Inferir FDs de la tabla si no se proveyeron globales
+</pre><h3>Mutant 406</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -109,7 +109,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+-                    "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
++                    "sugerencia_columnas": ["XXcalleXX", "ciudad", "estado", "codigo_postal"]
+                 })
+         
+         # Inferir FDs de la tabla si no se proveyeron globales
+</pre><h3>Mutant 407</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -109,7 +109,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+-                    "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
++                    "sugerencia_columnas": ["calle", "XXciudadXX", "estado", "codigo_postal"]
+                 })
+         
+         # Inferir FDs de la tabla si no se proveyeron globales
+</pre><h3>Mutant 408</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -109,7 +109,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+-                    "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
++                    "sugerencia_columnas": ["calle", "ciudad", "XXestadoXX", "codigo_postal"]
+                 })
+         
+         # Inferir FDs de la tabla si no se proveyeron globales
+</pre><h3>Mutant 409</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -109,7 +109,7 @@
+                     "columna": col,
+                     "tipo": "División Semántica",
+                     "mensaje": f"El atributo '{col}' puede dividirse para mejorar las búsquedas geográficas.",
+-                    "sugerencia_columnas": ["calle", "ciudad", "estado", "codigo_postal"]
++                    "sugerencia_columnas": ["calle", "ciudad", "estado", "XXcodigo_postalXX"]
+                 })
+         
+         # Inferir FDs de la tabla si no se proveyeron globales
+</pre><h3>Mutant 410</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -113,7 +113,7 @@
+                 })
+         
+         # Inferir FDs de la tabla si no se proveyeron globales
+-        fds_tabla = fds_globales if fds_globales else inferir_dependencias_heuristica(tabla)
++        fds_tabla = None
+         
+         c1, v1 = validar_1fn(tabla)
+         violaciones_1fn.extend(v1)
+</pre><h3>Mutant 411</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -115,7 +115,7 @@
+         # Inferir FDs de la tabla si no se proveyeron globales
+         fds_tabla = fds_globales if fds_globales else inferir_dependencias_heuristica(tabla)
+         
+-        c1, v1 = validar_1fn(tabla)
++        c1, v1 = None
+         violaciones_1fn.extend(v1)
+         if not c1:
+             nivel_actual = "sin_normalizar"
+</pre><h3>Mutant 412</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -117,7 +117,7 @@
+         
+         c1, v1 = validar_1fn(tabla)
+         violaciones_1fn.extend(v1)
+-        if not c1:
++        if  c1:
+             nivel_actual = "sin_normalizar"
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+</pre><h3>Mutant 413</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -118,7 +118,7 @@
+         c1, v1 = validar_1fn(tabla)
+         violaciones_1fn.extend(v1)
+         if not c1:
+-            nivel_actual = "sin_normalizar"
++            nivel_actual = "XXsin_normalizarXX"
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+</pre><h3>Mutant 414</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -118,7 +118,7 @@
+         c1, v1 = validar_1fn(tabla)
+         violaciones_1fn.extend(v1)
+         if not c1:
+-            nivel_actual = "sin_normalizar"
++            nivel_actual = None
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+</pre><h3>Mutant 415</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -120,7 +120,7 @@
+         if not c1:
+             nivel_actual = "sin_normalizar"
+             
+-        c2, v2 = validar_2fn(tabla, fds_tabla)
++        c2, v2 = None
+         violaciones_2fn.extend(v2)
+         if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+</pre><h3>Mutant 416</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -122,7 +122,7 @@
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+-        if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
++        if  c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+</pre><h3>Mutant 417</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -122,7 +122,7 @@
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+-        if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
++        if not c2 and nivel_actual not in ["3FN", "2FN", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+</pre><h3>Mutant 418</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -122,7 +122,7 @@
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+-        if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
++        if not c2 and nivel_actual in ["XX3FNXX", "2FN", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+</pre><h3>Mutant 419</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -122,7 +122,7 @@
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+-        if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
++        if not c2 and nivel_actual in ["3FN", "XX2FNXX", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+</pre><h3>Mutant 420</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -122,7 +122,7 @@
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+-        if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
++        if not c2 and nivel_actual in ["3FN", "2FN", "XX1FNXX"]:
+             if nivel_actual != "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+</pre><h3>Mutant 421</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -122,7 +122,7 @@
+             
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+-        if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
++        if not c2 or nivel_actual in ["3FN", "2FN", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+</pre><h3>Mutant 422</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -123,7 +123,7 @@
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+         if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
+-            if nivel_actual != "sin_normalizar":
++            if nivel_actual == "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+</pre><h3>Mutant 423</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -123,7 +123,7 @@
+         c2, v2 = validar_2fn(tabla, fds_tabla)
+         violaciones_2fn.extend(v2)
+         if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
+-            if nivel_actual != "sin_normalizar":
++            if nivel_actual != "XXsin_normalizarXX":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+</pre><h3>Mutant 424</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -124,7 +124,7 @@
+         violaciones_2fn.extend(v2)
+         if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+-                nivel_actual = "1FN" # Degrada a 1FN
++                nivel_actual = "XX1FNXX" # Degrada a 1FN
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+</pre><h3>Mutant 425</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -124,7 +124,7 @@
+         violaciones_2fn.extend(v2)
+         if not c2 and nivel_actual in ["3FN", "2FN", "1FN"]:
+             if nivel_actual != "sin_normalizar":
+-                nivel_actual = "1FN" # Degrada a 1FN
++                nivel_actual = None # Degrada a 1FN
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+</pre><h3>Mutant 426</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -126,7 +126,7 @@
+             if nivel_actual != "sin_normalizar":
+                 nivel_actual = "1FN" # Degrada a 1FN
+             
+-        c3, v3 = validar_3fn(tabla, fds_tabla)
++        c3, v3 = None
+         violaciones_3fn.extend(v3)
+         if not c3 and nivel_actual in ["3FN", "2FN"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+</pre><h3>Mutant 427</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -128,7 +128,7 @@
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+-        if not c3 and nivel_actual in ["3FN", "2FN"]:
++        if  c3 and nivel_actual in ["3FN", "2FN"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+</pre><h3>Mutant 428</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -128,7 +128,7 @@
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+-        if not c3 and nivel_actual in ["3FN", "2FN"]:
++        if not c3 and nivel_actual not in ["3FN", "2FN"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+</pre><h3>Mutant 429</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -128,7 +128,7 @@
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+-        if not c3 and nivel_actual in ["3FN", "2FN"]:
++        if not c3 and nivel_actual in ["XX3FNXX", "2FN"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+</pre><h3>Mutant 430</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -128,7 +128,7 @@
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+-        if not c3 and nivel_actual in ["3FN", "2FN"]:
++        if not c3 and nivel_actual in ["3FN", "XX2FNXX"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+</pre><h3>Mutant 431</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -128,7 +128,7 @@
+             
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+-        if not c3 and nivel_actual in ["3FN", "2FN"]:
++        if not c3 or nivel_actual in ["3FN", "2FN"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+</pre><h3>Mutant 432</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -129,7 +129,7 @@
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+         if not c3 and nivel_actual in ["3FN", "2FN"]:
+-            if nivel_actual not in ["sin_normalizar", "1FN"]:
++            if nivel_actual  in ["sin_normalizar", "1FN"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+     # Si llegó aquí y no hay violaciones_3fn, ni de 2fn ni 1fn, es 3FN
+</pre><h3>Mutant 433</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -129,7 +129,7 @@
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+         if not c3 and nivel_actual in ["3FN", "2FN"]:
+-            if nivel_actual not in ["sin_normalizar", "1FN"]:
++            if nivel_actual not in ["XXsin_normalizarXX", "1FN"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+     # Si llegó aquí y no hay violaciones_3fn, ni de 2fn ni 1fn, es 3FN
+</pre><h3>Mutant 434</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -129,7 +129,7 @@
+         c3, v3 = validar_3fn(tabla, fds_tabla)
+         violaciones_3fn.extend(v3)
+         if not c3 and nivel_actual in ["3FN", "2FN"]:
+-            if nivel_actual not in ["sin_normalizar", "1FN"]:
++            if nivel_actual not in ["sin_normalizar", "XX1FNXX"]:
+                 nivel_actual = "2FN" # Degrada a 2FN
+             
+     # Si llegó aquí y no hay violaciones_3fn, ni de 2fn ni 1fn, es 3FN
+</pre><h3>Mutant 435</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -130,7 +130,7 @@
+         violaciones_3fn.extend(v3)
+         if not c3 and nivel_actual in ["3FN", "2FN"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+-                nivel_actual = "2FN" # Degrada a 2FN
++                nivel_actual = "XX2FNXX" # Degrada a 2FN
+             
+     # Si llegó aquí y no hay violaciones_3fn, ni de 2fn ni 1fn, es 3FN
+     
+</pre><h3>Mutant 436</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -130,7 +130,7 @@
+         violaciones_3fn.extend(v3)
+         if not c3 and nivel_actual in ["3FN", "2FN"]:
+             if nivel_actual not in ["sin_normalizar", "1FN"]:
+-                nivel_actual = "2FN" # Degrada a 2FN
++                nivel_actual = None # Degrada a 2FN
+             
+     # Si llegó aquí y no hay violaciones_3fn, ni de 2fn ni 1fn, es 3FN
+     
+</pre><h3>Mutant 437</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -135,7 +135,7 @@
+     # Si llegó aquí y no hay violaciones_3fn, ni de 2fn ni 1fn, es 3FN
+     
+     reporte = {
+-        "nivel_actual": nivel_actual,
++        "XXnivel_actualXX": nivel_actual,
+         "violaciones_1fn": violaciones_1fn,
+         "violaciones_2fn": violaciones_2fn,
+         "violaciones_3fn": violaciones_3fn,
+</pre><h3>Mutant 438</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -136,7 +136,7 @@
+     
+     reporte = {
+         "nivel_actual": nivel_actual,
+-        "violaciones_1fn": violaciones_1fn,
++        "XXviolaciones_1fnXX": violaciones_1fn,
+         "violaciones_2fn": violaciones_2fn,
+         "violaciones_3fn": violaciones_3fn,
+         "mejoras_opcionales": mejoras_opcionales,
+</pre><h3>Mutant 439</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -137,7 +137,7 @@
+     reporte = {
+         "nivel_actual": nivel_actual,
+         "violaciones_1fn": violaciones_1fn,
+-        "violaciones_2fn": violaciones_2fn,
++        "XXviolaciones_2fnXX": violaciones_2fn,
+         "violaciones_3fn": violaciones_3fn,
+         "mejoras_opcionales": mejoras_opcionales,
+         "resumen": f"El esquema global se encuentra en nivel: {nivel_actual}"
+</pre><h3>Mutant 440</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -138,7 +138,7 @@
+         "nivel_actual": nivel_actual,
+         "violaciones_1fn": violaciones_1fn,
+         "violaciones_2fn": violaciones_2fn,
+-        "violaciones_3fn": violaciones_3fn,
++        "XXviolaciones_3fnXX": violaciones_3fn,
+         "mejoras_opcionales": mejoras_opcionales,
+         "resumen": f"El esquema global se encuentra en nivel: {nivel_actual}"
+     }
+</pre><h3>Mutant 441</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -139,7 +139,7 @@
+         "violaciones_1fn": violaciones_1fn,
+         "violaciones_2fn": violaciones_2fn,
+         "violaciones_3fn": violaciones_3fn,
+-        "mejoras_opcionales": mejoras_opcionales,
++        "XXmejoras_opcionalesXX": mejoras_opcionales,
+         "resumen": f"El esquema global se encuentra en nivel: {nivel_actual}"
+     }
+     
+</pre><h3>Mutant 442</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -140,7 +140,7 @@
+         "violaciones_2fn": violaciones_2fn,
+         "violaciones_3fn": violaciones_3fn,
+         "mejoras_opcionales": mejoras_opcionales,
+-        "resumen": f"El esquema global se encuentra en nivel: {nivel_actual}"
++        "XXresumenXX": f"El esquema global se encuentra en nivel: {nivel_actual}"
+     }
+     
+     return reporte
+</pre><h3>Mutant 443</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -140,7 +140,7 @@
+         "violaciones_2fn": violaciones_2fn,
+         "violaciones_3fn": violaciones_3fn,
+         "mejoras_opcionales": mejoras_opcionales,
+-        "resumen": f"El esquema global se encuentra en nivel: {nivel_actual}"
++        "resumen": f"XXEl esquema global se encuentra en nivel: {nivel_actual}XX"
+     }
+     
+     return reporte
+</pre><h3>Mutant 444</h3><pre>--- core/diagnostico.py
++++ core/diagnostico.py
+@@ -134,14 +134,7 @@
+             
+     # Si llegó aquí y no hay violaciones_3fn, ni de 2fn ni 1fn, es 3FN
+     
+-    reporte = {
+-        "nivel_actual": nivel_actual,
+-        "violaciones_1fn": violaciones_1fn,
+-        "violaciones_2fn": violaciones_2fn,
+-        "violaciones_3fn": violaciones_3fn,
+-        "mejoras_opcionales": mejoras_opcionales,
+-        "resumen": f"El esquema global se encuentra en nivel: {nivel_actual}"
+-    }
++    reporte = None
+     
+     return reporte
+ 
+</pre></body></html>

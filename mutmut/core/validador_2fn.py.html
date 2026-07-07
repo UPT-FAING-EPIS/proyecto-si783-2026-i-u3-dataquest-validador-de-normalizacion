@@ -1,0 +1,328 @@
+<html><body><h1>core/validador_2fn.py</h1>Killed 0 out of 30 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 1</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -5,7 +5,7 @@
+     1. Debe estar en 1FN.
+     2. Ningún atributo no clave debe depender de solo una parte de una Clave Primaria Compuesta (Dependencia Parcial).
+     """
+-    violaciones = []
++    violaciones = None
+     
+     pks = tabla.get("pks", [])
+     
+</pre><h3>Mutant 2</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -7,7 +7,7 @@
+     """
+     violaciones = []
+     
+-    pks = tabla.get("pks", [])
++    pks = tabla.get("XXpksXX", [])
+     
+     # Si la PK es de una sola columna o no hay PK (falló 1FN), no puede haber dependencia parcial de una PK compuesta.
+     # Por definición matemática, si PK es simple, 1FN implica 2FN automáticamente.
+</pre><h3>Mutant 3</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -7,7 +7,7 @@
+     """
+     violaciones = []
+     
+-    pks = tabla.get("pks", [])
++    pks = None
+     
+     # Si la PK es de una sola columna o no hay PK (falló 1FN), no puede haber dependencia parcial de una PK compuesta.
+     # Por definición matemática, si PK es simple, 1FN implica 2FN automáticamente.
+</pre><h3>Mutant 4</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -11,7 +11,7 @@
+     
+     # Si la PK es de una sola columna o no hay PK (falló 1FN), no puede haber dependencia parcial de una PK compuesta.
+     # Por definición matemática, si PK es simple, 1FN implica 2FN automáticamente.
+-    if len(pks) <= 1:
++    if len(pks) < 1:
+         return True, violaciones
+         
+     columnas_tabla = set(tabla.get("columnas", []))
+</pre><h3>Mutant 5</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -11,7 +11,7 @@
+     
+     # Si la PK es de una sola columna o no hay PK (falló 1FN), no puede haber dependencia parcial de una PK compuesta.
+     # Por definición matemática, si PK es simple, 1FN implica 2FN automáticamente.
+-    if len(pks) <= 1:
++    if len(pks) <= 2:
+         return True, violaciones
+         
+     columnas_tabla = set(tabla.get("columnas", []))
+</pre><h3>Mutant 6</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -12,7 +12,7 @@
+     # Si la PK es de una sola columna o no hay PK (falló 1FN), no puede haber dependencia parcial de una PK compuesta.
+     # Por definición matemática, si PK es simple, 1FN implica 2FN automáticamente.
+     if len(pks) <= 1:
+-        return True, violaciones
++        return False, violaciones
+         
+     columnas_tabla = set(tabla.get("columnas", []))
+     pks_set = set(pks)
+</pre><h3>Mutant 7</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -14,7 +14,7 @@
+     if len(pks) <= 1:
+         return True, violaciones
+         
+-    columnas_tabla = set(tabla.get("columnas", []))
++    columnas_tabla = set(tabla.get("XXcolumnasXX", []))
+     pks_set = set(pks)
+     
+     # Evaluar las dependencias funcionales dadas
+</pre><h3>Mutant 8</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -14,7 +14,7 @@
+     if len(pks) <= 1:
+         return True, violaciones
+         
+-    columnas_tabla = set(tabla.get("columnas", []))
++    columnas_tabla = None
+     pks_set = set(pks)
+     
+     # Evaluar las dependencias funcionales dadas
+</pre><h3>Mutant 9</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -15,7 +15,7 @@
+         return True, violaciones
+         
+     columnas_tabla = set(tabla.get("columnas", []))
+-    pks_set = set(pks)
++    pks_set = None
+     
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+</pre><h3>Mutant 10</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -19,7 +19,7 @@
+     
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+-        determinantes = set(fd["determinantes"])
++        determinantes = set(fd["XXdeterminantesXX"])
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+</pre><h3>Mutant 11</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -19,7 +19,7 @@
+     
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+-        determinantes = set(fd["determinantes"])
++        determinantes = None
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+</pre><h3>Mutant 12</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -20,7 +20,7 @@
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+         determinantes = set(fd["determinantes"])
+-        dependientes = set(fd["dependientes"])
++        dependientes = set(fd["XXdependientesXX"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+         if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+</pre><h3>Mutant 13</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -20,7 +20,7 @@
+     # Evaluar las dependencias funcionales dadas
+     for fd in fds:
+         determinantes = set(fd["determinantes"])
+-        dependientes = set(fd["dependientes"])
++        dependientes = None
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+         if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+</pre><h3>Mutant 14</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -23,7 +23,7 @@
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+-        if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
++        if  determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+             continue
+             
+         # Verificar dependencia parcial: 
+</pre><h3>Mutant 15</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -23,7 +23,7 @@
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+-        if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
++        if not determinantes.issubset(columnas_tabla) or  dependientes.issubset(columnas_tabla):
+             continue
+             
+         # Verificar dependencia parcial: 
+</pre><h3>Mutant 16</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -23,7 +23,7 @@
+         dependientes = set(fd["dependientes"])
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+-        if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
++        if not determinantes.issubset(columnas_tabla) and not dependientes.issubset(columnas_tabla):
+             continue
+             
+         # Verificar dependencia parcial: 
+</pre><h3>Mutant 17</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -24,7 +24,7 @@
+         
+         # Ignorar si los atributos no pertenecen a esta tabla
+         if not determinantes.issubset(columnas_tabla) or not dependientes.issubset(columnas_tabla):
+-            continue
++            break
+             
+         # Verificar dependencia parcial: 
+         # El determinante es un subconjunto propio estricto de la clave primaria
+</pre><h3>Mutant 18</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -28,7 +28,7 @@
+             
+         # Verificar dependencia parcial: 
+         # El determinante es un subconjunto propio estricto de la clave primaria
+-        if determinantes.issubset(pks_set) and len(determinantes) < len(pks_set):
++        if determinantes.issubset(pks_set) and len(determinantes) <= len(pks_set):
+             # Encontramos que atributos dependen de solo una parte de la PK
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+</pre><h3>Mutant 19</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -28,7 +28,7 @@
+             
+         # Verificar dependencia parcial: 
+         # El determinante es un subconjunto propio estricto de la clave primaria
+-        if determinantes.issubset(pks_set) and len(determinantes) < len(pks_set):
++        if determinantes.issubset(pks_set) or len(determinantes) < len(pks_set):
+             # Encontramos que atributos dependen de solo una parte de la PK
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+</pre><h3>Mutant 20</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -31,7 +31,7 @@
+         if determinantes.issubset(pks_set) and len(determinantes) < len(pks_set):
+             # Encontramos que atributos dependen de solo una parte de la PK
+             violaciones.append({
+-                "tipo": "Dependencia Parcial (2FN)",
++                "XXtipoXX": "Dependencia Parcial (2FN)",
+                 "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+</pre><h3>Mutant 21</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -31,7 +31,7 @@
+         if determinantes.issubset(pks_set) and len(determinantes) < len(pks_set):
+             # Encontramos que atributos dependen de solo una parte de la PK
+             violaciones.append({
+-                "tipo": "Dependencia Parcial (2FN)",
++                "tipo": "XXDependencia Parcial (2FN)XX",
+                 "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+</pre><h3>Mutant 22</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -32,7 +32,7 @@
+             # Encontramos que atributos dependen de solo una parte de la PK
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+-                "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
++                "XXmensajeXX": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+</pre><h3>Mutant 23</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -32,7 +32,7 @@
+             # Encontramos que atributos dependen de solo una parte de la PK
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+-                "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
++                "mensaje": f"En la tabla '{tabla['XXnombreXX']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+</pre><h3>Mutant 24</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -32,7 +32,7 @@
+             # Encontramos que atributos dependen de solo una parte de la PK
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+-                "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
++                "mensaje": f"XXEn la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.XX",
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+</pre><h3>Mutant 25</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -33,7 +33,7 @@
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+                 "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
+-                "sql_original": tabla.get("sql_original", "")
++                "XXsql_originalXX": tabla.get("sql_original", "")
+             })
+             
+     cumple_2fn = len(violaciones) == 0
+</pre><h3>Mutant 26</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -33,7 +33,7 @@
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+                 "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
+-                "sql_original": tabla.get("sql_original", "")
++                "sql_original": tabla.get("XXsql_originalXX", "")
+             })
+             
+     cumple_2fn = len(violaciones) == 0
+</pre><h3>Mutant 27</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -33,7 +33,7 @@
+             violaciones.append({
+                 "tipo": "Dependencia Parcial (2FN)",
+                 "mensaje": f"En la tabla '{tabla['nombre']}', los atributos {list(dependientes)} dependen parcialmente de la clave primaria a través de {list(determinantes)}.",
+-                "sql_original": tabla.get("sql_original", "")
++                "sql_original": tabla.get("sql_original", "XXXX")
+             })
+             
+     cumple_2fn = len(violaciones) == 0
+</pre><h3>Mutant 28</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -36,6 +36,6 @@
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+-    cumple_2fn = len(violaciones) == 0
++    cumple_2fn = len(violaciones) != 0
+     return cumple_2fn, violaciones
+ 
+</pre><h3>Mutant 29</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -36,6 +36,6 @@
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+-    cumple_2fn = len(violaciones) == 0
++    cumple_2fn = len(violaciones) == 1
+     return cumple_2fn, violaciones
+ 
+</pre><h3>Mutant 30</h3><pre>--- core/validador_2fn.py
++++ core/validador_2fn.py
+@@ -36,6 +36,6 @@
+                 "sql_original": tabla.get("sql_original", "")
+             })
+             
+-    cumple_2fn = len(violaciones) == 0
++    cumple_2fn = None
+     return cumple_2fn, violaciones
+ 
+</pre></body></html>

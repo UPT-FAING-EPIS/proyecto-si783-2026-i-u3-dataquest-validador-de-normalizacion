@@ -1,0 +1,868 @@
+<html><body><h1>core/cli.py</h1>Killed 0 out of 79 mutants<h2>Survived</h2>Survived mutation testing. These mutants show holes in your test suite.<h3>Mutant 198</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -4,7 +4,7 @@
+ import os
+ 
+ # Asegurar que el directorio raíz está en el path para las importaciones
+-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
++sys.path.insert(1, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+ 
+ from core.parser import parse_schema
+ from core.diagnostico import diagnosticar_esquema
+</pre><h3>Mutant 199</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -4,7 +4,7 @@
+ import os
+ 
+ # Asegurar que el directorio raíz está en el path para las importaciones
+-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
++sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), 'XX..XX')))
+ 
+ from core.parser import parse_schema
+ from core.diagnostico import diagnosticar_esquema
+</pre><h3>Mutant 200</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -12,7 +12,7 @@
+ from core.generador_sql import aplicar_mejoras
+ 
+ def main():
+-    parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
++    parser = argparse.ArgumentParser(description="XXValidador de Normalización de Bases de Datos por CLIXX")
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+</pre><h3>Mutant 201</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -12,7 +12,7 @@
+ from core.generador_sql import aplicar_mejoras
+ 
+ def main():
+-    parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
++    parser = None
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+</pre><h3>Mutant 202</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -13,7 +13,7 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+-    parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
++    parser.add_argument('XXfileXX', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+</pre><h3>Mutant 203</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -13,7 +13,7 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+-    parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
++    parser.add_argument('file', nargs='XX?XX', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+</pre><h3>Mutant 204</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -13,7 +13,7 @@
+ 
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+-    parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
++    parser.add_argument('file', nargs='?', help="XXRuta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.XX")
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+</pre><h3>Mutant 205</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -14,7 +14,7 @@
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+-    parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
++    parser.add_argument('XX--target-nfXX', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+     input_text = ""
+</pre><h3>Mutant 206</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -14,7 +14,7 @@
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+-    parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
++    parser.add_argument('--target-nf', choices=['XX1FNXX', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+     input_text = ""
+</pre><h3>Mutant 207</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -14,7 +14,7 @@
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+-    parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
++    parser.add_argument('--target-nf', choices=['1FN', 'XX2FNXX', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+     input_text = ""
+</pre><h3>Mutant 208</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -14,7 +14,7 @@
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+-    parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
++    parser.add_argument('--target-nf', choices=['1FN', '2FN', 'XX3FNXX'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+     input_text = ""
+</pre><h3>Mutant 209</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -14,7 +14,7 @@
+ def main():
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+-    parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
++    parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="XXForma Normal objetivo para refactorizar automáticamente el esquema.XX")
+     args = parser.parse_args()
+ 
+     input_text = ""
+</pre><h3>Mutant 210</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -15,7 +15,7 @@
+     parser = argparse.ArgumentParser(description="Validador de Normalización de Bases de Datos por CLI")
+     parser.add_argument('file', nargs='?', help="Ruta al archivo a analizar (SQL, TXT, etc.). Si no se provee, lee de stdin.")
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+-    args = parser.parse_args()
++    args = None
+ 
+     input_text = ""
+     if args.file:
+</pre><h3>Mutant 211</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -17,7 +17,7 @@
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+-    input_text = ""
++    input_text = "XXXX"
+     if args.file:
+         if not os.path.exists(args.file):
+             print(json.dumps({"error": f"El archivo {args.file} no existe."}))
+</pre><h3>Mutant 212</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -17,7 +17,7 @@
+     parser.add_argument('--target-nf', choices=['1FN', '2FN', '3FN'], help="Forma Normal objetivo para refactorizar automáticamente el esquema.")
+     args = parser.parse_args()
+ 
+-    input_text = ""
++    input_text = None
+     if args.file:
+         if not os.path.exists(args.file):
+             print(json.dumps({"error": f"El archivo {args.file} no existe."}))
+</pre><h3>Mutant 213</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -19,7 +19,7 @@
+ 
+     input_text = ""
+     if args.file:
+-        if not os.path.exists(args.file):
++        if  os.path.exists(args.file):
+             print(json.dumps({"error": f"El archivo {args.file} no existe."}))
+             sys.exit(1)
+         with open(args.file, 'r', encoding='utf-8') as f:
+</pre><h3>Mutant 214</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -20,7 +20,7 @@
+     input_text = ""
+     if args.file:
+         if not os.path.exists(args.file):
+-            print(json.dumps({"error": f"El archivo {args.file} no existe."}))
++            print(json.dumps({"XXerrorXX": f"El archivo {args.file} no existe."}))
+             sys.exit(1)
+         with open(args.file, 'r', encoding='utf-8') as f:
+             input_text = f.read()
+</pre><h3>Mutant 215</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -20,7 +20,7 @@
+     input_text = ""
+     if args.file:
+         if not os.path.exists(args.file):
+-            print(json.dumps({"error": f"El archivo {args.file} no existe."}))
++            print(json.dumps({"error": f"XXEl archivo {args.file} no existe.XX"}))
+             sys.exit(1)
+         with open(args.file, 'r', encoding='utf-8') as f:
+             input_text = f.read()
+</pre><h3>Mutant 216</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -21,7 +21,7 @@
+     if args.file:
+         if not os.path.exists(args.file):
+             print(json.dumps({"error": f"El archivo {args.file} no existe."}))
+-            sys.exit(1)
++            sys.exit(2)
+         with open(args.file, 'r', encoding='utf-8') as f:
+             input_text = f.read()
+     else:
+</pre><h3>Mutant 217</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -22,7 +22,7 @@
+         if not os.path.exists(args.file):
+             print(json.dumps({"error": f"El archivo {args.file} no existe."}))
+             sys.exit(1)
+-        with open(args.file, 'r', encoding='utf-8') as f:
++        with open(args.file, 'XXrXX', encoding='utf-8') as f:
+             input_text = f.read()
+     else:
+         # Leer de stdin
+</pre><h3>Mutant 218</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -22,7 +22,7 @@
+         if not os.path.exists(args.file):
+             print(json.dumps({"error": f"El archivo {args.file} no existe."}))
+             sys.exit(1)
+-        with open(args.file, 'r', encoding='utf-8') as f:
++        with open(args.file, 'r', encoding='XXutf-8XX') as f:
+             input_text = f.read()
+     else:
+         # Leer de stdin
+</pre><h3>Mutant 219</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -23,7 +23,7 @@
+             print(json.dumps({"error": f"El archivo {args.file} no existe."}))
+             sys.exit(1)
+         with open(args.file, 'r', encoding='utf-8') as f:
+-            input_text = f.read()
++            input_text = None
+     else:
+         # Leer de stdin
+         input_text = sys.stdin.read()
+</pre><h3>Mutant 220</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -26,7 +26,7 @@
+             input_text = f.read()
+     else:
+         # Leer de stdin
+-        input_text = sys.stdin.read()
++        input_text = None
+ 
+     if not input_text.strip():
+         print(json.dumps({"error": "No se proporcionó texto para analizar."}))
+</pre><h3>Mutant 221</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -28,7 +28,7 @@
+         # Leer de stdin
+         input_text = sys.stdin.read()
+ 
+-    if not input_text.strip():
++    if  input_text.strip():
+         print(json.dumps({"error": "No se proporcionó texto para analizar."}))
+         sys.exit(1)
+ 
+</pre><h3>Mutant 222</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -29,7 +29,7 @@
+         input_text = sys.stdin.read()
+ 
+     if not input_text.strip():
+-        print(json.dumps({"error": "No se proporcionó texto para analizar."}))
++        print(json.dumps({"XXerrorXX": "No se proporcionó texto para analizar."}))
+         sys.exit(1)
+ 
+     try:
+</pre><h3>Mutant 223</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -29,7 +29,7 @@
+         input_text = sys.stdin.read()
+ 
+     if not input_text.strip():
+-        print(json.dumps({"error": "No se proporcionó texto para analizar."}))
++        print(json.dumps({"error": "XXNo se proporcionó texto para analizar.XX"}))
+         sys.exit(1)
+ 
+     try:
+</pre><h3>Mutant 224</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -30,7 +30,7 @@
+ 
+     if not input_text.strip():
+         print(json.dumps({"error": "No se proporcionó texto para analizar."}))
+-        sys.exit(1)
++        sys.exit(2)
+ 
+     try:
+         # Parseamos asumiendo sintaxis SQL sin importar la extensión
+</pre><h3>Mutant 225</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -34,7 +34,7 @@
+ 
+     try:
+         # Parseamos asumiendo sintaxis SQL sin importar la extensión
+-        esquema_parseado = parse_schema(input_text, 'sql')
++        esquema_parseado = parse_schema(input_text, 'XXsqlXX')
+         reporte = diagnosticar_esquema(esquema_parseado)
+         
+         # Añadir las tablas parseadas al reporte para tener contexto adicional
+</pre><h3>Mutant 226</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -34,7 +34,7 @@
+ 
+     try:
+         # Parseamos asumiendo sintaxis SQL sin importar la extensión
+-        esquema_parseado = parse_schema(input_text, 'sql')
++        esquema_parseado = None
+         reporte = diagnosticar_esquema(esquema_parseado)
+         
+         # Añadir las tablas parseadas al reporte para tener contexto adicional
+</pre><h3>Mutant 227</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -35,7 +35,7 @@
+     try:
+         # Parseamos asumiendo sintaxis SQL sin importar la extensión
+         esquema_parseado = parse_schema(input_text, 'sql')
+-        reporte = diagnosticar_esquema(esquema_parseado)
++        reporte = None
+         
+         # Añadir las tablas parseadas al reporte para tener contexto adicional
+         reporte["tablas_detectadas"] = [t["nombre"] for t in esquema_parseado.get("tablas", [])]
+</pre><h3>Mutant 228</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -38,7 +38,7 @@
+         reporte = diagnosticar_esquema(esquema_parseado)
+         
+         # Añadir las tablas parseadas al reporte para tener contexto adicional
+-        reporte["tablas_detectadas"] = [t["nombre"] for t in esquema_parseado.get("tablas", [])]
++        reporte["XXtablas_detectadasXX"] = [t["nombre"] for t in esquema_parseado.get("tablas", [])]
+         
+         # Si el usuario solicitó corrección automática
+         if args.target_nf:
+</pre><h3>Mutant 229</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -38,7 +38,7 @@
+         reporte = diagnosticar_esquema(esquema_parseado)
+         
+         # Añadir las tablas parseadas al reporte para tener contexto adicional
+-        reporte["tablas_detectadas"] = [t["nombre"] for t in esquema_parseado.get("tablas", [])]
++        reporte["tablas_detectadas"] = [t["XXnombreXX"] for t in esquema_parseado.get("tablas", [])]
+         
+         # Si el usuario solicitó corrección automática
+         if args.target_nf:
+</pre><h3>Mutant 230</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -38,7 +38,7 @@
+         reporte = diagnosticar_esquema(esquema_parseado)
+         
+         # Añadir las tablas parseadas al reporte para tener contexto adicional
+-        reporte["tablas_detectadas"] = [t["nombre"] for t in esquema_parseado.get("tablas", [])]
++        reporte["tablas_detectadas"] = [t["nombre"] for t in esquema_parseado.get("XXtablasXX", [])]
+         
+         # Si el usuario solicitó corrección automática
+         if args.target_nf:
+</pre><h3>Mutant 231</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -38,7 +38,7 @@
+         reporte = diagnosticar_esquema(esquema_parseado)
+         
+         # Añadir las tablas parseadas al reporte para tener contexto adicional
+-        reporte["tablas_detectadas"] = [t["nombre"] for t in esquema_parseado.get("tablas", [])]
++        reporte["tablas_detectadas"] = None
+         
+         # Si el usuario solicitó corrección automática
+         if args.target_nf:
+</pre><h3>Mutant 232</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -42,7 +42,7 @@
+         
+         # Si el usuario solicitó corrección automática
+         if args.target_nf:
+-            todas_las_sugerencias = generar_sugerencias(reporte)
++            todas_las_sugerencias = None
+             sugerencias_aplicables = []
+             
+             niveles_permitidos = []
+</pre><h3>Mutant 233</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -43,7 +43,7 @@
+         # Si el usuario solicitó corrección automática
+         if args.target_nf:
+             todas_las_sugerencias = generar_sugerencias(reporte)
+-            sugerencias_aplicables = []
++            sugerencias_aplicables = None
+             
+             niveles_permitidos = []
+             if args.target_nf == '1FN':
+</pre><h3>Mutant 234</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -45,7 +45,7 @@
+             todas_las_sugerencias = generar_sugerencias(reporte)
+             sugerencias_aplicables = []
+             
+-            niveles_permitidos = []
++            niveles_permitidos = None
+             if args.target_nf == '1FN':
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+</pre><h3>Mutant 235</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -46,7 +46,7 @@
+             sugerencias_aplicables = []
+             
+             niveles_permitidos = []
+-            if args.target_nf == '1FN':
++            if args.target_nf != '1FN':
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+</pre><h3>Mutant 236</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -46,7 +46,7 @@
+             sugerencias_aplicables = []
+             
+             niveles_permitidos = []
+-            if args.target_nf == '1FN':
++            if args.target_nf == 'XX1FNXX':
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+</pre><h3>Mutant 237</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -47,7 +47,7 @@
+             
+             niveles_permitidos = []
+             if args.target_nf == '1FN':
+-                niveles_permitidos = ['1FN']
++                niveles_permitidos = ['XX1FNXX']
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+</pre><h3>Mutant 238</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -47,7 +47,7 @@
+             
+             niveles_permitidos = []
+             if args.target_nf == '1FN':
+-                niveles_permitidos = ['1FN']
++                niveles_permitidos = None
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+</pre><h3>Mutant 239</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -48,7 +48,7 @@
+             niveles_permitidos = []
+             if args.target_nf == '1FN':
+                 niveles_permitidos = ['1FN']
+-            elif args.target_nf == '2FN':
++            elif args.target_nf != '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+</pre><h3>Mutant 240</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -48,7 +48,7 @@
+             niveles_permitidos = []
+             if args.target_nf == '1FN':
+                 niveles_permitidos = ['1FN']
+-            elif args.target_nf == '2FN':
++            elif args.target_nf == 'XX2FNXX':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+</pre><h3>Mutant 241</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -49,7 +49,7 @@
+             if args.target_nf == '1FN':
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+-                niveles_permitidos = ['1FN', '2FN']
++                niveles_permitidos = ['XX1FNXX', '2FN']
+             elif args.target_nf == '3FN':
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+</pre><h3>Mutant 242</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -49,7 +49,7 @@
+             if args.target_nf == '1FN':
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+-                niveles_permitidos = ['1FN', '2FN']
++                niveles_permitidos = ['1FN', 'XX2FNXX']
+             elif args.target_nf == '3FN':
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+</pre><h3>Mutant 243</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -49,7 +49,7 @@
+             if args.target_nf == '1FN':
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+-                niveles_permitidos = ['1FN', '2FN']
++                niveles_permitidos = None
+             elif args.target_nf == '3FN':
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+</pre><h3>Mutant 244</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -50,7 +50,7 @@
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+-            elif args.target_nf == '3FN':
++            elif args.target_nf != '3FN':
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+</pre><h3>Mutant 245</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -50,7 +50,7 @@
+                 niveles_permitidos = ['1FN']
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+-            elif args.target_nf == '3FN':
++            elif args.target_nf == 'XX3FNXX':
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+</pre><h3>Mutant 246</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -51,7 +51,7 @@
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+-                niveles_permitidos = ['1FN', '2FN', '3FN']
++                niveles_permitidos = ['XX1FNXX', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+                 if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
+</pre><h3>Mutant 247</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -51,7 +51,7 @@
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+-                niveles_permitidos = ['1FN', '2FN', '3FN']
++                niveles_permitidos = ['1FN', 'XX2FNXX', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+                 if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
+</pre><h3>Mutant 248</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -51,7 +51,7 @@
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+-                niveles_permitidos = ['1FN', '2FN', '3FN']
++                niveles_permitidos = ['1FN', '2FN', 'XX3FNXX']
+                 
+             for sug in todas_las_sugerencias:
+                 if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
+</pre><h3>Mutant 249</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -51,7 +51,7 @@
+             elif args.target_nf == '2FN':
+                 niveles_permitidos = ['1FN', '2FN']
+             elif args.target_nf == '3FN':
+-                niveles_permitidos = ['1FN', '2FN', '3FN']
++                niveles_permitidos = None
+                 
+             for sug in todas_las_sugerencias:
+                 if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
+</pre><h3>Mutant 250</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -54,7 +54,7 @@
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+-                if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
++                if sug["XXnivelXX"] in niveles_permitidos or sug["nivel"] == "Opcional":
+                     # Aplicamos las opcionales también si así lo desea el usuario (podría hacerse configurable en el futuro)
+                     sugerencias_aplicables.append(sug)
+                     
+</pre><h3>Mutant 251</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -54,7 +54,7 @@
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+-                if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
++                if sug["nivel"] not in niveles_permitidos or sug["nivel"] == "Opcional":
+                     # Aplicamos las opcionales también si así lo desea el usuario (podría hacerse configurable en el futuro)
+                     sugerencias_aplicables.append(sug)
+                     
+</pre><h3>Mutant 252</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -54,7 +54,7 @@
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+-                if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
++                if sug["nivel"] in niveles_permitidos or sug["XXnivelXX"] == "Opcional":
+                     # Aplicamos las opcionales también si así lo desea el usuario (podría hacerse configurable en el futuro)
+                     sugerencias_aplicables.append(sug)
+                     
+</pre><h3>Mutant 253</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -54,7 +54,7 @@
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+-                if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
++                if sug["nivel"] in niveles_permitidos or sug["nivel"] != "Opcional":
+                     # Aplicamos las opcionales también si así lo desea el usuario (podría hacerse configurable en el futuro)
+                     sugerencias_aplicables.append(sug)
+                     
+</pre><h3>Mutant 254</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -54,7 +54,7 @@
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+-                if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
++                if sug["nivel"] in niveles_permitidos or sug["nivel"] == "XXOpcionalXX":
+                     # Aplicamos las opcionales también si así lo desea el usuario (podría hacerse configurable en el futuro)
+                     sugerencias_aplicables.append(sug)
+                     
+</pre><h3>Mutant 255</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -54,7 +54,7 @@
+                 niveles_permitidos = ['1FN', '2FN', '3FN']
+                 
+             for sug in todas_las_sugerencias:
+-                if sug["nivel"] in niveles_permitidos or sug["nivel"] == "Opcional":
++                if sug["nivel"] in niveles_permitidos and sug["nivel"] == "Opcional":
+                     # Aplicamos las opcionales también si así lo desea el usuario (podría hacerse configurable en el futuro)
+                     sugerencias_aplicables.append(sug)
+                     
+</pre><h3>Mutant 256</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -59,7 +59,7 @@
+                     sugerencias_aplicables.append(sug)
+                     
+             if sugerencias_aplicables:
+-                nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
++                nuevo_esquema, sql_corregido = None
+                 reporte["sql_corregido"] = sql_corregido.strip()
+                 reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+</pre><h3>Mutant 257</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -60,7 +60,7 @@
+                     
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+-                reporte["sql_corregido"] = sql_corregido.strip()
++                reporte["XXsql_corregidoXX"] = sql_corregido.strip()
+                 reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+</pre><h3>Mutant 258</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -60,7 +60,7 @@
+                     
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+-                reporte["sql_corregido"] = sql_corregido.strip()
++                reporte["sql_corregido"] = None
+                 reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+</pre><h3>Mutant 259</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["XXcorrecciones_aplicadasXX"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 260</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["correcciones_aplicadas"] = [s["XXaccionXX"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 261</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["correcciones_aplicadas"] = [s["accion"] - " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 262</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["correcciones_aplicadas"] = [s["accion"] + "XX en XX" + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 263</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["correcciones_aplicadas"] = [s["accion"] + " en " - s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 264</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("XXdetalleXX", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 265</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "XXXX") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 266</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -61,7 +61,7 @@
+             if sugerencias_aplicables:
+                 nuevo_esquema, sql_corregido = aplicar_mejoras(esquema_parseado, sugerencias_aplicables)
+                 reporte["sql_corregido"] = sql_corregido.strip()
+-                reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
++                reporte["correcciones_aplicadas"] = None
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+</pre><h3>Mutant 267</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -63,7 +63,7 @@
+                 reporte["sql_corregido"] = sql_corregido.strip()
+                 reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+-                reporte["sql_corregido"] = input_text # No hubo cambios
++                reporte["XXsql_corregidoXX"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+                 
+         print(json.dumps(reporte, indent=2, ensure_ascii=False))
+</pre><h3>Mutant 268</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -63,7 +63,7 @@
+                 reporte["sql_corregido"] = sql_corregido.strip()
+                 reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+-                reporte["sql_corregido"] = input_text # No hubo cambios
++                reporte["sql_corregido"] = None # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+                 
+         print(json.dumps(reporte, indent=2, ensure_ascii=False))
+</pre><h3>Mutant 269</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -64,7 +64,7 @@
+                 reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+-                reporte["correcciones_aplicadas"] = []
++                reporte["XXcorrecciones_aplicadasXX"] = []
+                 
+         print(json.dumps(reporte, indent=2, ensure_ascii=False))
+     except Exception as e:
+</pre><h3>Mutant 270</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -64,7 +64,7 @@
+                 reporte["correcciones_aplicadas"] = [s["accion"] + " en " + s.get("detalle", "") for s in sugerencias_aplicables]
+             else:
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+-                reporte["correcciones_aplicadas"] = []
++                reporte["correcciones_aplicadas"] = None
+                 
+         print(json.dumps(reporte, indent=2, ensure_ascii=False))
+     except Exception as e:
+</pre><h3>Mutant 271</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -66,7 +66,7 @@
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+                 
+-        print(json.dumps(reporte, indent=2, ensure_ascii=False))
++        print(json.dumps(reporte, indent=3, ensure_ascii=False))
+     except Exception as e:
+         print(json.dumps({"error": str(e)}))
+         sys.exit(1)
+</pre><h3>Mutant 272</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -66,7 +66,7 @@
+                 reporte["sql_corregido"] = input_text # No hubo cambios
+                 reporte["correcciones_aplicadas"] = []
+                 
+-        print(json.dumps(reporte, indent=2, ensure_ascii=False))
++        print(json.dumps(reporte, indent=2, ensure_ascii=True))
+     except Exception as e:
+         print(json.dumps({"error": str(e)}))
+         sys.exit(1)
+</pre><h3>Mutant 273</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -68,7 +68,7 @@
+                 
+         print(json.dumps(reporte, indent=2, ensure_ascii=False))
+     except Exception as e:
+-        print(json.dumps({"error": str(e)}))
++        print(json.dumps({"XXerrorXX": str(e)}))
+         sys.exit(1)
+ 
+ if __name__ == "__main__":
+</pre><h3>Mutant 274</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -69,7 +69,7 @@
+         print(json.dumps(reporte, indent=2, ensure_ascii=False))
+     except Exception as e:
+         print(json.dumps({"error": str(e)}))
+-        sys.exit(1)
++        sys.exit(2)
+ 
+ if __name__ == "__main__":
+     main()
+</pre><h3>Mutant 275</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -71,6 +71,6 @@
+         print(json.dumps({"error": str(e)}))
+         sys.exit(1)
+ 
+-if __name__ == "__main__":
++if __name__ != "__main__":
+     main()
+ 
+</pre><h3>Mutant 276</h3><pre>--- core/cli.py
++++ core/cli.py
+@@ -71,6 +71,6 @@
+         print(json.dumps({"error": str(e)}))
+         sys.exit(1)
+ 
+-if __name__ == "__main__":
++if __name__ == "XX__main__XX":
+     main()
+ 
+</pre></body></html>
