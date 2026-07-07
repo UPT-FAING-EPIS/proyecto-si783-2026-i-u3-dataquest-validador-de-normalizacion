@@ -1,0 +1,29 @@
+name: Security Analysis
+
+on:
+  push:
+    branches: [ "main", "Fabrizio-Perez" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  security:
+    name: Static Analysis & SCA
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Semgrep Analysis
+        uses: returntocorp/semgrep-action@v1
+        # Si decides usar la plataforma web de Semgrep, agrega un bloque env: con SEMGREP_APP_TOKEN
+        with:
+          config: "p/default"
+          
+      - name: Snyk SCA (Dependencies)
+        uses: snyk/actions/python-3.10@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+          args: --file=requirements.txt

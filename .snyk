@@ -1,0 +1,6 @@
+version: v1.25.0
+ignore:
+  SNYK-PYTHON-STREAMLIT-17176399:
+    - '*':
+        reason: 'No patch available from Streamlit yet. Medium severity.'
+        expires: '2026-12-31T00:00:00.000Z'

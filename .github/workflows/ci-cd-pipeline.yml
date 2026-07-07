@@ -1,0 +1,140 @@
+name: CI/CD Pipeline Unificado
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  pull-requests: write
+  security-events: write
+  checks: write
+
+jobs:
+  build-and-test:
+    name: Build, Test & Report
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+          playwright install --with-deps chromium
+          npm install -g snyk snyk-to-html
+
+      - name: Create Public Directory
+        run: mkdir -p public
+
+      # ----------------------------------------------------
+      # 1. ANÁLISIS ESTÁTICO Y SEGURIDAD (Semgrep & Snyk)
+      # ----------------------------------------------------
+      - name: Semgrep Analysis (HTML)
+        run: |
+          pip install semgrep
+          semgrep scan --config auto > public/semgrep-report.txt || true
+          echo "<!DOCTYPE html><html><head><title>Semgrep Report</title></head><body><h1>Semgrep Report</h1><pre>" > public/semgrep-report.html
+          cat public/semgrep-report.txt >> public/semgrep-report.html || true
+          echo "</pre></body></html>" >> public/semgrep-report.html
+
+      - name: Snyk SCA (HTML)
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: |
+          snyk test --file=requirements.txt --json | snyk-to-html -o public/snyk-report.html || true
+
+      # ----------------------------------------------------
+      # 2. PRUEBAS UNITARIAS, INTEGRACIÓN Y COBERTURA
+      # ----------------------------------------------------
+      - name: Run Unit & Integration Tests (Coverage)
+        run: |
+          pytest tests/unit tests/integration --cov=core --cov-report=html:public/coverage --cov-report=xml:coverage.xml --junitxml=pytest-report.xml || true
+          rm -f public/coverage/.gitignore
+
+      - name: Publish Test Report (Annotations)
+        uses: mikepenz/action-junit-report@v4
+        if: success() || failure()
+        with:
+          report_paths: 'pytest-report.xml'
+
+      - name: Publish Coverage Report (Annotations)
+        uses: 5monkeys/cobertura-action@master
+        if: success() || failure()
+        with:
+          path: coverage.xml
+          minimum_coverage: 70
+
+      # ----------------------------------------------------
+      # 3. BDD TESTS
+      # ----------------------------------------------------
+      - name: Run BDD Tests
+        run: |
+          pytest tests/bdd --html=public/bdd-report.html --self-contained-html || true
+
+      # ----------------------------------------------------
+      # 4. MUTATION TESTING
+      # ----------------------------------------------------
+      - name: Run Mutant Tests
+        run: |
+          mutmut run || true
+          mutmut html
+          mv html public/mutmut
+
+      # ----------------------------------------------------
+      # 5. INDEX.HTML PARA GITHUB PAGES
+      # ----------------------------------------------------
+      - name: Generate Index for GH Pages
+        run: |
+          cat <<EOF > public/index.html
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <title>Reportes de Proyecto - Dataquest</title>
+            <style>
+              body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+              h1 { color: #333; }
+              ul { list-style-type: none; padding: 0; }
+              li { margin: 10px 0; background: #fff; padding: 15px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+              a { text-decoration: none; color: #0066cc; font-weight: bold; font-size: 1.1em; }
+              a:hover { text-decoration: underline; }
+            </style>
+          </head>
+          <body>
+            <h1>Dashboard de Reportes CI/CD</h1>
+            <ul>
+              <li><a href="coverage/index.html">📊 Reporte de Cobertura de Pruebas (Pytest-cov)</a></li>
+              <li><a href="bdd-report.html">🥒 Reporte de Pruebas BDD (Pytest-bdd)</a></li>
+              <li><a href="mutmut/index.html">👾 Reporte de Mutaciones (Mutmut)</a></li>
+              <li><a href="semgrep-report.html">🔍 Reporte de Análisis Estático (Semgrep)</a></li>
+              <li><a href="snyk-report.html">🛡️ Reporte de Vulnerabilidades de Dependencias (Snyk)</a></li>
+            </ul>
+          </body>
+          </html>
+          EOF
+
+      # ----------------------------------------------------
+      # 6. DESPLIEGUE A GITHUB PAGES
+      # ----------------------------------------------------
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public

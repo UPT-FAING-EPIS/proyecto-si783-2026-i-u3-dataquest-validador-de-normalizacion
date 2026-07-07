@@ -1,0 +1,40 @@
+{
+  "name": "dataquest",
+  "displayName": "DataQuest - Validador Normalización DB",
+  "description": "Extensión que valida la normalización (1FN, 2FN, 3FN) de un esquema de base de datos y provee sugerencias.",
+  "version": "1.1.0",
+  "publisher": "dataquest",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/validador-normalizacion"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:validador-db.analizarEsquema"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "validador-db.analizarEsquema",
+        "title": "Validador DB: Analizar e Inyectar Reporte"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node copy-core.js && tsc -p ./",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/node": "^18.x",
+    "typescript": "^5.1.6"
+  }
+}
