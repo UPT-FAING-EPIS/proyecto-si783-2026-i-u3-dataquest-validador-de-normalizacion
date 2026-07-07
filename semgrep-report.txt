@@ -3,12 +3,12 @@
 ┌─────────────┐
 │ Scan Status │
 └─────────────┘
-  Scanning 85 files tracked by git with 1074 Code rules:
+  Scanning 515 files tracked by git with 1074 Code rules:
                                                                                                                         
   Language      Rules   Files          Origin      Rules                                                                
  ─────────────────────────────        ───────────────────                                                               
-  <multilang>      47      85          Community    1074                                                                
-  python          243      50                                                                                           
+  <multilang>      47     515          Community    1074                                                                
+  python          243     453                                                                                           
   terraform       101       4                                                                                           
   yaml             35       4                                                                                           
   json              4       4                                                                                           
@@ -19,7 +19,7 @@
                     
                     
 ┌──────────────────┐
-│ 33 Code Findings │
+│ 87 Code Findings │
 └──────────────────┘
                                         
     .github/workflows/ci-cd-pipeline.yml
@@ -105,6 +105,413 @@
            ▶▶┆ Autofix ▶ USER non-root CMD ["streamlit", "run", "app.py", "--server.port=8501", "--
               server.address=0.0.0.0"]                                                             
            26┆ CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+                                                    
+    testenv/Lib/site-packages/pip/_internal/cache.py
+    ❯❱ python.lang.security.audit.sha224-hash.sha224-hash
+          ❰❰ Blocking ❱❱
+          This code uses a 224-bit hash function, which is deprecated or disallowed in some security policies.
+          Consider updating to a stronger hash function such as SHA-384 or higher to ensure compliance and    
+          security.                                                                                           
+          Details: https://sg.run/Db1Yv                                                                       
+                                                                                                              
+           29┆ return hashlib.sha224(s.encode("ascii")).hexdigest()
+                                                                
+    testenv/Lib/site-packages/pip/_internal/commands/__init__.py
+    ❯❱ python.lang.security.audit.non-literal-import.non-literal-import
+          ❰❰ Blocking ❱❱
+          Untrusted user input in `importlib.import_module()` function allows an attacker to load arbitrary
+          code. Avoid dynamic values in `importlib.import_module()` or use a whitelist to prevent running  
+          untrusted code.                                                                                  
+          Details: https://sg.run/y6Jk                                                                     
+                                                                                                           
+          114┆ module = importlib.import_module(module_path)
+                                                                     
+    testenv/Lib/site-packages/pip/_internal/commands/configuration.py
+   ❯❯❱ python.lang.security.audit.subprocess-shell-true.subprocess-shell-true
+          ❰❰ Blocking ❱❱
+          Found 'subprocess' function 'check_call' with 'shell=True'. This is dangerous because this call will
+          spawn the command using a shell process. Doing so propagates current shell settings and variables,  
+          which makes it much easier for a malicious actor to execute commands. Use 'shell=False' instead.    
+          Details: https://sg.run/J92w                                                                        
+                                                                                                              
+           ▶▶┆ Autofix ▶ False
+          239┆ subprocess.check_call(f'{editor} "{fname}"', shell=True)
+                                                              
+    testenv/Lib/site-packages/pip/_internal/commands/search.py
+   ❯❯❱ python.lang.security.use-defused-xmlrpc.use-defused-xmlrpc
+          ❰❰ Blocking ❱❱
+          Detected use of xmlrpc. xmlrpc is not inherently safe from vulnerabilities. Use defusedxml.xmlrpc
+          instead.                                                                                         
+          Details: https://sg.run/weqY                                                                     
+                                                                                                           
+            5┆ import xmlrpc.client
+                                                           
+    testenv/Lib/site-packages/pip/_internal/network/auth.py
+    ❯❱ python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure
+          ❰❰ Blocking ❱❱
+          Detected a python logger call with a potential hardcoded secret "Getting credentials from keyring 
+          for %s" being logged. This may lead to secret credentials being exposed. Make sure that the logger
+          is not logging  sensitive information.                                                            
+          Details: https://sg.run/ydNx                                                                      
+                                                                                                            
+           86┆ logger.debug("Getting credentials from keyring for %s", url)
+            ⋮┆----------------------------------------
+    ❯❱ python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure
+          ❰❰ Blocking ❱❱
+          Detected a python logger call with a potential hardcoded secret "Getting password from keyring for
+          %s" being logged. This may lead to secret credentials being exposed. Make sure that the logger is 
+          not logging  sensitive information.                                                               
+          Details: https://sg.run/ydNx                                                                      
+                                                                                                            
+           93┆ logger.debug("Getting password from keyring for %s", url)
+            ⋮┆----------------------------------------
+    ❯❱ python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure
+          ❰❰ Blocking ❱❱
+          Detected a python logger call with a potential hardcoded secret "Found credentials in url for %s"
+          being logged. This may lead to secret credentials being exposed. Make sure that the logger is not
+          logging  sensitive information.                                                                  
+          Details: https://sg.run/ydNx                                                                     
+                                                                                                           
+          351┆ logger.debug("Found credentials in url for %s", netloc)
+            ⋮┆----------------------------------------
+    ❯❱ python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure
+          ❰❰ Blocking ❱❱
+          Detected a python logger call with a potential hardcoded secret "Found credentials in index url for
+          %s" being logged. This may lead to secret credentials being exposed. Make sure that the logger is  
+          not logging  sensitive information.                                                                
+          Details: https://sg.run/ydNx                                                                       
+                                                                                                             
+          367┆ logger.debug("Found credentials in index url for %s", netloc)
+            ⋮┆----------------------------------------
+    ❯❱ python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure
+          ❰❰ Blocking ❱❱
+          Detected a python logger call with a potential hardcoded secret "Found credentials in netrc for %s"
+          being logged. This may lead to secret credentials being exposed. Make sure that the logger is not  
+          logging  sensitive information.                                                                    
+          Details: https://sg.run/ydNx                                                                       
+                                                                                                             
+          374┆ logger.debug("Found credentials in netrc for %s", netloc)
+            ⋮┆----------------------------------------
+    ❯❱ python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure
+          ❰❰ Blocking ❱❱
+          Detected a python logger call with a potential hardcoded secret "Found credentials in keyring for
+          %s" being logged. This may lead to secret credentials being exposed. Make sure that the logger is
+          not logging  sensitive information.                                                              
+          Details: https://sg.run/ydNx                                                                     
+                                                                                                           
+          387┆ logger.debug("Found credentials in keyring for %s", netloc)
+            ⋮┆----------------------------------------
+    ❯❱ python.lang.security.audit.logging.logger-credential-leak.python-logger-credential-disclosure
+          ❰❰ Blocking ❱❱
+          Detected a python logger call with a potential hardcoded secret "401 Error, Credentials not correct
+          for %s" being logged. This may lead to secret credentials being exposed. Make sure that the logger 
+          is not logging  sensitive information.                                                             
+          Details: https://sg.run/ydNx                                                                       
+                                                                                                             
+          546┆ logger.warning(
+          547┆     "401 Error, Credentials not correct for %s",
+          548┆     resp.request.url,
+          549┆ )
+                                                             
+    testenv/Lib/site-packages/pip/_internal/network/xmlrpc.py
+   ❯❯❱ python.lang.security.use-defused-xmlrpc.use-defused-xmlrpc
+          ❰❰ Blocking ❱❱
+          Detected use of xmlrpc. xmlrpc is not inherently safe from vulnerabilities. Use defusedxml.xmlrpc
+          instead.                                                                                         
+          Details: https://sg.run/weqY                                                                     
+                                                                                                           
+            6┆ import xmlrpc.client
+            ⋮┆----------------------------------------
+           14┆ from xmlrpc.client import _HostType, _Marshallable
+                                                                  
+    testenv/Lib/site-packages/pip/_internal/self_outdated_check.py
+    ❯❱ python.lang.security.audit.sha224-hash.sha224-hash
+          ❰❰ Blocking ❱❱
+          This code uses a 224-bit hash function, which is deprecated or disallowed in some security policies.
+          Consider updating to a stronger hash function such as SHA-384 or higher to ensure compliance and    
+          security.                                                                                           
+          Details: https://sg.run/Db1Yv                                                                       
+                                                                                                              
+           38┆ name = hashlib.sha224(key_bytes).hexdigest()
+                                                           
+    testenv/Lib/site-packages/pip/_internal/utils/compat.py
+   ❯❯❱ python.lang.compatibility.python37.python37-compatibility-importlib2
+          ❰❰ Blocking ❱❱
+          Found 'importlib.resources', which is a module only available on Python 3.7+. This does not work in 
+          lower versions, and therefore is not backwards compatible. Use importlib_resources instead for older
+          Python versions.                                                                                    
+          Details: https://sg.run/eL3y                                                                        
+                                                                                                              
+            4┆ import importlib.resources
+                                                               
+    testenv/Lib/site-packages/pip/_internal/utils/subprocess.py
+   ❯❯❱ python.lang.compatibility.python36.python36-compatibility-Popen1
+          ❰❰ Blocking ❱❱
+          the `errors` argument to Popen is only available on Python 3.6+
+          Details: https://sg.run/weBP                                   
+                                                                         
+          126┆ proc = subprocess.Popen(
+          127┆     # Convert HiddenText objects to the underlying str.
+          128┆     reveal_command_args(cmd),
+          129┆     stdin=subprocess.PIPE,
+          130┆     stdout=subprocess.PIPE,
+          131┆     stderr=subprocess.STDOUT if not stdout_only else subprocess.PIPE,
+          132┆     cwd=cwd,
+          133┆     env=env,
+          134┆     errors="backslashreplace",
+          135┆ )
+                                                              
+    testenv/Lib/site-packages/pip/_internal/utils/unpacking.py
+   ❯❯❱ trailofbits.python.tarfile-extractall-traversal.tarfile-extractall-traversal
+          ❰❰ Blocking ❱❱
+          Possible path traversal through `tarfile.open($PATH).extractall()` if the source tar is controlled
+          by an attacker                                                                                    
+          Details: https://sg.run/2RLD                                                                      
+                                                                                                            
+          179┆ tar = tarfile.open(filename, mode, encoding="utf-8")
+          180┆ try:
+          181┆     leading = has_leading_dir([member.name for member in tar.getmembers()])
+          182┆
+          183┆     # PEP 706 added `tarfile.data_filter`, and made some other changes to
+          184┆     # Python's tarfile module (see below). The features were backported to
+          185┆     # security releases.
+          186┆     try:
+          187┆         data_filter = tarfile.data_filter
+          188┆     except AttributeError:
+             [hid 60 additional lines, adjust with --max-lines-per-finding] 
+                                                              
+    testenv/Lib/site-packages/pip/_vendor/cachecontrol/_cmd.py
+     ❱ python.lang.security.audit.insecure-transport.requests.request-session-with-http.request-session-with-http
+          ❰❰ Blocking ❱❱
+          Detected a request using 'http://'. This request will be unencrypted. Use 'https://' instead.
+          Details: https://sg.run/DoBY                                                                 
+                                                                                                       
+           33┆ sess.mount("http://", adapter)
+                                                                           
+    testenv/Lib/site-packages/pip/_vendor/cachecontrol/caches/file_cache.py
+    ❯❱ python.lang.security.audit.sha224-hash.sha224-hash
+          ❰❰ Blocking ❱❱
+          This code uses a 224-bit hash function, which is deprecated or disallowed in some security policies.
+          Consider updating to a stronger hash function such as SHA-384 or higher to ensure compliance and    
+          security.                                                                                           
+          Details: https://sg.run/Db1Yv                                                                       
+                                                                                                              
+           96┆ return hashlib.sha224(x.encode()).hexdigest()
+                                                         
+    testenv/Lib/site-packages/pip/_vendor/certifi/core.py
+   ❯❯❱ python.lang.compatibility.python37.python37-compatibility-importlib2
+          ❰❰ Blocking ❱❱
+          Found 'importlib.resources', which is a module only available on Python 3.7+. This does not work in 
+          lower versions, and therefore is not backwards compatible. Use importlib_resources instead for older
+          Python versions.                                                                                    
+          Details: https://sg.run/eL3y                                                                        
+                                                                                                              
+           16┆ from importlib.resources import as_file, files
+            ⋮┆----------------------------------------
+           51┆ from importlib.resources import path as get_path, read_text
+                                                           
+    testenv/Lib/site-packages/pip/_vendor/distlib/compat.py
+   ❯❯❱ python.lang.security.use-defused-xmlrpc.use-defused-xmlrpc
+          ❰❰ Blocking ❱❱
+          Detected use of xmlrpc. xmlrpc is not inherently safe from vulnerabilities. Use defusedxml.xmlrpc
+          instead.                                                                                         
+          Details: https://sg.run/weqY                                                                     
+                                                                                                           
+           42┆ import xmlrpclib
+            ⋮┆----------------------------------------
+           81┆ import xmlrpc.client as xmlrpclib
+                                                         
+    testenv/Lib/site-packages/pip/_vendor/distlib/util.py
+    ❯❱ python.lang.security.audit.httpsconnection-detected.httpsconnection-detected
+          ❰❰ Blocking ❱❱
+          The HTTPSConnection API has changed frequently with minor releases of Python. Ensure you are using  
+          the API for your version of Python securely. For example, Python 3 versions prior to 3.4.3 will not 
+          verify SSL certificates by default. See                                                             
+          https://docs.python.org/3/library/http.client.html#http.client.HTTPSConnection for more information.
+          Details: https://sg.run/8yby                                                                        
+                                                                                                              
+          1601┆ self._connection = host, httplib.HTTPSConnection(
+          1602┆     h, None, **kwargs)
+                                                                   
+    testenv/Lib/site-packages/pip/_vendor/pkg_resources/__init__.py
+    ❯❱ python.lang.security.dangerous-globals-use.dangerous-globals-use
+          ❰❰ Blocking ❱❱
+          Found non static data as an index to 'globals()'. This is extremely dangerous because it allows an
+          attacker to execute arbitrary code on the system. Refactor your code not to use 'globals()'.      
+          Details: https://sg.run/jNzn                                                                      
+                                                                                                            
+          168┆ state[k] = g['_sget_' + v](g[k])
+            ⋮┆----------------------------------------
+          168┆ state[k] = g['_sget_' + v](g[k])
+            ⋮┆----------------------------------------
+          175┆ g['_sset_' + _state_vars[k]](k, g[k], v)
+            ⋮┆----------------------------------------
+          175┆ g['_sset_' + _state_vars[k]](k, g[k], v)
+   
+    ❯❱ python.lang.security.audit.exec-detected.exec-detected
+          ❰❰ Blocking ❱❱
+          Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this 
+          content can be input from outside the program, this may be a code injection vulnerability. Ensure
+          evaluated content is not definable by external sources.                                          
+          Details: https://sg.run/ndRX                                                                     
+                                                                                                           
+          1714┆ exec(code, namespace, namespace)
+            ⋮┆----------------------------------------
+          1725┆ exec(script_code, namespace, namespace)
+   
+    ❯❱ python.lang.security.audit.non-literal-import.non-literal-import
+          ❰❰ Blocking ❱❱
+          Untrusted user input in `importlib.import_module()` function allows an attacker to load arbitrary
+          code. Avoid dynamic values in `importlib.import_module()` or use a whitelist to prevent running  
+          untrusted code.                                                                                  
+          Details: https://sg.run/y6Jk                                                                     
+                                                                                                           
+          2468┆ importlib.import_module(packageName)
+                                                                         
+    testenv/Lib/site-packages/pip/_vendor/pygments/formatters/__init__.py
+    ❯❱ python.lang.security.audit.exec-detected.exec-detected
+          ❰❰ Blocking ❱❱
+          Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this 
+          content can be input from outside the program, this may be a code injection vulnerability. Ensure
+          evaluated content is not definable by external sources.                                          
+          Details: https://sg.run/ndRX                                                                     
+                                                                                                           
+          103┆ exec(f.read(), custom_namespace)
+                                                                     
+    testenv/Lib/site-packages/pip/_vendor/pygments/lexers/__init__.py
+    ❯❱ python.lang.security.audit.exec-detected.exec-detected
+          ❰❰ Blocking ❱❱
+          Detected the use of exec(). exec() can be dangerous if used to evaluate dynamic content. If this 
+          content can be input from outside the program, this may be a code injection vulnerability. Ensure
+          evaluated content is not definable by external sources.                                          
+          Details: https://sg.run/ndRX                                                                     
+                                                                                                           
+          154┆ exec(f.read(), custom_namespace)
+                                                               
+    testenv/Lib/site-packages/pip/_vendor/pygments/unistring.py
+    ❯❱ python.lang.security.dangerous-globals-use.dangerous-globals-use
+          ❰❰ Blocking ❱❱
+          Found non static data as an index to 'globals()'. This is extremely dangerous because it allows an
+          attacker to execute arbitrary code on the system. Refactor your code not to use 'globals()'.      
+          Details: https://sg.run/jNzn                                                                      
+                                                                                                            
+           83┆ return ''.join(globals()[cat] for cat in args)
+            ⋮┆----------------------------------------
+           90┆ return ''.join(globals()[cat] for cat in newcats)
+                                                                                 
+    testenv/Lib/site-packages/pip/_vendor/pyproject_hooks/_in_process/__init__.py
+   ❯❯❱ python.lang.compatibility.python37.python37-compatibility-importlib2
+          ❰❰ Blocking ❱❱
+          Found 'importlib.resources', which is a module only available on Python 3.7+. This does not work in 
+          lower versions, and therefore is not backwards compatible. Use importlib_resources instead for older
+          Python versions.                                                                                    
+          Details: https://sg.run/eL3y                                                                        
+                                                                                                              
+            7┆ import importlib.resources as resources
+                                                                                    
+    testenv/Lib/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py
+    ❯❱ python.lang.security.audit.non-literal-import.non-literal-import
+          ❰❰ Blocking ❱❱
+          Untrusted user input in `importlib.import_module()` function allows an attacker to load arbitrary
+          code. Avoid dynamic values in `importlib.import_module()` or use a whitelist to prevent running  
+          untrusted code.                                                                                  
+          Details: https://sg.run/y6Jk                                                                     
+                                                                                                           
+           77┆ obj = import_module(mod_path)
+   
+    ❯❱ python.lang.security.dangerous-globals-use.dangerous-globals-use
+          ❰❰ Blocking ❱❱
+          Found non static data as an index to 'globals()'. This is extremely dangerous because it allows an
+          attacker to execute arbitrary code on the system. Refactor your code not to use 'globals()'.      
+          Details: https://sg.run/jNzn                                                                      
+                                                                                                            
+          329┆ hook = globals()[hook_name]
+                                                          
+    testenv/Lib/site-packages/pip/_vendor/requests/auth.py
+    ❯❱ python.lang.security.insecure-hash-algorithms.insecure-hash-algorithm-sha1
+          ❰❰ Blocking ❱❱
+          Detected SHA1 hash algorithm which is considered insecure. SHA1 is not collision resistant and is
+          therefore not suitable as a cryptographic signature. Use SHA256 or SHA3 instead.                 
+          Details: https://sg.run/ydYx                                                                     
+                                                                                                           
+           ▶▶┆ Autofix ▶ hashlib.sha256(x)
+          156┆ return hashlib.sha1(x).hexdigest()
+            ⋮┆----------------------------------------
+           ▶▶┆ Autofix ▶ hashlib.sha256(s)
+          205┆ cnonce = hashlib.sha1(s).hexdigest()[:16]
+                                                       
+    testenv/Lib/site-packages/pip/_vendor/rich/style.py
+    ❯❱ python.lang.security.audit.marshal.marshal-usage
+          ❰❰ Blocking ❱❱
+          The marshal module is not intended to be secure against erroneous or maliciously constructed data.
+          Never unmarshal data received from an untrusted or unauthenticated source. See more details:      
+          https://docs.python.org/3/library/marshal.html?highlight=security                                 
+          Details: https://sg.run/3xor                                                                      
+                                                                                                            
+          191┆ self._meta = None if meta is None else dumps(meta)
+            ⋮┆----------------------------------------
+          242┆ style._meta = dumps(meta)
+            ⋮┆----------------------------------------
+          475┆ return {} if self._meta is None else cast(Dict[str, Any], loads(self._meta))
+            ⋮┆----------------------------------------
+          751┆ new_style._meta = dumps({**self.meta, **style.meta})
+                                                            
+    testenv/Lib/site-packages/pip/_vendor/truststore/_api.py
+    ❯❱ python.lang.security.audit.insecure-transport.ssl.no-set-ciphers.no-set-ciphers
+          ❰❰ Blocking ❱❱
+          The 'ssl' module disables insecure cipher suites by default. Therefore, use of 'set_ciphers()'   
+          should only be used when you have very specialized requirements. Otherwise, you risk lowering the
+          security of the SSL channel.                                                                     
+          Details: https://sg.run/0Q0v                                                                     
+                                                                                                           
+          161┆ return self._ctx.set_ciphers(__cipherlist)
+                                                                      
+    testenv/Lib/site-packages/pip/_vendor/urllib3/contrib/pyopenssl.py
+    ❯❱ python.lang.security.audit.weak-ssl-version.weak-ssl-version
+          ❰❰ Blocking ❱❱
+          An insecure SSL version was detected. TLS versions 1.0, 1.1, and all SSL versions are considered
+          weak encryption and are deprecated. Use 'ssl.PROTOCOL_TLSv1_2' or higher.                       
+          Details: https://sg.run/RoZO                                                                    
+                                                                                                          
+           99┆ ssl.PROTOCOL_TLSv1: OpenSSL.SSL.TLSv1_METHOD,
+            ⋮┆----------------------------------------
+          103┆ _openssl_versions[ssl.PROTOCOL_SSLv3] = OpenSSL.SSL.SSLv3_METHOD
+            ⋮┆----------------------------------------
+          106┆ _openssl_versions[ssl.PROTOCOL_TLSv1_1] = OpenSSL.SSL.TLSv1_1_METHOD
+                                                                            
+    testenv/Lib/site-packages/pip/_vendor/urllib3/contrib/securetransport.py
+    ❯❱ python.lang.security.audit.weak-ssl-version.weak-ssl-version
+          ❰❰ Blocking ❱❱
+          An insecure SSL version was detected. TLS versions 1.0, 1.1, and all SSL versions are considered
+          weak encryption and are deprecated. Use 'ssl.PROTOCOL_TLSv1_2' or higher.                       
+          Details: https://sg.run/RoZO                                                                    
+                                                                                                          
+          162┆ _protocol_to_min_max[ssl.PROTOCOL_SSLv2] = (
+            ⋮┆----------------------------------------
+          167┆ _protocol_to_min_max[ssl.PROTOCOL_SSLv3] = (
+            ⋮┆----------------------------------------
+          172┆ _protocol_to_min_max[ssl.PROTOCOL_TLSv1] = (
+            ⋮┆----------------------------------------
+          177┆ _protocol_to_min_max[ssl.PROTOCOL_TLSv1_1] = (
+                                                              
+    testenv/Lib/site-packages/pip/_vendor/urllib3/util/ssl_.py
+    ❯❱ python.lang.security.audit.ssl-wrap-socket-is-deprecated.ssl-wrap-socket-is-deprecated
+          ❰❰ Blocking ❱❱
+          'ssl.wrap_socket()' is deprecated. This function creates an insecure socket without server name 
+          indication or hostname matching. Instead, create an SSL context using 'ssl.SSLContext()' and use
+          that to wrap a socket.                                                                          
+          Details: https://sg.run/PJOY                                                                    
+                                                                                                          
+          179┆ return wrap_socket(socket, ciphers=self.ciphers, **kwargs)
+   
+    ❯❱ python.lang.security.audit.insecure-transport.ssl.no-set-ciphers.no-set-ciphers
+          ❰❰ Blocking ❱❱
+          The 'ssl' module disables insecure cipher suites by default. Therefore, use of 'set_ciphers()'   
+          should only be used when you have very specialized requirements. Otherwise, you risk lowering the
+          security of the SSL channel.                                                                     
+          Details: https://sg.run/0Q0v                                                                     
+                                                                                                           
+          292┆ context.set_ciphers(ciphers or DEFAULT_CIPHERS)
                                  
     vscode-extension/copy-core.js
     ❯❱ javascript.lang.security.audit.path-traversal.path-join-resolve-traversal.path-join-resolve-traversal
@@ -178,15 +585,15 @@
 │ Scan Summary │
 └──────────────┘
 ✅ Scan completed successfully.
- • Findings: 33 (33 blocking)
+ • Findings: 87 (87 blocking)
  • Rules run: 595
- • Targets scanned: 85
+ • Targets scanned: 515
  • Parsed lines: ~100.0%
  • Scan skipped: 
-   ◦ Files matching .semgrepignore patterns: 251
+   ◦ Files matching .semgrepignore patterns: 259
  • Scan was limited to files tracked by git
  • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
-Ran 595 rules on 85 files: 33 findings.
+Ran 595 rules on 515 files: 87 findings.
 
 📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
    See https://sg.run/false-positives.
