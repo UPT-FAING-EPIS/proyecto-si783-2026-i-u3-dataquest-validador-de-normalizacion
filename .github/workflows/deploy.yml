@@ -15,7 +15,7 @@ permissions:
   pull-requests: write
 
 env:
-  DOCKER_IMAGE: ghcr.io/upt-faing-epis/proyecto-si783-2026-i-u1-validador-de-normalizacion:latest
+  DOCKER_IMAGE: ghcr.io/upt-faing-epis/proyecto-si783-2026-i-u3-dataquest-validador-de-normalizacion:latest
 
 jobs:
   build-and-deploy:
