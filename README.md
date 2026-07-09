@@ -11,7 +11,7 @@
 
 Aplicación web en Python con Streamlit y **Extensión de VS Code** para analizar esquemas de bases de datos relacionales, detectar violaciones a las formas normales y sugerir mejoras estructurales de forma automática. Soporta entrada de esquemas mediante archivos (`.txt`, `.csv`, `.xls`, `.sql`) o pegado directo de código SQL. Incluye también una **Agent Skill** para integración con asistentes de Inteligencia Artificial.
 
-LINK del sistema: app-dataquest-web.azurewebsites.net
+LINK del sistema: https://app-dataquest-web.azurewebsites.net/
 
 
 VIDEO DEMO: https://drive.google.com/drive/folders/1qWd4konZpkmquT694xuTZTp28ZyWs0LN?usp=drive_link
@@ -19,6 +19,8 @@ VIDEO DEMO: https://drive.google.com/drive/folders/1qWd4konZpkmquT694xuTZTp28ZyW
 SKILL PUBLICADA: https://github.com/FabrizioPerezPeralta/Skill_DataQuest_Validador_Nomalizacion.git 
 
 EXTENSION VS CODE: DataQuest
+
+Reporte de GitHub Pages: https://upt-faing-epis.github.io/proyecto-si783-2026-i-u3-dataquest-validador-de-normalizacion/
 
 ---
 
